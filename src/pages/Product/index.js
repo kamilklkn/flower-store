@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import loadable from '@loadable/component'
 import SizeInformer from "components/ProductPage/SizeInformer"
 
-import GrassPluserButton from "../../components/ProductPage/GrassPluserButton";
-import SizeButton from "../../components/ProductPage/SizeButton";
+import GrassPluserButton from "components/ProductPage/GrassPluserButton";
+import SizeButton from "components/ProductPage/SizeButton";
 
 import styles from './Product.module.sass'
 
