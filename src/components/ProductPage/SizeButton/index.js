@@ -1,8 +1,7 @@
 import React from 'react'
-import styles from './SizesButton.module.sass'
+import styles from './SizeButton.module.sass'
 
-
-const Button = ({
+const SizeButton = ({
                   sizeIndex = 0,
                   title = '',
                   price = '',
@@ -19,7 +18,7 @@ const Button = ({
       {title} <br/>
       {price} {`\u20BD`}
     </div>
-  );
-};
+  )
+}
 
-export default Button;
+export default SizeButton

@@ -1,11 +1,10 @@
 import React from 'react';
 
 
-const SizeInformer = ({ h, w }) => {
+const SizeInformer = ({ className, h, w }) => {
   return (
-    <div>
-      Размер букета:
-      <h6>{h} см / {w} см</h6>
+    <div className={className}>
+      Размер букета: <div>{h} см / {w} см</div>
     </div>
   );
 };
