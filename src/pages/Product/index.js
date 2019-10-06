@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import loadable from '@loadable/component'
 import SizeInformer from "components/ProductPage/SizeInformer"
 
 import GrassPluserButton from "../../components/ProductPage/GrassPluserButton";
 import SizeButton from "../../components/ProductPage/SizeButton";
 
 import styles from './Product.module.sass'
+
+// import DatePicker from 'components/ProductPage/DatePicker'
+
+
+const DatePicker = loadable(() => import('components/ProductPage/DatePicker'))
 
 
 class Product extends Component {
@@ -156,6 +162,13 @@ class Product extends Component {
             <h1>{totalPrice} &#8381;</h1>
 
             <p>Выбрать дату доставки</p>
+
+            <DatePicker
+              fallback={<div>Loading...</div>}
+              startDate={new Date()}
+            />
+
+
             <p>Купить в один клик</p>
 
             <p>Инструкция свежести</p>
