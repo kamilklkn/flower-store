@@ -201,16 +201,14 @@ class Product extends Component {
             <h1>{this.state.title}</h1>
 
             <div
-              onClick={() => {
-                console.log('click')
-
+              onClick={() =>
                 this.setState(prevState => ({
                   available: {
                     ...prevState.available,
                     now: !prevState.available.now
                   }
                 }))
-              }}
+              }
             >
               <Available
                 {...this.state.available}
@@ -262,9 +260,10 @@ class Product extends Component {
 
           </div>
         </div>
-      </div>
-    )
-  }
-}
+        <
+        /div>
+        )
+        }
+        }
 
-export default Product
+        export default Product
