@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-// import DatePicker from 'react-date-picker'
+import DatePicker from 'react-date-picker'
 
 const DatePickerWrap = ({ startDate }) => {
   const [date, setDate] = useState(startDate);
 
   return (
     <div>
-      sdfs
-      {/*<DatePicker*/}
-        {/*onChange={date => setDate(date)}*/}
-        {/*value={date}*/}
-      {/*/>*/}
+      <DatePicker
+        onChange={date => setDate(date)}
+        value={date}
+      />
     </div>
   )
 }
