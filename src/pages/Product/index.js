@@ -5,15 +5,19 @@ import SizeInformer from "components/ProductPage/SizeInformer"
 import GrassPluserButton from "components/ProductPage/GrassPluserButton"
 import SizeButton from "components/ProductPage/SizeButton"
 import Available from 'components/ProductPage/Available'
+import Details from 'components/ProductPage/Details'
 
 import styles from './Product.module.sass'
 
 // import DatePicker from 'components/ProductPage/DatePicker'
 
+const fallback = () => (
+  <div>Loading...</div>
+)
 
-const DatePicker = loadable(() => import('components/ProductPage/DatePicker'))
-const FlowersInstruction = loadable(() => import('components/ProductPage/FlowersInstruction'))
-const DeliveryInfo = loadable(() => import('components/ProductPage/DeliveryInfo'))
+const DatePicker = loadable(() => import('components/ProductPage/DatePicker'), fallback)
+const FlowersInstruction = loadable(() => import('components/ProductPage/FlowersInstruction'), fallback)
+const DeliveryInfo = loadable(() => import('components/ProductPage/DeliveryInfo'), fallback)
 
 
 class Product extends Component {
@@ -197,12 +201,16 @@ class Product extends Component {
             <h1>{this.state.title}</h1>
 
             <div
-              onClick={() => this.setState(prevState => ({
-                available: {
-                  ...prevState.available,
-                  now: !prevState.available.now
-                }
-              }))}
+              onClick={() => {
+                console.log('click')
+
+                this.setState(prevState => ({
+                  available: {
+                    ...prevState.available,
+                    now: !prevState.available.now
+                  }
+                }))
+              }}
             >
               <Available
                 {...this.state.available}
@@ -225,19 +233,13 @@ class Product extends Component {
 
 
             <p>Выберете дату доставки</p>
-            {/*<DatePicker*/}
-              {/*fallback={<div>Loading...</div>}*/}
-              {/*startDate={new Date()}*/}
-            {/*/>*/}
+            <DatePicker
+              startDate={new Date()}
+            />
 
             <p>Купить в один клик</p>
 
-            {/*<Details>*/}
-            <p>
-              Детали
-              Состав (composition)
-              Упаковка
-            </p>
+            <Details/>
             <FlowersInstruction/>
             <DeliveryInfo/>
 

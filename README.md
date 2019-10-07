@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run analyze`
+
+Builds the app and start page analyze boundle
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
@@ -27,9 +31,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `node alalyze.js`
-
-Builds the app and start page analyze boundle
 
 ### `npm run eject`
 
