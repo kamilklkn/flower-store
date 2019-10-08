@@ -1,14 +1,20 @@
 import React from 'react'
+import { Provider } from 'react-redux'
+import store from "store/configureStore"
+// import Product from "pages/Product"
+import Catalog from "pages/Catalog"
+
 import "bootstrap/scss/bootstrap-grid.scss"
-// import "bootstrap/scss/bootstrap.scss"
-import Product from "pages/Product"
 
 
 function App() {
   return (
-    <div className="App">
-     <Product/>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Catalog/>
+        {/*<Product/>*/}
+      </div>
+    </Provider>
   )
 }
 

@@ -28,16 +28,10 @@ class Product extends Component {
   }
 
   state = {
-    flowers: [
-      {
-        id: 0,
-        name: 'Розы',
-      },
-      {
-        id: 1,
-        name: 'Гортензии'
-      }
-    ],
+    flowers: {
+      ids: [1, 2, 3],
+      counts: [10, 14, 7]
+    },
     sizesTitles: [
       'Стандартный', 'Большой', 'Премиум', 'Вау!'
     ],
