@@ -59,65 +59,57 @@ const products = [
   }
 ]
 
-
 const filterFunctions = {
-  byColors(products) {
+  byColors(products, { selected }) {
     return products.filter(product =>
-      filter.colors.selected.includes(product.color)
+      selected.includes(product.color)
     )
   },
-  bySizes(products) {
+  bySizes(products, { selected }) {
     return products.filter(product =>
       product.sizes.some(size =>
-        filter.sizes.selected.includes(size.id)
+        selected.includes(size.id)
       )
     )
   },
-  bySizesPrice(products) {
+  bySizesPrice(products, { min, max }) {
     return products.filter(product =>
       product.sizes.some(size =>
-        size.price >= filter.priceRange.min && size.price <= filter.priceRange.max
+        size.price >= min && size.price <= max
       )
     )
   }
 }
 
-const filter = {
+const filters = {
   colors: {
     selected: ['green', 'red'],
     func: filterFunctions.byColors
   },
   sizes: {
-    selected: [3],
+    selected: [1, 2],
     func: filterFunctions.bySizes
   },
   priceRange: {
-    min: 4000,
-    max: 4500,
+    min: 400,
+    max: 15000,
     func: filterFunctions.bySizesPrice
   }
 }
 
+
+const filteredProducts = Object.values(filters).reduce((results, filter) => {
+  // Не запускаем фильтр, если он не установлен
+  if ('selected' in filter && !filter.selected.length) return results
+  return filter.func(results, filter)
+}, products)
+
+const r = filteredProducts.map(product => product.title)
+console.log(r)
+
 // let result = filterFunctions.byColors(products)
 // result = filterFunctions.bySizes(products)
 // result = filterFunctions.bySizesPrice(result)
-
-let result = products
-for (const [key, item] of Object.entries(filter)) {
-  if (item.selected) {
-    if (item.selected.length > 0) {
-      console.log(key)
-      result = item.func(result)
-    }
-  } else {
-    console.log(key)
-    result = item.func(result)
-  }
-}
-
-
-const r = result.map(item => item.title)
-console.log(r)
 
 // filter - products
 // filter - products
