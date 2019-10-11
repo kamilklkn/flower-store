@@ -21,6 +21,14 @@ const filterFunctions = {
       )
     )
   },
+  byFlowers(products, { selected }) {
+    return products.filter(product =>
+      product.sizes.some(size =>
+        // todo fix it includes
+        selected.includes(size.flowers.ids)
+      )
+    )
+  },
   bySizesPrice(products, { min, max }) {
     return products.filter(product =>
       product.sizes.some(size =>
@@ -35,7 +43,7 @@ const initialState = {
   colors: {
     title: 'Цвета',
     type: FILTER_TYPES.ITEMS_OBJECTS,
-    selected: [1, 3],
+    selected: [],
     items: productColors,
     func: filterFunctions.byColors
   },
@@ -50,8 +58,8 @@ const initialState = {
     title: 'Цветы',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: flowers,
-    selected: [],
-    func: null
+    selected: [1, 3],
+    func: filterFunctions.byFlowers
   },
   productPacking: {
     title: 'Упаковка',

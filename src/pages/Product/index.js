@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux"
 import loadable from '@loadable/component'
 import SizeInformer from "components/ProductPage/SizeInformer"
 
@@ -8,6 +9,10 @@ import Available from 'components/ProductPage/Available'
 import Details from 'components/ProductPage/Details'
 
 import styles from './Product.module.sass'
+import { getNameById } from "utils"
+
+import { Redirect } from 'react-router-dom'
+
 
 // import DatePicker from 'components/ProductPage/DatePicker'
 
@@ -28,72 +33,8 @@ class Product extends Component {
   }
 
   state = {
-    flowers: {
-      ids: [1, 2, 3],
-      counts: [10, 14, 7]
-    },
-    sizesTitles: [
-      'Стандартный', 'Большой', 'Премиум', 'Вау!'
-    ],
-    grassItems: [
-      {
-        title: 'Нет',
-        price: 0
-      },
-      {
-        title: 'Немного',
-        price: 100
-      },
-      {
-        title: 'Побольше',
-        price: 300
-      }
-    ],
-
-    id: 1,
-    order: 1,
-    available: {
-      now: false,
-      fromDate: new Date()
-    },
     activeSizeIndex: 0,
-    activeGrassIndex: 0,
-    title: 'Монобукет Мисти Бабблс',
-    slug: 'monobuket-kustovoj-pionovidnoj-rozy',
-    desc: '',
-    sizes: [
-      {
-        id: 0,
-        h: 25,
-        w: 35,
-        image: 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B8_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0.JPG?geometry=670x760&upscale=true&crop=center',
-        price: 2500,
-        properties: [
-          {
-            id: 1,
-            count: 12
-          },
-          {
-            id: 0,
-            count: 8
-          }
-        ]
-      },
-      {
-        id: 1,
-        h: 34,
-        w: 40,
-        image: 'https://klumba.store/api/crop/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-23_10-51-04.jpg?geometry=670x760&upscale=true&crop=center',
-        price: 3400
-      },
-      {
-        id: 2,
-        h: 50,
-        w: 68,
-        image: 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG?geometry=670x760&upscale=true&crop=center',
-        price: 5200
-      },
-    ]
+    activeGrassIndex: 0
   }
 
   handleSizeButtonClick = (itemIndex) => {
@@ -110,13 +51,13 @@ class Product extends Component {
     })
   }
 
-  renderGrassPluserButtons = () => {
+  renderGrassPluserButtons = (grasses) => {
     return (
       <div>
         Добавить зелени?
         <div className={styles.grassPluserButtons}>
           {
-            this.state.grassItems.map((button, i) =>
+            grasses.map((button, i) =>
               <GrassPluserButton
                 key={i}
                 index={i}
@@ -132,15 +73,15 @@ class Product extends Component {
     )
   }
 
-  renderSizesButtons = () => {
+  renderSizesButtons = (sizes) => {
     return (
       <div className={styles.sizesButtons}>
         {
-          this.state.sizes.map((size, i) =>
+          sizes.map((size, i) =>
             <SizeButton
               key={i}
               sizeIndex={i}
-              title={this.state.sizesTitles[i]}
+              title={size.title}
               price={size.price}
               active={this.state.activeSizeIndex === i}
               onClick={this.handleSizeButtonClick}
@@ -151,19 +92,19 @@ class Product extends Component {
     )
   }
 
-  renderProperties = (activeSize) => {
+  renderFlowers = (activeSize, flowersTitles) => {
     return (
       <>
-        <h4>Состав</h4>
+        Состав
         <ul className={styles.properties}>
           {
-            activeSize.properties.map((item, i) => {
-                const flowerName = this.state.flowers[i].name
-                // console.log(flower)
+            activeSize.flowers.ids.map((flowerId, i) => {
+                const flowerName = getNameById(flowerId, flowersTitles)
+                console.log(flowerName)
                 // console.log(flower.id)
                 return (
                   <li key={i}>
-                    {flowerName}: {item.count}
+                    {flowerName}: {activeSize.flowers.counts[i]}
                   </li>
                 )
               }
@@ -174,11 +115,20 @@ class Product extends Component {
     )
   }
 
-
   render() {
-    const activeSize = this.state.sizes[this.state.activeSizeIndex]
-    const activeSizeTitle = this.state.sizesTitles[this.state.activeSizeIndex]
-    const activeGrass = this.state.grassItems[this.state.activeGrassIndex]
+    const { products, ...titles } = this.props.catalog
+    // const product = products[0]
+
+    const product = products.find(item => item.slug === this.props.slug)
+    if (!product) {
+      return <Redirect to="/404" />
+    }
+
+
+    console.log(this.props.slug)
+    const activeSize = product.sizes[this.state.activeSizeIndex]
+    const activeGrass = titles.productGrass[this.state.activeGrassIndex]
+
     const totalPrice = activeSize.price
       + activeGrass.price
 
@@ -187,12 +137,12 @@ class Product extends Component {
         <div className="row">
           <div className={`col-6 ${styles.photo}`}>
             <div className={styles.photoSizeTitle}>
-              {activeSizeTitle}
+              {activeSize.title}
             </div>
             <img src={activeSize.image || this.state.sizes[0].image} alt=""/>
           </div>
           <div className={`col-6 ${styles.usn}`}>
-            <h1>{this.state.title}</h1>
+            <h1>{product.title}</h1>
 
             <div
               onClick={() =>
@@ -205,11 +155,11 @@ class Product extends Component {
               }
             >
               <Available
-                {...this.state.available}
+                {...product.available}
               />
             </div>
 
-            {this.renderSizesButtons()}
+            {this.renderSizesButtons(product.sizes)}
 
             <SizeInformer
               className={styles.sizeInformer}
@@ -217,12 +167,11 @@ class Product extends Component {
               w={activeSize.w}
             />
 
-            {this.renderGrassPluserButtons()}
+            {this.renderGrassPluserButtons(titles.productGrass)}
 
 
             <br/>
             <h1>{totalPrice} {`\u20BD`}</h1>
-
 
             <p>Выберете дату доставки</p>
             <DatePicker
@@ -231,14 +180,14 @@ class Product extends Component {
 
             <p>Купить в один клик</p>
 
-            <Details/>
+            <Details>
+              {
+                activeSize.flowers && this.renderFlowers(activeSize, titles.flowers)
+              }
+            </Details>
             <FlowersInstruction/>
             <DeliveryInfo/>
 
-
-            {
-              activeSize.properties && this.renderProperties(activeSize)
-            }
 
             <div>
               <p>Поделится</p>
@@ -254,10 +203,20 @@ class Product extends Component {
 
           </div>
         </div>
-        <
-        /div>
-        )
-        }
-        }
+      </div>
+    )
+  }
+}
 
-        export default Product
+function mapStateToProps(state, ownProps) {
+  // console.log(ownProps)
+  // console.log(ownProps.match.params.product)
+  return {
+    catalog: state.catalog,
+    slug: ownProps.match.params.product
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Product)

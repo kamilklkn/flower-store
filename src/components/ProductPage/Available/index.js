@@ -3,8 +3,9 @@ import styles from './Available.module.sass'
 import { getAvailableDate } from "utils/date";
 
 
-const Available = ({ now = true, fromDate = false }) => {
+const Available = ({ now = true, fromDate = false, className = false }) => {
   const cls = [styles.available]
+  className && cls.push(styles[className])
   !now && fromDate && cls.push(styles.no)
   return (
     <p className={cls.join(' ')}>

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import styles from './Catalog.module.sass'
-import Filter from 'components/CatalogPage/Filter'
-
+import React, { Component } from "react"
+import styles from "./Catalog.module.sass"
+import Filter from "components/CatalogPage/Filter"
+import Catalog from "components/CatalogPage/Catalog"
 
 class Index extends Component {
   render() {
@@ -12,8 +12,8 @@ class Index extends Component {
             <div className="col-3">
               <Filter/>
             </div>
-            <div className="col-9">
-              Products
+            <div className="col-9 pt-3">
+              <Catalog/>
             </div>
           </div>
         </div>

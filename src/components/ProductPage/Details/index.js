@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Details.module.sass'
 
-const Details = () => {
-  return (
-    <div className={styles.details}>
-      Детали
-      Состав (composition)
-      Упаковка
-    </div>
-  )
-}
+const Details = (props) => {
+  const [visible, setVisible] = useState(true)
 
-export default Details
+  return (
+    <div>
+      <h4 onClick={() => setVisible(!visible)}>Детали</h4>
+      {
+        visible && (
+          <>
+            {props.children}
+          </>
+        )
+      }
+
+    </div>
+  );
+};
+
+export default Details;
