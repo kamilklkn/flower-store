@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from './Details.module.sass'
+// import styles from './Details.module.sass'
 
 const Details = (props) => {
   const [visible, setVisible] = useState(true)

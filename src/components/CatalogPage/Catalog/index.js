@@ -1,54 +1,103 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Row } from "components/Bootstrap"
-import CatalogProduct from "components/CatalogPage/Product";
+// import Product from "components/CatalogPage/Product"
+import { Link } from 'react-router-dom'
+import Available from "components/ProductPage/Available"
+
+import styles from "components/CatalogPage/Catalog/Catalog.module.sass"
+import { getNameById, classes } from "utils"
+import { productSizes } from "constants/productSizes"
 
 
-class Catalog extends Component {
-  render() {
-    console.log('Catalog render')
-    const { products, filter } = this.props
-    // console.log(products)
+function filterProducts(products, filter) {
+  // console.log(products)
+  // Здесь сделать фильтрацию товаров с использованием reselect
 
-    // const filteredProducts = products
-    // Здесь сделать фильтрацию товаров с использованием reselect
-    const filteredProducts = Object.values(filter).reduce((results, filter) => {
-      // Не запускаем фильтр, если он не установлен
-      if ('selected' in filter && !filter.selected.length) {
-        console.log(filter.title)
-        return results
-      }
-      return filter.func(results, filter)
-    }, products)
+  return Object.values(filter).reduce((results, filter) => {
+    // Не запускаем фильтр, если он не установлен
+    if ('selected' in filter && !filter.selected.length) {
+      return results
+    }
+    return filter.func(results, filter)
+  }, products)
 
-    return (
-      <Row>
-        {filteredProducts.map(product => {
-          const size = product.sizes[0]
-          return (
-            <CatalogProduct
-              key={product.id}
-              slug={product.slug}
-              title={product.title}
-              price={size.price}
-              image={size.image}
-              available={product.available}
-              size={{
-                h: size.h,
-                w: size.w,
-              }}
+}
+
+const TitleWithPrice = ({ title, price, active }) => (
+  <div className={classes(
+    styles.titleWithPrice,
+    active && styles.inactive
+  )}>
+    {title} — {`\u0020`}
+    <span className={styles.price}>
+      {price} <span>{`\u20BD`}</span>
+    </span>
+  </div>
+)
+
+
+const Catalog = ({ products, showOnlyRequiredSizes, requiredSizesIds }) => {
+  return (
+    <Row>
+      {products.map(product => {
+        const firstSize = product.sizes[0]
+        const { available, id, slug, title, sizes } = product
+
+        return (
+          <div className={`${styles.product} col-4 mb-2`} key={id}>
+            <Link to={`/catalog/${slug}`}>
+              <div className={styles.image}>
+                {/*<p className={styles.size}>{size.h}см / {size.w}см</p>*/}
+                <img src={firstSize.image} alt={title}/>
+              </div>
+            </Link>
+
+            <Available
+              now={available.now}
+              fromDate={available.fromDate}
+              className="np"
             />
-          )
-        })}
-      </Row>
-    )
-  }
+
+            <Link className={styles.title} to={`/catalog/${slug}`}>
+              {title}
+            </Link>
+
+            {
+              showOnlyRequiredSizes ? (
+                  <div className={styles.sizes}>
+                    {
+                      sizes.map(size =>
+                        <TitleWithPrice
+                          key={size.id}
+                          title={getNameById(size.id, productSizes)}
+                          price={size.price}
+                          active={!requiredSizesIds.includes(size.id)}
+                        />
+                      )
+                    }
+                  </div>
+                )
+                : (
+                  <p className={styles.price}>
+                    {firstSize.price} <span>{`\u20BD`}</span>
+                  </p>
+                )
+            }
+
+            <hr/>
+          </div>
+        )
+      })}
+    </Row>
+  )
 }
 
 function mapStateToProps(state) {
   return {
-    products: state.catalog.products,
-    filter: state.filter
+    products: filterProducts(state.catalog.products, state.filter),
+    showOnlyRequiredSizes: !!state.filter.sizes.selected.length,
+    requiredSizesIds: state.filter.sizes.selected
   }
 }
 

@@ -3,11 +3,12 @@ import { FILTER_TYPES } from "constants/filterTypes"
 
 // todo временные переменные, это должно быть получено через API
 import { productColors } from "constants/productColors"
+import { productShades } from "constants/productShades"
 import { productSizes } from "constants/productSizes"
 import { flowers } from "constants/flowers"
 import { productPacking } from "constants/productPacking"
 
-
+// todo fix some, because if selected two filters, next product skip check
 const filterFunctions = {
   byColors(products, { selected }) {
     return products.filter(product =>
@@ -21,11 +22,21 @@ const filterFunctions = {
       )
     )
   },
+  byShades(products, { selected }) {
+    return products.filter(product => {
+        if (!product.shade) return false
+        return product.shade.some(size =>
+          selected.includes(size.id)
+        )
+      }
+    )
+  },
   byFlowers(products, { selected }) {
     return products.filter(product =>
       product.sizes.some(size =>
-        // todo fix it includes
-        selected.includes(size.flowers.ids)
+        size.flowers.ids.some(flowerId =>
+          selected.includes(flowerId)
+        )
       )
     )
   },
@@ -40,40 +51,47 @@ const filterFunctions = {
 
 
 const initialState = {
-  colors: {
-    title: 'Цвета',
+  priceRange: {
+    type: FILTER_TYPES.RANGE,
+    title: 'Цена',
+    func: filterFunctions.bySizesPrice,
+    min: 400,
+    max: 15000
+  },
+  shade: {
+    title: 'Оттенок',
     type: FILTER_TYPES.ITEMS_OBJECTS,
-    selected: [],
+    items: productShades,
+    func: filterFunctions.byShades,
+    selected: []
+  },
+  colors: {
+    title: 'Цвет',
+    type: FILTER_TYPES.COLORS_BUTTONS,
     items: productColors,
-    func: filterFunctions.byColors
+    func: filterFunctions.byColors,
+    selected: []
   },
   sizes: {
     title: 'Размеры',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productSizes,
-    selected: [1, 2],
-    func: filterFunctions.bySizes
+    func: filterFunctions.bySizes,
+    selected: [1, 2]
   },
   flowers: {
     title: 'Цветы',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: flowers,
-    selected: [1, 3],
-    func: filterFunctions.byFlowers
+    func: filterFunctions.byFlowers,
+    selected: []
   },
   productPacking: {
     title: 'Упаковка',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productPacking,
-    selected: [],
-    func: null
-  },
-  priceRange: {
-    type: FILTER_TYPES.RANGE,
-    title: 'Цена',
-    min: 400,
-    max: 15000,
-    func: filterFunctions.bySizesPrice
+    func: null,
+    selected: []
   }
 }
 

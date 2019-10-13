@@ -13,7 +13,6 @@ import { getNameById } from "utils"
 
 import { Redirect } from 'react-router-dom'
 
-
 // import DatePicker from 'components/ProductPage/DatePicker'
 
 const fallback = () => (
@@ -179,6 +178,14 @@ class Product extends Component {
             />
 
             <p>Купить в один клик</p>
+            <h2>
+              Флорист об этой композиции
+              Фото круглое
+              ФИ
+              текст небольшой
+            </h2>
+
+
 
             <Details>
               {

@@ -1,19 +1,32 @@
 export const productColors = [
   {
     id: 0,
-    name: 'Красный'
+    name: 'Сборный',
+    color: 'all'
   },
   {
     id: 1,
-    name: 'Зеленый'
+    name: 'Красный',
+    color: 'red'
   },
   {
     id: 2,
-    name: 'Синий'
+    name: 'Зеленый',
+    color: 'green'
   },
   {
     id: 3,
-    name: 'Желтый'
+    name: 'Синий',
+    color: 'blue'
   },
-
+  {
+    id: 4,
+    name: 'Желтый',
+    color: 'yellow'
+  },
+  {
+    id: 5,
+    name: 'Черный',
+    color: '#000'
+  }
 ]
