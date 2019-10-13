@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![Imgur Image](https://media.giphy.com/media/ihYy5Mxtv58NZ1zM6B/giphy.gif)
+
 ## Available Scripts
 
 In the project directory, you can run:
