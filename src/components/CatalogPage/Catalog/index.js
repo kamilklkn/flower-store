@@ -10,19 +10,19 @@ import { getNameById, classes } from "utils"
 import { productSizes } from "constants/productSizes"
 
 
-function filterProducts(products, filter) {
-  // console.log(products)
-  // Здесь сделать фильтрацию товаров с использованием reselect
-
-  return Object.values(filter).reduce((results, filter) => {
-    // Не запускаем фильтр, если он не установлен
-    if ('selected' in filter && !filter.selected.length) {
-      return results
-    }
-    return filter.func(results, filter)
-  }, products)
-
-}
+// function filterProducts(products, filter) {
+//   // console.log(products)
+//   // Здесь сделать фильтрацию товаров с использованием reselect
+//
+//   return Object.values(filter).reduce((results, filter) => {
+//     // Не запускаем фильтр, если он не установлен
+//     if ('selected' in filter && !filter.selected.length) {
+//       return results
+//     }
+//     return filter.func(results, filter)
+//   }, products)
+//
+// }
 
 const TitleWithPrice = ({ title, price, active }) => (
   <div className={classes(
@@ -95,9 +95,10 @@ const Catalog = ({ products, showOnlyRequiredSizes, requiredSizesIds }) => {
 
 function mapStateToProps(state) {
   return {
-    products: filterProducts(state.catalog.products, state.filter),
-    showOnlyRequiredSizes: !!state.filter.sizes.selected.length,
-    requiredSizesIds: state.filter.sizes.selected
+    // products: filterProducts(state.catalog.products, state.filter),
+    products: state.catalog.products,
+    // showOnlyRequiredSizes: !!state.filter.sizes.selected.length,
+    // requiredSizesIds: state.filter.sizes.selected
   }
 }
 

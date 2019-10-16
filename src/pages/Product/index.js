@@ -9,10 +9,9 @@ import Available from 'components/ProductPage/Available'
 import Details from 'components/ProductPage/Details'
 
 import styles from './Product.module.sass'
-import { getNameById } from "utils"
 
 import { Redirect } from 'react-router-dom'
-import AdditionalProducts from "components/ProductPage/AdditionalProducts";
+// import AdditionalProducts from "components/ProductPage/AdditionalProducts";
 
 // import DatePicker from 'components/ProductPage/DatePicker'
 
@@ -51,27 +50,23 @@ class Product extends Component {
     })
   }
 
-  renderGrassPluserButtons = (grasses) => {
-    return (
-      <div>
-        Добавить зелени?
-        <div className={styles.grassPluserButtons}>
-          {
-            grasses.map((button, i) =>
-              <GrassPluserButton
-                key={i}
-                index={i}
-                title={button.name}
-                price={button.price}
-                active={this.state.activeGrassIndex === i}
-                onClick={this.handleGrassPluserButtonClick}
-              />
-            )
-          }
-        </div>
-      </div>
-    )
-  }
+  renderGrassPluserButtons = (grasses) => (
+    <div className={styles.grassPluserButtons}>
+      {
+        grasses.map((button, i) =>
+          <GrassPluserButton
+            key={i}
+            index={i}
+            title={button.name}
+            price={button.price}
+            active={this.state.activeGrassIndex === i}
+            onClick={this.handleGrassPluserButtonClick}
+          />
+        )
+      }
+    </div>
+  )
+
 
   renderSizesButtons = (sizes) => {
     return (
@@ -92,42 +87,33 @@ class Product extends Component {
     )
   }
 
-  renderFlowers = (activeSize, flowersTitles) => {
-    return (
-      <>
-        Состав
-        <ul className={styles.properties}>
-          {
-            activeSize.flowers.ids.map((flowerId, i) => {
-                const flowerName = getNameById(flowerId, flowersTitles)
-                console.log(flowerName)
-                // console.log(flower.id)
-                return (
-                  <li key={i}>
-                    {flowerName}: {activeSize.flowers.counts[i]}
-                  </li>
-                )
-              }
+  renderFlowers = (flowers) => (
+    <ul className={styles.properties}>
+      {
+        flowers.map((flowerEntity, i) => {
+            const [name, count] = flowerEntity
+            return (
+              <li key={i}>
+                {name}: {count}
+              </li>
             )
           }
-        </ul>
-      </>
-    )
-  }
+        )
+      }
+    </ul>
+  )
 
   render() {
-    const { products, ...titles } = this.props.catalog
+    const { products, grass } = this.props
     // const product = products[0]
 
     const product = products.find(item => item.slug === this.props.slug)
     if (!product) {
-      return <Redirect to="/404" />
+      return <Redirect to="/404"/>
     }
 
-
-    console.log(this.props.slug)
     const activeSize = product.sizes[this.state.activeSizeIndex]
-    const activeGrass = titles.productGrass[this.state.activeGrassIndex]
+    const activeGrass = grass[this.state.activeGrassIndex]
 
     const totalPrice = activeSize.price
       + activeGrass.price
@@ -167,13 +153,15 @@ class Product extends Component {
               w={activeSize.w}
             />
 
-            {this.renderGrassPluserButtons(titles.productGrass)}
-
+            <div>
+              Добавить зелени?
+              {this.renderGrassPluserButtons(grass)}
+            </div>
 
             <br/>
             <h1>{totalPrice} {`\u20BD`}</h1>
 
-            <AdditionalProducts products={product.additionalProducts}/>
+            {/*<AdditionalProducts products={product.additionalProducts}/>*/}
 
             <p>Выберете дату доставки</p>
             <DatePicker
@@ -189,10 +177,14 @@ class Product extends Component {
             </h2>
 
 
-
             <Details>
               {
-                activeSize.flowers && this.renderFlowers(activeSize, titles.flowers)
+                activeSize.flowers && (
+                  <>
+                    Состав
+                    {this.renderFlowers(activeSize.flowers)}
+                  </>
+                )
               }
             </Details>
             <FlowersInstruction/>
@@ -222,8 +214,9 @@ function mapStateToProps(state, ownProps) {
   // console.log(ownProps)
   // console.log(ownProps.match.params.product)
   return {
-    catalog: state.catalog,
+    products: state.catalog.products,
     additionalProducts: state.additionalProducts,
+    grass: state.catalog.grass,
     slug: ownProps.match.params.product
   }
 }
