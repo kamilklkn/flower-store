@@ -1,0 +1,853 @@
+{
+  "count": 15,
+  "next": "https://klumba.store/api/flower/?format=json&page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 39,
+      "name": "Роза Хейди",
+      "slug": "roza-hejdi",
+      "image": "https://klumba.store/media/12.jpg",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 114,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "21 роза Хейди",
+          "price": 4500,
+          "image": "https://klumba.store/media/12_hpkgmGo.jpg"
+        }
+      ],
+      "gallery": [],
+      "order": 24,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Сборный в коробке",
+      "slug": "sbornyj-v-korobke",
+      "image": "https://klumba.store/media/bafeed31-2c44-49cd-8c7f-c0ddddecd586.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 109,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 1,
+            "name": "Коробка",
+            "order": 4,
+            "is_published": true
+          },
+          "description": "",
+          "price": 3500,
+          "image": null
+        }
+      ],
+      "gallery": [],
+      "order": 23,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 1,
+          "is_published": true,
+          "order": 4,
+          "name": "Коробка"
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Монобукет Мисти Бабблс",
+      "slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      "image": "https://klumba.store/media/0c93f2f6-bfed-45f8-be9c-adfae9171914.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 108,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 3300,
+          "image": "https://klumba.store/media/0c93f2f6-bfed-45f8-be9c-adfae9171914_wZIx1Yr.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 22,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Монобукет Аква",
+      "slug": "monobuket-akva",
+      "image": "https://klumba.store/media/62b7b49b-3deb-40ae-90e6-53eab89120d0.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 107,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 3000,
+          "image": "https://klumba.store/media/62b7b49b-3deb-40ae-90e6-53eab89120d0_O0qrDpw.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 21,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Гортензия",
+      "slug": "gortenziya0e2af273",
+      "image": "https://klumba.store/media/f4851262-7c40-4591-aa80-fc28dcfb542a.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 111,
+          "size": {
+            "id": 4,
+            "name": "Маленький",
+            "order": 6,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 2400,
+          "image": "https://klumba.store/media/e2756f30-110e-4ec6-85b6-301608b9e1a9.JPG"
+        },
+        {
+          "id": 112,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 6900,
+          "image": "https://klumba.store/media/74bcf765-b1aa-4080-9139-a09ace33528e.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 20,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 4,
+          "is_published": true,
+          "order": 6,
+          "name": "Маленький"
+        },
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Гортензия",
+      "slug": "gor",
+      "image": "https://klumba.store/media/%D0%9C%D0%B8%D0%BA%D1%81_%D0%B3%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B8_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_2.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 100,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 6750,
+          "image": "https://klumba.store/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-23_10-51-03.jpg"
+        },
+        {
+          "id": 101,
+          "size": {
+            "id": 3,
+            "name": "Большой",
+            "order": 2,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 9750,
+          "image": "https://klumba.store/media/%D0%9C%D0%B8%D0%BA%D1%81_%D0%B3%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B8_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_2_1QFkAAM.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 20,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        },
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 2,
+          "name": "Большой"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Гортензия",
+      "slug": "gortenziya",
+      "image": "https://klumba.store/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 84,
+          "size": {
+            "id": 3,
+            "name": "Большой",
+            "order": 2,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 6750,
+          "image": "https://klumba.store/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG"
+        },
+        {
+          "id": 85,
+          "size": {
+            "id": 4,
+            "name": "Маленький",
+            "order": 6,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 900,
+          "image": "https://klumba.store/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B8_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0.JPG"
+        },
+        {
+          "id": 98,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 3750,
+          "image": "https://klumba.store/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-23_10-51-04.jpg"
+        }
+      ],
+      "gallery": [],
+      "order": 20,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 4,
+          "is_published": true,
+          "order": 6,
+          "name": "Маленький"
+        },
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        },
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 2,
+          "name": "Большой"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Гортензия",
+      "slug": "gortenziyae8246deb",
+      "image": "https://klumba.store/media/f4851262-7c40-4591-aa80-fc28dcfb542a_mon3Oi5.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 113,
+          "size": {
+            "id": 6,
+            "name": "Огромный",
+            "order": 10,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 9900,
+          "image": "https://klumba.store/media/f4851262-7c40-4591-aa80-fc28dcfb542a_5Njc3S6.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 20,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 6,
+          "is_published": true,
+          "order": 10,
+          "name": "Огромный"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Монобукет кустовой розы",
+      "slug": "kustovaya-roza",
+      "image": "https://klumba.store/media/%D0%9A%D1%83%D1%81%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D1%80%D0%BE%D0%B7%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D1%87%D0%B8%D1%82%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 68,
+          "size": {
+            "id": 4,
+            "name": "Маленький",
+            "order": 6,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 2350,
+          "image": "https://klumba.store/media/%D1%81%D0%B0%D0%BB%D0%B5%D0%BD%D0%B5%D1%80%D0%BE_%D0%BC_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0.JPG"
+        },
+        {
+          "id": 104,
+          "size": {
+            "id": 3,
+            "name": "Большой",
+            "order": 2,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 5150,
+          "image": "https://klumba.store/media/%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 19,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 4,
+          "is_published": true,
+          "order": 6,
+          "name": "Маленький"
+        },
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 2,
+          "name": "Большой"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Сборный букет «Черника»",
+      "slug": "sbornyj-chernichnyj-buket",
+      "image": "https://klumba.store/media/%D0%A1%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B.jpg",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 92,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 3300,
+          "image": "https://klumba.store/media/%D0%A1%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_OAneQ4l.jpg"
+        }
+      ],
+      "gallery": [],
+      "order": 19,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Кустовая роза в коробке",
+      "slug": "kustovaya-roza-v-korobke",
+      "image": "https://klumba.store/media/D284F65A-AD8C-4F48-91D7-AD89611DDEC7.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 105,
+          "size": {
+            "id": 3,
+            "name": "Большой",
+            "order": 2,
+            "is_published": true
+          },
+          "package": {
+            "id": 1,
+            "name": "Коробка",
+            "order": 4,
+            "is_published": true
+          },
+          "description": "",
+          "price": 5500,
+          "image": "https://klumba.store/media/D284F65A-AD8C-4F48-91D7-AD89611DDEC7_zLVTdIR.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 19,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 2,
+          "name": "Большой"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 1,
+          "is_published": true,
+          "order": 4,
+          "name": "Коробка"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Сборный букет «Персиковый»",
+      "slug": "sbornyj-buket-persikovyj",
+      "image": "https://klumba.store/media/%D1%81%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9_%D0%BF%D0%B5%D1%80%D1%81%D0%B8%D0%BA%D0%BE%D0%B2%D1%8B%D0%B9_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B.jpg",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 93,
+          "size": {
+            "id": 4,
+            "name": "Маленький",
+            "order": 6,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 2850,
+          "image": "https://klumba.store/media/%D1%81%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9_%D0%BF%D0%B5%D1%80%D1%81%D0%B8%D0%BA%D0%BE%D0%B2%D1%8B%D0%B9_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_0YwX6wP.jpg"
+        }
+      ],
+      "gallery": [],
+      "order": 18,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 4,
+          "is_published": true,
+          "order": 6,
+          "name": "Маленький"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    }
+  ]
+}{
+  "count": 15,
+  "next": null,
+  "previous": "https://klumba.store/api/flower/?format=json",
+  "results": [
+    {
+      "id": 28,
+      "name": "Монобукет Аскот",
+      "slug": "monobuket-askot",
+      "image": "https://klumba.store/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-09_18-29-35.jpg",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 95,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 2750,
+          "image": "https://klumba.store/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-09_18-29-35_SLQ1nCo.jpg"
+        }
+      ],
+      "gallery": [],
+      "order": 12,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Кустовая пионовидная роза",
+      "slug": "kustovaya-pionovidnaya-roza",
+      "image": "https://klumba.store/media/CCD7920A-A6F2-42F9-9EFA-8C0A6A939879.jpg",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 106,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 4900,
+          "image": "https://klumba.store/media/CCD7920A-A6F2-42F9-9EFA-8C0A6A939879_G87ayYX.jpg"
+        }
+      ],
+      "gallery": [],
+      "order": 10,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Сборный букет в бумаге",
+      "slug": "sbornyj-buket-vesna",
+      "image": "https://klumba.store/media/%D1%81%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9_%D1%81%D1%80%D0%B5%D0%B4%D0%BD%D0%B8%D0%B9_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_%D1%87%D0%B8%D1%82%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0.JPG.JPG",
+      "description": "",
+      "short_description": "",
+      "commentary": "",
+      "product": [
+        {
+          "id": 87,
+          "size": {
+            "id": 5,
+            "name": "Средний",
+            "order": 4,
+            "is_published": true
+          },
+          "package": {
+            "id": 3,
+            "name": "Бумага",
+            "order": 8,
+            "is_published": true
+          },
+          "description": "",
+          "price": 3200,
+          "image": "https://klumba.store/media/%D1%81%D0%B1%D0%BE%D1%80%D0%BD%D1%8B%D0%B9_%D1%81%D1%80%D0%B5%D0%B4%D0%BD%D0%B8%D0%B9_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_%D1%87%D0%B8%D1%82%D0%B0_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0.JPG_e8p8jqM.JPG"
+        }
+      ],
+      "gallery": [],
+      "order": 8,
+      "is_published": true,
+      "all_product_size": [
+        {
+          "id": 5,
+          "is_published": true,
+          "order": 4,
+          "name": "Средний"
+        }
+      ],
+      "all_product_package": [
+        {
+          "id": 3,
+          "is_published": true,
+          "order": 8,
+          "name": "Бумага"
+        }
+      ]
+    }
+  ]
+}

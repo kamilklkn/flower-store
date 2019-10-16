@@ -1,0 +1,1945 @@
+{
+  testProducts": [
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id": 1,
+      order": 1,
+      title": "sdfsdf",
+      slug": "monobuket-kustovoj-pionovidnoj-rozy",
+      desc": "",
+      activeSizeIndex": 0,
+      activeGrassIndex": 0,
+      available": {
+        now": false,
+        fromDate": "2019-10-16T10":11":09.257Z"
+      },
+      packingIds": [
+        "Бумага флисовая",
+        "Коробка"
+      ],
+      additionalProducts": [
+        0,
+        1
+      ],
+      color": {
+        name": "Зеленый",
+        color": "green"
+      },
+      shade": "Мягкий",
+      florist": {
+        photo": "https"://klumba.store/api/crop/media/%D0%9B%D0%B8%D0%B7%D0%B0.jpg?geometry=300x300&crop=center",
+        name": "Лиза",
+        surname": "",
+        opinion": "По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?"
+      },
+      sizes": [
+        {
+          title": "Стандартный",
+          h": 25,
+          w": 35,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 2500,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Большой",
+          h": 34,
+          w": 40,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 3400,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        },
+        {
+          title": "Премиум",
+          h": 50,
+          w": 68,
+          image": "https"://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing",
+          price": 5200,
+          flowers": [
+            {
+              title": "Гортензия",
+              count": 23
+            },
+            {
+              title": "Фиалка",
+              count": 2
+            },
+            {
+              title": "Кустарная роза",
+              count": 23
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

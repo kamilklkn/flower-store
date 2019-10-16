@@ -45,7 +45,7 @@ const Catalog = ({ products, showOnlyRequiredSizes, requiredSizesIds }) => {
         const { available, id, slug, title, sizes } = product
 
         return (
-          <div className={`${styles.product} col-4 mb-2`} key={id}>
+          <div className={`${styles.product} col-4 mb-2 pl-1 pr-1`} key={id}>
             <Link to={`/catalog/${slug}`}>
               <div className={styles.image}>
                 {/*<p className={styles.size}>{size.h}см / {size.w}см</p>*/}

@@ -12,6 +12,7 @@ import styles from './Product.module.sass'
 import { getNameById } from "utils"
 
 import { Redirect } from 'react-router-dom'
+import AdditionalProducts from "components/ProductPage/AdditionalProducts";
 
 // import DatePicker from 'components/ProductPage/DatePicker'
 
@@ -60,7 +61,7 @@ class Product extends Component {
               <GrassPluserButton
                 key={i}
                 index={i}
-                title={button.title}
+                title={button.name}
                 price={button.price}
                 active={this.state.activeGrassIndex === i}
                 onClick={this.handleGrassPluserButtonClick}
@@ -138,7 +139,7 @@ class Product extends Component {
             <div className={styles.photoSizeTitle}>
               {activeSize.title}
             </div>
-            <img src={activeSize.image || this.state.sizes[0].image} alt=""/>
+            <img src={activeSize.image} alt=""/>
           </div>
           <div className={`col-6 ${styles.usn}`}>
             <h1>{product.title}</h1>
@@ -171,6 +172,8 @@ class Product extends Component {
 
             <br/>
             <h1>{totalPrice} {`\u20BD`}</h1>
+
+            <AdditionalProducts products={product.additionalProducts}/>
 
             <p>Выберете дату доставки</p>
             <DatePicker
@@ -220,6 +223,7 @@ function mapStateToProps(state, ownProps) {
   // console.log(ownProps.match.params.product)
   return {
     catalog: state.catalog,
+    additionalProducts: state.additionalProducts,
     slug: ownProps.match.params.product
   }
 }

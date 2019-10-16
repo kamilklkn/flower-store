@@ -12,7 +12,7 @@ const GrassPluserButton = ({ index, title, price, active, onClick }) => {
       className={cls.join(' ')}
       onClick={() => onClick(index)}
     >
-      {title} (+{price}{`\u20BD`})
+      {title} {price > 0 && `(+${price}\u20BD)`}
     </div>
   )
 }

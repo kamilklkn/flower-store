@@ -66,28 +66,28 @@ const initialState = {
     selected: []
   },
   colors: {
-    title: 'Цвет',
+    title: 'Цвет композиции',
     type: FILTER_TYPES.COLORS_BUTTONS,
     items: productColors,
     func: filterFunctions.byColors,
     selected: []
   },
   sizes: {
-    title: 'Размеры',
+    title: 'Размер',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productSizes,
     func: filterFunctions.bySizes,
-    selected: [1, 2]
+    selected: []
   },
   flowers: {
-    title: 'Цветы',
+    title: 'Состав букета',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: flowers,
     func: filterFunctions.byFlowers,
     selected: []
   },
   productPacking: {
-    title: 'Упаковка',
+    title: 'Оформление букета',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productPacking,
     func: null,

@@ -5,10 +5,6 @@ import { flowers } from "constants/flowers"
 import { productPacking } from "constants/productPacking"
 import { productGrass } from "constants/productGrass"
 import { getNameById } from "utils"
-import { random } from 'lodash'
-
-import image from 'assets/237504_1_h.jpg'
-
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -40,6 +36,7 @@ const model = {
     fromDate: new Date()
   },
   packingIds: [0, 2],
+  additionalProducts: [0, 1],
   sizes: [
     {
       id: 0,
@@ -77,8 +74,94 @@ const model = {
   ]
 }
 
-// Будет ли разница в упаковке на разных размерах?
+const newModel = {
+  id: 1,
+  order: 1,
+  title: 'Монобукет Мисти Бабблс',
+  slug: 'monobuket-kustovoj-pionovidnoj-rozy',
+  desc: '',
+  activeSizeIndex: 0,
+  activeGrassIndex: 0,
+  available: {
+    now: false,
+    fromDate: new Date()
+  },
+  packingIds: ['Бумага флисовая', 'Коробка'],
+  additionalProducts: [0, 1],
+  color: {
+    name: 'Зеленый',
+    color: 'green'
+  },
+  shade: 'Мягкий',
+  florist: {
+    photo: '%D0%9B%D0%B8%D0%B7%D0%B0.jpg',
+    name: 'Лиза',
+    surname: '',
+    opinion: 'По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?'
+  },
+  sizes: [
+    {
+      title: 'Стандартный',
+      h: 25,
+      w: 35,
+      image: 'f_auto,q_auto/t_Product100s/v1/R',
+      price: 2500,
+      flowers: [
+        ['Гортензия', 23],
+        ['Фиалка', 23],
+        ['Кустарная роза', 23],
+      ]
+    },
+    {
+      title: 'Большой',
+      h: 34,
+      w: 40,
+      image: 'f_auto,q_auto/t_Product100s/v1/R',
+      price: 3400,
+      flowers: [
+        ['Гортензия', 23],
+        ['Фиалка', 23],
+        ['Кустарная роза', 23],
+      ]
+    },
+    {
+      title: 'Премиум',
+      h: 50,
+      w: 68,
+      image: 'f_auto,q_auto/t_Product100s/v1/R',
+      price: 5200,
+      flowers: [
+        ['Гортензия', 23],
+        ['Фиалка', 23],
+        ['Кустарная роза', 23],
+      ]
+    },
+  ]
+}
+
+// Будет ли разница в упаковке на разных размерах? Нет
 //
+
+const additionalProducts = [
+  {
+    id: 0,
+    title: 'Modern clear vase',
+    desc: 'Vase made from clear glass. Height 20 cm and width 13 cm made from good quality thick glass.',
+    price: 900,
+    image: 'https://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing'
+  },
+  {
+    id: 1,
+    title: 'Bellante Sparkling Rosé',
+    desc: 'Bottle Size:75cl\n' +
+      'Only 18+ can buy this item\n' +
+      'Not available to send separately\n' +
+      'Price includes delivery',
+    price: 400,
+    image: 'https://asset1.cxnmarksandspencer.com/is/image/mands/SD_FD_F44A_00367004_NC_X_EC_0?$PDP_ADD_CAR_IMAGE$'
+  }
+]
+
 
 const images = [
   'https://klumba.store/api/crop/media/bafeed31-2c44-49cd-8c7f-c0ddddecd586.JPG?geometry=400x400&crop=center',
@@ -96,6 +179,10 @@ const images = [
   // 'https://klumba.store/api/crop/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-23_10-51-04.jpg?geometry=670x760&upscale=true&crop=center',
   // 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG?geometry=670x760&upscale=true&crop=center',
 ]
+
+console.log(new Array(20).fill(Object.assign({}, newModel)))
+
+newModel.title = 'sdfsdf'
 
 function generationProducts() {
   let arr = new Array(20).fill('');
@@ -167,6 +254,12 @@ function generationProducts() {
         sizesNew[size].image = zeroSizeImage
       }
 
+      if (size === 1)
+        sizesNew[size].image = 'https://klumba.store/api/crop/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-23_10-51-04.jpg?geometry=670x760&upscale=true&crop=center'
+
+      if (size === 2)
+        sizesNew[size].image = 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG?geometry=670x760&upscale=true&crop=center'
+
     }
 
     // console.log(sizesNew)
@@ -182,13 +275,14 @@ function generationProducts() {
 }
 
 
-
 const initialState = {
   productSizes,
   productColors,
   productPacking,
   productGrass,
   flowers,
+  additionalProducts,
+  testProducts: new Array(50).fill(Object.assign({}, newModel)),
   products: generationProducts()
 }
 
