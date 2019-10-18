@@ -27,7 +27,7 @@ function filterProducts(products, filter) {
 const TitleWithPrice = ({ title, price, active }) => (
   <div className={classes(
     styles.titleWithPrice,
-    active && styles.inactive
+    active && styles.active
   )}>
     {title} — {`\u0020`}
     <span className={styles.price}>
@@ -36,8 +36,17 @@ const TitleWithPrice = ({ title, price, active }) => (
   </div>
 )
 
+function getActiveStatusByPriceRange(price, [ min, max ]) {
+  return price >= min && price <= max
+}
 
-const Catalog = ({ products, showOnlyRequiredSizes, requiredSizes }) => {
+
+const Catalog = ({
+                   products,
+                   showOnlyRequiredSizes,
+                   requiredSizes,
+                   selectedPriceRange
+                 }) => {
   return (
     <Row>
       {products.map(product => {
@@ -72,7 +81,10 @@ const Catalog = ({ products, showOnlyRequiredSizes, requiredSizes }) => {
                           key={i}
                           title={size.title}
                           price={size.price}
-                          active={!requiredSizes.includes(size.title)}
+                          active={
+                            requiredSizes.includes(size.title)
+                            || getActiveStatusByPriceRange(size.price, selectedPriceRange)
+                          }
                         />
                       )
                     }
@@ -96,8 +108,10 @@ const Catalog = ({ products, showOnlyRequiredSizes, requiredSizes }) => {
 function mapStateToProps(state) {
   return {
     products: filterProducts(state.catalog.products, state.filter),
-    showOnlyRequiredSizes: !!state.filter.sizes.selected.length,
-    requiredSizes: state.filter.sizes.selected
+    showOnlyRequiredSizes: !!state.filter.sizes.selected.length
+      || !!state.filter.priceRange.selected.length,
+    requiredSizes: state.filter.sizes.selected,
+    selectedPriceRange: state.filter.priceRange.selected
   }
 }
 
