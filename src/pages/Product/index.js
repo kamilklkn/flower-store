@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
+import { Redirect } from 'react-router-dom'
 import loadable from '@loadable/component'
-import SizeInformer from "components/ProductPage/SizeInformer"
 
+import SizeInformer from "components/ProductPage/SizeInformer"
 import GrassPluserButton from "components/ProductPage/GrassPluserButton"
 import SizeButton from "components/ProductPage/SizeButton"
 import Available from 'components/ProductPage/Available'
 import Details from 'components/ProductPage/Details'
 
 import styles from './Product.module.sass'
-
-import { Redirect } from 'react-router-dom'
-// import AdditionalProducts from "components/ProductPage/AdditionalProducts";
-
-// import DatePicker from 'components/ProductPage/DatePicker'
 
 const fallback = () => (
   <div>Loading...</div>
@@ -22,6 +18,7 @@ const fallback = () => (
 const DatePicker = loadable(() => import('components/ProductPage/DatePicker'), fallback)
 const FlowersInstruction = loadable(() => import('components/ProductPage/FlowersInstruction'), fallback)
 const DeliveryInfo = loadable(() => import('components/ProductPage/DeliveryInfo'), fallback)
+const AdditionalProducts = loadable(() => import('components/ProductPage/AdditionalProducts'), fallback)
 
 
 class Product extends Component {
@@ -104,7 +101,7 @@ class Product extends Component {
   )
 
   render() {
-    const { products, grass } = this.props
+    const { products, additionalProducts, grass } = this.props
     // const product = products[0]
 
     const product = products.find(item => item.slug === this.props.slug)
@@ -112,11 +109,14 @@ class Product extends Component {
       return <Redirect to="/404"/>
     }
 
+    const additProducts = additionalProducts.filter(
+      item => product.additionalProducts.includes(item.id)
+    )
+
     const activeSize = product.sizes[this.state.activeSizeIndex]
     const activeGrass = grass[this.state.activeGrassIndex]
 
-    const totalPrice = activeSize.price
-      + activeGrass.price
+    const totalPrice = activeSize.price + activeGrass.price
 
     return (
       <div className="container mt-3">
@@ -158,10 +158,13 @@ class Product extends Component {
               {this.renderGrassPluserButtons(grass)}
             </div>
 
+            <AdditionalProducts
+              products={additProducts}
+            />
+
             <br/>
             <h1>{totalPrice} {`\u20BD`}</h1>
 
-            {/*<AdditionalProducts products={product.additionalProducts}/>*/}
 
             <p>Выберете дату доставки</p>
             <DatePicker
@@ -215,7 +218,7 @@ function mapStateToProps(state, ownProps) {
   // console.log(ownProps.match.params.product)
   return {
     products: state.catalog.products,
-    additionalProducts: state.additionalProducts,
+    additionalProducts: state.catalog.additionalProducts,
     grass: state.catalog.grass,
     slug: ownProps.match.params.product
   }

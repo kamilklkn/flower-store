@@ -1,5 +1,8 @@
 import { generateProducts } from 'other/sampleData'
 
+import im_a1 from 'assets/im_a1.webp'
+import im_a2 from 'assets/im_a2.jpeg'
+
 const grass = [
   {
     name: 'Нет',
@@ -21,7 +24,7 @@ const additionalProducts = [
     title: 'Modern clear vase',
     desc: 'Vase made from clear glass. Height 20 cm and width 13 cm made from good quality thick glass.',
     price: 900,
-    image: 'https://images.serenataassets.com/image/upload/f_auto,q_auto/t_Product100s/v1/Raw/108406_standing'
+    image: im_a1
   },
   {
     id: 1,
@@ -31,7 +34,7 @@ const additionalProducts = [
       'Not available to send separately\n' +
       'Price includes delivery',
     price: 400,
-    image: 'https://asset1.cxnmarksandspencer.com/is/image/mands/SD_FD_F44A_00367004_NC_X_EC_0?$PDP_ADD_CAR_IMAGE$'
+    image: im_a2
   }
 ]
 

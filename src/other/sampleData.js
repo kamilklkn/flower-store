@@ -7,15 +7,12 @@ import im3 from "assets/3.jpeg"
 import im4 from "assets/4.jpeg"
 import im5 from "assets/5.jpeg"
 import im6 from "assets/6.jpeg"
+import im7 from "assets/7.jpeg"
+import im8 from "assets/8.jpg"
+import im9 from "assets/9.jpg"
+import { getNameById } from "utils";
+import { productPacking } from "constants/productPacking";
 
-
-// const titles = [
-//   'Монобукет Мисти Бабблс',
-//   'Монобукет Аква',
-//   'Гортензия',
-//   'Сборный букет «Персиковый»',
-//   'Монобукет Аскот'
-// ]
 
 // const images = [
 //   'https://klumba.store/api/crop/media/bafeed31-2c44-49cd-8c7f-c0ddddecd586.JPG?geometry=400x400&crop=center',
@@ -34,11 +31,12 @@ import im6 from "assets/6.jpeg"
 //   // 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG?geometry=670x760&upscale=true&crop=center',
 // ]
 
-
 const photoModels = [
   {
     title: 'Гортензия',
     shade: 'Темный',
+    color: 'Фиолетовый',
+    bouquetType: 'Монобукет',
     sizes: [
       {
         flowers: [
@@ -63,6 +61,8 @@ const photoModels = [
   {
     title: 'Монобукет кустовой розы',
     shade: 'Нежный',
+    color: 'Молочный',
+    bouquetType: 'Монобукет',
     sizes: [
       {
         flowers: [
@@ -87,6 +87,37 @@ const photoModels = [
         image: im6,
       }
     ]
+  },
+  {
+    title: 'Сборный в коробке',
+    shade: 'Яркий',
+    packing: [getNameById(2, productPacking)],
+    color: 'Сборный',
+    bouquetType: 'Сборный',
+    sizes: [
+      {
+        flowers: [
+          ['Кустовая роза', 15]
+        ],
+        image: im7,
+      },
+      {
+        flowers: [
+          ['Странная зелень', 6],
+          ['Фиалка', 23],
+          ['Неизвестный науке цветок', 7],
+        ],
+        image: im8,
+      },
+      {
+        flowers: [
+          ['Странная зелень', 6],
+          ['Кустовая роза', 35],
+          ['Неизвестный науке цветок', 7],
+        ],
+        image: im9,
+      }
+    ]
   }
 ]
 
@@ -103,12 +134,9 @@ const newModel = {
     now: false,
     fromDate: new Date()
   },
-  packingIds: ['Бумага флисовая', 'Коробка'],
+  packing: ['Бумага флисовая'],
+  colors: ['Фиолетовый', 'Только монобукеты'],
   additionalProducts: [0, 1],
-  color: {
-    name: 'Зеленый',
-    color: 'green'
-  },
   shade: 'Мягкий',
   florist: {
     photo: '%D0%9B%D0%B8%D0%B7%D0%B0.jpg',
@@ -167,10 +195,16 @@ export function generateProducts() {
 
     product.id = i
     product.order = i
-    // product.title = titles[random(0, 3)]
     product.title = photoModel.title
     product.shade = photoModel.shade
+    product.color = photoModel.color
+
+    product.bunchType = photoModel.bunchType
+
+    if ('packing' in photoModel) product.packing = photoModel.packing
+
     product.slug = 'product' + i
+    product.stability = ['+', '++', '+++'][random(0, 2)]
 
     product.available = {
       now: !!random(0, 1),

@@ -14,9 +14,9 @@ const ColorButton = ({
     className={classes(
       styles.btn,
       active && styles.active,
-      color === 'all' && styles.btnAllColor,
+      color === 'miltiply' && styles.btnAllColor,
     )}
     onClick={() => onClick(id)}
-  />
+  >{color === 'miltiply' && 'Сборный'}</li>
 
 export default ColorButton

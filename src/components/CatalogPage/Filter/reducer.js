@@ -7,6 +7,7 @@ import { productShades } from "constants/productShades"
 import { productSizes } from "constants/productSizes"
 import { flowers } from "constants/flowers"
 import { productPacking } from "constants/productPacking"
+import { stability } from "constants/filter/stability"
 
 // todo fix some, because if selected two filters, next product skip check
 const filterFunctions = {
@@ -18,81 +19,137 @@ const filterFunctions = {
   bySizes(products, { selected }) {
     return products.filter(product =>
       product.sizes.some(size =>
-        selected.includes(size.id)
+        selected.includes(size.title)
       )
     )
   },
   byShades(products, { selected }) {
     return products.filter(product => {
         if (!product.shade) return false
-        return product.shade.some(size =>
-          selected.includes(size.id)
+        return selected.includes(product.shade)
+      }
+    )
+  },
+  byPacking(products, { selected }) {
+    return products.filter(product => {
+        // console.log(product.packing)
+        if (!('packing' in product)) return false
+        return product.packing.some(pack =>
+          selected.includes(pack)
         )
       }
     )
   },
-  byFlowers(products, { selected }) {
-    return products.filter(product =>
-      product.sizes.some(size =>
-        size.flowers.ids.some(flowerId =>
-          selected.includes(flowerId)
-        )
-      )
-    )
-  },
-  bySizesPrice(products, { min, max }) {
+  bySizesPrice(products, { selected: [min, max] }) { // todo fix it
+    console.log('bySizesPrice', min, max)
     return products.filter(product =>
       product.sizes.some(size =>
         size.price >= min && size.price <= max
       )
     )
-  }
+  },
+  byFlowers(products, { selected }) {
+    return products.filter(product =>
+      product.sizes.some(size =>
+        size.flowers.some(flowerEntity => {
+            const [flowerTitle] = flowerEntity
+            return selected.includes(flowerTitle)
+          }
+        )
+      )
+    )
+  },
+  byStability(products, { selected }) {
+    return products.filter(product => {
+        if (!product.stability) return false
+        return selected.includes(product.stability)
+      }
+    )
+  },
+  byAvailabality(products, { selected }) {
+    return products.filter(product => {
+        console.log(product.available)
+        if (product.available.now) return true
+        // return selected.includes(product.stability)
+      }
+    )
+  },
 }
 
+// todo: Нужно сделать тип букета в "Состав букета" - Все монобукеты и Сборные
 
 const initialState = {
   priceRange: {
     type: FILTER_TYPES.RANGE,
     title: 'Цена',
     func: filterFunctions.bySizesPrice,
-    min: 400,
-    max: 15000
+    inititalRange: {
+      min: 0,
+      max: 5000
+    },
+    selected: []
   },
   shade: {
     title: 'Оттенок',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productShades,
     func: filterFunctions.byShades,
-    selected: []
-  },
-  colors: {
-    title: 'Цвет композиции',
-    type: FILTER_TYPES.COLORS_BUTTONS,
-    items: productColors,
-    func: filterFunctions.byColors,
-    selected: []
+    selected: [],
+    expand: true
   },
   sizes: {
     title: 'Размер',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productSizes,
     func: filterFunctions.bySizes,
-    selected: []
+    selected: [],
+    expand: true
+  },
+  stability: {
+    title: 'Стойкость',
+    type: FILTER_TYPES.ITEMS_OBJECTS,
+    items: stability,
+    func: filterFunctions.byStability,
+    selected: [],
+    expand: true
+  },
+  colors: {
+    title: 'Цвет композиции',
+    type: FILTER_TYPES.COLORS_BUTTONS,
+    items: productColors,
+    func: filterFunctions.byColors,
+    selected: [],
+    expand: false
+  },
+  productPacking: {
+    title: 'Оформление букета',
+    type: FILTER_TYPES.ITEMS_OBJECTS,
+    items: productPacking,
+    func: filterFunctions.byPacking,
+    selected: [],
+    expand: true
   },
   flowers: {
     title: 'Состав букета',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: flowers,
     func: filterFunctions.byFlowers,
-    selected: []
+    selected: [],
+    expand: false
   },
-  productPacking: {
-    title: 'Оформление букета',
+  abailable: {
+    title: 'Доступен к заказу',
     type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: productPacking,
-    func: null,
-    selected: []
-  }
+    items: [{
+      id: 0,
+      name: 'Сегодня'
+    }],
+    func: filterFunctions.byAvailabality,
+    selected: [],
+    expand: false
+  },
+
+
 }
 
 
@@ -100,14 +157,14 @@ const filter = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_SELECT:
       /** Экшен снимает/ставит элемент фильтра **/
-      const { filterKey, itemId } = action.payload
+      const { filterKey, value } = action.payload
       const selected = [...state[filterKey].selected]
-      if (selected.includes(itemId)) {
+      if (selected.includes(value)) {
         // Удаляем itemId (снимаем фильтр)
-        selected.splice(selected.indexOf(itemId), 1)
+        selected.splice(selected.indexOf(value), 1)
       } else {
         // Добавляем фильтр
-        selected.push(itemId)
+        selected.push(value)
       }
 
       return {
@@ -117,6 +174,16 @@ const filter = (state = initialState, action) => {
           selected
         }
       }
+
+    case actionTypes.SET_SELECTED_PRICE_RANGE:
+      return {
+        ...state,
+        priceRange: {
+          ...state.priceRange,
+          selected: action.payload
+        }
+      }
+
     default:
       return state
   }

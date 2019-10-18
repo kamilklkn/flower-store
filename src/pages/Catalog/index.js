@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import styles from "./Catalog.module.sass"
-// import Filter from "components/CatalogPage/Filter"
 import Catalog from "components/CatalogPage/Catalog"
+import Filter from 'components/CatalogPage/Filter'
 
 class CatalogPage extends Component {
   render() {
@@ -10,7 +10,7 @@ class CatalogPage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-3">
-              {/*<Filter/>*/}
+              <Filter/>
             </div>
             <div className="col-9 pt-3">
               <Catalog/>

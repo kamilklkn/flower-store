@@ -2,31 +2,26 @@ export const productColors = [
   {
     id: 0,
     name: 'Сборный',
-    color: 'all'
-  },
-  {
-    id: 1,
-    name: 'Красный',
-    color: 'red'
+    color: 'miltiply'
   },
   {
     id: 2,
-    name: 'Зеленый',
-    color: 'green'
+    name: 'Фиолетовый',
+    color: 'purple'
   },
-  {
-    id: 3,
-    name: 'Синий',
-    color: 'blue'
-  },
+  // {
+  //   id: 3,
+  //   name: 'Синий',
+  //   color: 'blue'
+  // },
   {
     id: 4,
-    name: 'Желтый',
-    color: 'yellow'
+    name: 'Молочный',
+    color: '#eee7dc'
   },
-  {
-    id: 5,
-    name: 'Черный',
-    color: '#000'
-  }
+  // {
+  //   id: 5,
+  //   name: 'Черный',
+  //   color: '#000'
+  // }
 ]

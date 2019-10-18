@@ -12,9 +12,5 @@ export const productSizes = [
   {
     id: 2,
     name: 'Премиум'
-  },
-  {
-    id: 3,
-    name: 'Вау!'
   }
 ]

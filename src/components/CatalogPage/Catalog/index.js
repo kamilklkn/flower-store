@@ -1,28 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Row } from "components/Bootstrap"
-// import Product from "components/CatalogPage/Product"
 import { Link } from 'react-router-dom'
 import Available from "components/ProductPage/Available"
 
 import styles from "components/CatalogPage/Catalog/Catalog.module.sass"
-import { getNameById, classes } from "utils"
-import { productSizes } from "constants/productSizes"
+import { classes } from "utils"
 
 
-// function filterProducts(products, filter) {
-//   // console.log(products)
-//   // Здесь сделать фильтрацию товаров с использованием reselect
-//
-//   return Object.values(filter).reduce((results, filter) => {
-//     // Не запускаем фильтр, если он не установлен
-//     if ('selected' in filter && !filter.selected.length) {
-//       return results
-//     }
-//     return filter.func(results, filter)
-//   }, products)
-//
-// }
+function filterProducts(products, filter) {
+  // console.log(products)
+  // Здесь сделать фильтрацию товаров с использованием reselect
+  // https://medium.com/devschacht/neil-fenton-improving-react-and-redux-performance-with-reselect-40f1d3efba89
+// https://www.npmjs.com/pack age/reselect
+
+  return Object.values(filter).reduce((results, filter) => {
+    // Цена всегда объекст с полями min и max
+    if ('min' in filter.selected) {
+      return filter.func(results, filter)
+    }
+
+    // Не запускаем фильтр, если он не установлен
+    console.log(filter.title, !filter.selected.length)
+    if (!filter.selected.length) {
+      return results
+    }
+    return filter.func(results, filter)
+  }, products)
+
+}
 
 const TitleWithPrice = ({ title, price, active }) => (
   <div className={classes(
@@ -37,7 +43,7 @@ const TitleWithPrice = ({ title, price, active }) => (
 )
 
 
-const Catalog = ({ products, showOnlyRequiredSizes, requiredSizesIds }) => {
+const Catalog = ({ products, showOnlyRequiredSizes, requiredSizes }) => {
   return (
     <Row>
       {products.map(product => {
@@ -67,12 +73,12 @@ const Catalog = ({ products, showOnlyRequiredSizes, requiredSizesIds }) => {
               showOnlyRequiredSizes ? (
                   <div className={styles.sizes}>
                     {
-                      sizes.map(size =>
+                      sizes.map((size, i) =>
                         <TitleWithPrice
-                          key={size.id}
-                          title={getNameById(size.id, productSizes)}
+                          key={i}
+                          title={size.title}
                           price={size.price}
-                          active={!requiredSizesIds.includes(size.id)}
+                          active={!requiredSizes.includes(size.title)}
                         />
                       )
                     }
@@ -95,10 +101,9 @@ const Catalog = ({ products, showOnlyRequiredSizes, requiredSizesIds }) => {
 
 function mapStateToProps(state) {
   return {
-    // products: filterProducts(state.catalog.products, state.filter),
-    products: state.catalog.products,
-    // showOnlyRequiredSizes: !!state.filter.sizes.selected.length,
-    // requiredSizesIds: state.filter.sizes.selected
+    products: filterProducts(state.catalog.products, state.filter),
+    showOnlyRequiredSizes: !!state.filter.sizes.selected.length,
+    requiredSizes: state.filter.sizes.selected
   }
 }
 

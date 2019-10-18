@@ -1,9 +1,5 @@
 export const flowers = [
   {
-    id: 0,
-    name: 'Сборный'
-  },
-  {
     id: 1,
     name: 'Гортензия'
   },

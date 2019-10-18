@@ -5,19 +5,17 @@ import { classes } from 'utils'
 
 const AdditionalProducts = ({ products }) => {
   return (
-    <div className={styles.additionalProducts}>
-      <Row>
-        {
-          products.map(product =>
-            <div className={classes(styles.product, product.active && styles.active)}>
-              <img src={product.image} alt={product.title}/>
-              {product.price}
-              CheckBox {product.active && 'active'}
-            </div>
-          )
-        }
-      </Row>
-    </div>
+    <Row className={styles.additionalProducts}>
+      {
+        products.map(product =>
+          <div className={classes('col-3', styles.product, product.active && styles.active)}>
+            <img src={product.image} alt={product.title}/>
+            <span>{product.price} {`\u20BD`}</span>
+            {product.active && 'active'}
+          </div>
+        )
+      }
+    </Row>
   )
 }
 

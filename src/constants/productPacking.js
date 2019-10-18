@@ -13,7 +13,6 @@ export const productPacking = [
   },
   {
     id: 3,
-    name: 'Коробка'
-  },
-
+    name: 'Бумага флисовая'
+  }
 ]
