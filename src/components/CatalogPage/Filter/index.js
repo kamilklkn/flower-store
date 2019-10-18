@@ -72,6 +72,7 @@ class Filter extends Component {
 
 
   render() {
+    console.log(Object.entries(this.props.filter))
     return (
       <div className={styles.filter}>
         {

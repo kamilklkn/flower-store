@@ -15,14 +15,8 @@ function filterProducts(products, filter) {
 // https://www.npmjs.com/pack age/reselect
 
   return Object.values(filter).reduce((results, filter) => {
-    // Цена всегда объекст с полями min и max
-    if ('min' in filter.selected) {
-      return filter.func(results, filter)
-    }
-
     // Не запускаем фильтр, если он не установлен
-    console.log(filter.title, !filter.selected.length)
-    if (!filter.selected.length) {
+    if ('selected' in filter && !filter.selected.length) {
       return results
     }
     return filter.func(results, filter)

@@ -40,8 +40,7 @@ const filterFunctions = {
       }
     )
   },
-  bySizesPrice(products, { selected: [min, max] }) { // todo fix it
-    console.log('bySizesPrice', min, max)
+  bySizesPrice(products, { selected: [min, max] }) {
     return products.filter(product =>
       product.sizes.some(size =>
         size.price >= min && size.price <= max
@@ -66,12 +65,9 @@ const filterFunctions = {
       }
     )
   },
-  byAvailabality(products, { selected }) {
-    return products.filter(product => {
-        console.log(product.available)
-        if (product.available.now) return true
-        // return selected.includes(product.stability)
-      }
+  byAvailability(products) {
+    return products.filter(product =>
+      !!product.available.now
     )
   },
 }
@@ -137,14 +133,14 @@ const initialState = {
     selected: [],
     expand: false
   },
-  abailable: {
+  available: {
     title: 'Доступен к заказу',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: [{
       id: 0,
       name: 'Сегодня'
     }],
-    func: filterFunctions.byAvailabality,
+    func: filterFunctions.byAvailability,
     selected: [],
     expand: false
   },
@@ -167,13 +163,12 @@ const filter = (state = initialState, action) => {
         selected.push(value)
       }
 
-      return {
-        ...state,
-        [filterKey]: {
-          ...state[filterKey],
-          selected
-        }
-      }
+      // Делаем так, для того,
+      // чтобы главные ключи фильтра не поменялись местами
+      // и фильтры остались на своих местах после рендера в Safari
+      const newState = Object.assign({}, state)
+      newState[filterKey].selected = selected
+      return newState
 
     case actionTypes.SET_SELECTED_PRICE_RANGE:
       return {
