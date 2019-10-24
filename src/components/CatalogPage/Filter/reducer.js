@@ -9,7 +9,25 @@ import { flowers } from "constants/flowers"
 import { productPacking } from "constants/productPacking"
 import { stability } from "constants/filter/stability"
 
-// todo fix some, because if selected two filters, next product skip check
+
+function resetFilters(state) {
+  const newState = { ...state }
+
+  Object.keys(newState).map(key => {
+    if ('filtersToReset' in newState[key]
+      && newState[key].filtersToReset.length
+    ) {
+      newState[key].filtersToReset.forEach(filterKey => {
+        // Сбрасываем выбранное на фильтре
+        newState[filterKey].selected = []
+      })
+    }
+  })
+
+  return newState
+}
+
+
 const filterFunctions = {
   byColors(products, { selected }) {
     return products.filter(product =>
@@ -72,7 +90,6 @@ const filterFunctions = {
   },
 }
 
-// todo: Нужно сделать тип букета в "Состав букета" - Все монобукеты и Сборные
 
 const initialState = {
   priceRange: {
@@ -84,7 +101,8 @@ const initialState = {
       min: 0,
       max: 5000
     },
-    selected: []
+    selected: [],
+    filtersToReset: ['sizes']
   },
   sizes: {
     order: 1,
@@ -92,8 +110,9 @@ const initialState = {
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productSizes,
     func: filterFunctions.bySizes,
-    selected: [],
-    expand: true
+    selected: ['Большой'],
+    expand: true,
+    filtersToReset: ['priceRange']
   },
   productPacking: {
     order: 2,
@@ -106,11 +125,11 @@ const initialState = {
   },
   available: {
     order: 3,
-    title: 'В наличии',
+    title: 'Наличие',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: [{
       id: 0,
-      name: 'В наличии'
+      name: 'Только в наличии'
     }],
     func: filterFunctions.byAvailability,
     selected: [],
@@ -155,6 +174,7 @@ const initialState = {
 }
 
 
+
 const filter = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_SELECT:
@@ -169,30 +189,22 @@ const filter = (state = initialState, action) => {
         selected.push(value)
       }
 
-      // Делаем так, для того,
-      // чтобы главные ключи фильтра не поменялись местами
-      // и фильтры остались на своих местах после рендера в Safari
-      // const newState = {...state}
-      // newState[filterKey].selected = selected
-      // return newState
       return {
-        ...state,
+        ...resetFilters(state),
         [filterKey]: {
           ...state[filterKey],
           selected
         }
       }
 
-    // todo fix it for Safari browser
     case actionTypes.SET_SELECTED_PRICE_RANGE:
       return {
-        ...state,
+        ...resetFilters(state),
         priceRange: {
           ...state.priceRange,
-          selected: action.payload
+          selected: [action.payload.min, action.payload.max]
         }
       }
-      // return { ...state }.priceRange.selected = action.payload
 
     default:
       return state

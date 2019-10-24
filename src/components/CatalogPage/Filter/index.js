@@ -8,35 +8,25 @@ import styles from './Filter.module.sass'
 import ButtonsGroupExpander from "components/CatalogPage/Filter/ButtonsGroupExpander";
 import Button from "components/CatalogPage/Filter/Button";
 import ColorButton from "components/CatalogPage/Filter/ColorButton";
+import InputPriceRange from "components/CatalogPage/Filter/InputPriceRange";
 
-import InputRange from 'react-input-range'
-import 'react-input-range/lib/css/index.css'
 
 class Filter extends Component {
-  state = {
-    currentPriceRange: {
-      min: this.props.currentPriceRange.min || this.props.initialPriceRange.min,
-      max: this.props.currentPriceRange.max || this.props.initialPriceRange.max,
-    },
-  }
-
   renderFilterItemsByType(filter, filterKey) {
+    const {
+      initialPriceRange,
+      currentPriceRange,
+      setSelectedPriceRange,
+      updateSelect
+    } = this.props
+
     switch (filter.type) {
       case FILTER_TYPES.RANGE:
         return (
-          <InputRange
-            step={100}
-            minValue={this.props.initialPriceRange.min}
-            maxValue={this.props.initialPriceRange.max}
-            value={this.state.currentPriceRange}
-            onChange={currentPriceRange =>
-              this.setState({ currentPriceRange })
-            }
-            onChangeComplete={currentPriceRange =>
-              this.props.setSelectedPriceRange(
-                [currentPriceRange.min, currentPriceRange.max]
-              )
-            }
+          <InputPriceRange
+            initial={initialPriceRange}
+            current={currentPriceRange}
+            onChangeComplete={(range) => setSelectedPriceRange(range)}
           />
         )
 
@@ -46,7 +36,7 @@ class Filter extends Component {
             key={button.id}
             title={button.name}
             active={filter.selected.includes(button.name)}
-            onClick={() => this.props.updateSelect({
+            onClick={() => updateSelect({
               filterKey, value: button.name
             })}
           />
@@ -59,7 +49,7 @@ class Filter extends Component {
             color={button.color}
             active={filter.selected.includes(button.name)}
             title={button.name}
-            onClick={() => this.props.updateSelect({
+            onClick={() => updateSelect({
               filterKey, value: button.name
             })}
           />
@@ -107,11 +97,11 @@ function mapStateToProps({ filter }) {
     filter,
     initialPriceRange: {
       min: filter.priceRange.inititalRange.min,
-      max: filter.priceRange.inititalRange.max
+      max: filter.priceRange.inititalRange.max,
     },
     currentPriceRange: {
-      min: filter.priceRange.selected.min,
-      max: filter.priceRange.selected.max
+      min: filter.priceRange.selected[0],
+      max: filter.priceRange.selected[1]
     }
   }
 }
