@@ -7,6 +7,8 @@ import Available from "components/ProductPage/Available"
 import styles from "components/CatalogPage/Catalog/Catalog.module.sass"
 import { classes } from "utils"
 
+import Img from "react-image"
+
 
 function filterProducts(products, filter) {
   // console.log(products)
@@ -40,6 +42,12 @@ function getActiveStatusByPriceRange(price, [ min, max ]) {
   return price >= min && price <= max
 }
 
+const MyComponent = ({src}) => <Img
+  src={src}
+  crossOrigin="anonymous"
+  loader={<div>loading</div>}
+/>
+
 
 const Catalog = ({
                    products,
@@ -58,7 +66,8 @@ const Catalog = ({
             <Link to={`/catalog/${slug}`}>
               <div className={styles.image}>
                 {/*<p className={styles.size}>{size.h}см / {size.w}см</p>*/}
-                <img src={firstSize.image} alt={title}/>
+                {/*<img src={firstSize.image} alt={title}/>*/}
+                <MyComponent src={firstSize.image}/>
               </div>
             </Link>
 

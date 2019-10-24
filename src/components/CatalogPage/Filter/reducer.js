@@ -76,6 +76,7 @@ const filterFunctions = {
 
 const initialState = {
   priceRange: {
+    order: 0,
     type: FILTER_TYPES.RANGE,
     title: 'Цена',
     func: filterFunctions.bySizesPrice,
@@ -85,15 +86,8 @@ const initialState = {
     },
     selected: []
   },
-  shade: {
-    title: 'Оттенок',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: productShades,
-    func: filterFunctions.byShades,
-    selected: [],
-    expand: true
-  },
   sizes: {
+    order: 1,
     title: 'Размер',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productSizes,
@@ -101,23 +95,8 @@ const initialState = {
     selected: [],
     expand: true
   },
-  stability: {
-    title: 'Стойкость',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: stability,
-    func: filterFunctions.byStability,
-    selected: [],
-    expand: true
-  },
-  colors: {
-    title: 'Цвет композиции',
-    type: FILTER_TYPES.COLORS_BUTTONS,
-    items: productColors,
-    func: filterFunctions.byColors,
-    selected: [],
-    expand: false
-  },
   productPacking: {
+    order: 2,
     title: 'Оформление букета',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: productPacking,
@@ -125,27 +104,54 @@ const initialState = {
     selected: [],
     expand: true
   },
+  available: {
+    order: 3,
+    title: 'В наличии',
+    type: FILTER_TYPES.ITEMS_OBJECTS,
+    items: [{
+      id: 0,
+      name: 'В наличии'
+    }],
+    func: filterFunctions.byAvailability,
+    selected: [],
+    expand: true
+  },
+  shade: {
+    order: 4,
+    title: 'Оттенок',
+    type: FILTER_TYPES.ITEMS_OBJECTS,
+    items: productShades,
+    func: filterFunctions.byShades,
+    selected: [],
+    expand: false
+  },
+  stability: {
+    order: 5,
+    title: 'Стойкость',
+    type: FILTER_TYPES.ITEMS_OBJECTS,
+    items: stability,
+    func: filterFunctions.byStability,
+    selected: [],
+    expand: false
+  },
+  colors: {
+    order: 6,
+    title: 'Цвет композиции',
+    type: FILTER_TYPES.COLORS_BUTTONS,
+    items: productColors,
+    func: filterFunctions.byColors,
+    selected: [],
+    expand: false
+  },
   flowers: {
+    order: 7,
     title: 'Состав букета',
     type: FILTER_TYPES.ITEMS_OBJECTS,
     items: flowers,
     func: filterFunctions.byFlowers,
     selected: [],
     expand: false
-  },
-  available: {
-    title: 'Доступен к заказу',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: [{
-      id: 0,
-      name: 'Сегодня'
-    }],
-    func: filterFunctions.byAvailability,
-    selected: [],
-    expand: false
-  },
-
-
+  }
 }
 
 
@@ -166,10 +172,18 @@ const filter = (state = initialState, action) => {
       // Делаем так, для того,
       // чтобы главные ключи фильтра не поменялись местами
       // и фильтры остались на своих местах после рендера в Safari
-      const newState = Object.assign({}, state)
-      newState[filterKey].selected = selected
-      return newState
+      // const newState = {...state}
+      // newState[filterKey].selected = selected
+      // return newState
+      return {
+        ...state,
+        [filterKey]: {
+          ...state[filterKey],
+          selected
+        }
+      }
 
+    // todo fix it for Safari browser
     case actionTypes.SET_SELECTED_PRICE_RANGE:
       return {
         ...state,
@@ -178,6 +192,7 @@ const filter = (state = initialState, action) => {
           selected: action.payload
         }
       }
+      // return { ...state }.priceRange.selected = action.payload
 
     default:
       return state

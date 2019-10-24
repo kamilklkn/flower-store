@@ -30,7 +30,7 @@ class Filter extends Component {
             maxValue={this.props.initialPriceRange.max}
             value={this.state.currentPriceRange}
             onChange={currentPriceRange =>
-              this.setState({currentPriceRange})
+              this.setState({ currentPriceRange })
             }
             onChangeComplete={currentPriceRange =>
               this.props.setSelectedPriceRange(
@@ -77,21 +77,25 @@ class Filter extends Component {
         {
           // Более функциональный стиль, чем с Object.keys
           // Потому что, мы будем не из нутри обращаться к this.props.filter[key]
-          Object.entries(this.props.filter).map(item => {
-            const [filterKey, filter] = item
-            return (
-              <ButtonsGroupExpander
-                key={filterKey}
-                className={filterKey}
-                title={filter.title}
-                expandDefault={filter.expand}
-              >
-                <ul>
-                  {this.renderFilterItemsByType(filter, filterKey)}
-                </ul>
-              </ButtonsGroupExpander>
-            )
-          })
+          Object.entries(this.props.filter)
+          // Сортируем ключи по подярку, чтобы Safari не менял
+          // порядок отображения фильтров
+            .sort((a, b) => a[1].order > b[1].order ? 1 : -1)
+            .map(item => {
+              const [filterKey, filter] = item
+              return (
+                <ButtonsGroupExpander
+                  key={filterKey}
+                  className={filterKey}
+                  title={filter.title}
+                  expandDefault={filter.expand}
+                >
+                  <ul>
+                    {this.renderFilterItemsByType(filter, filterKey)}
+                  </ul>
+                </ButtonsGroupExpander>
+              )
+            })
         }
       </div>
     )

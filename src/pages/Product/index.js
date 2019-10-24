@@ -10,6 +10,7 @@ import Available from 'components/ProductPage/Available'
 import Details from 'components/ProductPage/Details'
 
 import styles from './Product.module.sass'
+import PageLayout from "layouts/Page";
 
 const fallback = () => (
   <div>Loading...</div>
@@ -119,96 +120,98 @@ class Product extends Component {
     const totalPrice = activeSize.price + activeGrass.price
 
     return (
-      <div className="container mt-3">
-        <div className="row">
-          <div className={`col-6 ${styles.photo}`}>
-            <div className={styles.photoSizeTitle}>
-              {activeSize.title}
+      <PageLayout>
+        <div className="container mt-3">
+          <div className="row">
+            <div className={`col-6 ${styles.photo}`}>
+              <div className={styles.photoSizeTitle}>
+                {activeSize.title}
+              </div>
+              <img src={activeSize.image} alt=""/>
             </div>
-            <img src={activeSize.image} alt=""/>
-          </div>
-          <div className={`col-6 ${styles.usn}`}>
-            <h1>{product.title}</h1>
+            <div className={`col-6 ${styles.usn}`}>
+              <h1>{product.title}</h1>
 
-            <div
-              onClick={() =>
-                this.setState(prevState => ({
-                  available: {
-                    ...prevState.available,
-                    now: !prevState.available.now
-                  }
-                }))
-              }
-            >
-              <Available
-                {...product.available}
+              <div
+                onClick={() =>
+                  this.setState(prevState => ({
+                    available: {
+                      ...prevState.available,
+                      now: !prevState.available.now
+                    }
+                  }))
+                }
+              >
+                <Available
+                  {...product.available}
+                />
+              </div>
+
+              {this.renderSizesButtons(product.sizes)}
+
+              <SizeInformer
+                className={styles.sizeInformer}
+                h={activeSize.h}
+                w={activeSize.w}
               />
-            </div>
 
-            {this.renderSizesButtons(product.sizes)}
+              <div>
+                Добавить зелени?
+                {this.renderGrassPluserButtons(grass)}
+              </div>
 
-            <SizeInformer
-              className={styles.sizeInformer}
-              h={activeSize.h}
-              w={activeSize.w}
-            />
+              <AdditionalProducts
+                products={additProducts}
+              />
 
-            <div>
-              Добавить зелени?
-              {this.renderGrassPluserButtons(grass)}
-            </div>
-
-            <AdditionalProducts
-              products={additProducts}
-            />
-
-            <br/>
-            <h1>{totalPrice} {`\u20BD`}</h1>
+              <br/>
+              <h1>{totalPrice} {`\u20BD`}</h1>
 
 
-            <p>Выберете дату доставки</p>
-            <DatePicker
-              startDate={new Date()}
-            />
+              <p>Выберете дату доставки</p>
+              <DatePicker
+                startDate={new Date()}
+              />
 
-            <p>Купить в один клик</p>
-            <h2>
-              Флорист об этой композиции
-              Фото круглое
-              ФИ
-              текст небольшой
-            </h2>
-
-
-            <Details>
-              {
-                activeSize.flowers && (
-                  <>
-                    Состав
-                    {this.renderFlowers(activeSize.flowers)}
-                  </>
-                )
-              }
-            </Details>
-            <FlowersInstruction/>
-            <DeliveryInfo/>
+              <p>Купить в один клик</p>
+              <h2>
+                Флорист об этой композиции
+                Фото круглое
+                ФИ
+                текст небольшой
+              </h2>
 
 
-            <div>
-              <p>Поделится</p>
-            </div>
+              <Details>
+                {
+                  activeSize.flowers && (
+                    <>
+                      Состав
+                      {this.renderFlowers(activeSize.flowers)}
+                    </>
+                  )
+                }
+              </Details>
+              <FlowersInstruction/>
+              <DeliveryInfo/>
 
 
-            <div>
-              Остались вопросы? Звоните!
-              8 (914) 358-56-55
-              WhatsApp / Viber / Telegram
+              <div>
+                <p>Поделится</p>
+              </div>
+
+
+              <div>
+                Остались вопросы? Звоните!
+                8 (914) 358-56-55
+                WhatsApp / Viber / Telegram
+
+              </div>
 
             </div>
-
           </div>
         </div>
-      </div>
+      </PageLayout>
     )
   }
 }
