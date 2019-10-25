@@ -78,7 +78,7 @@ class Filter extends Component {
                   key={filterKey}
                   className={filterKey}
                   title={filter.title}
-                  expandDefault={filter.expand}
+                  expandDefault={filter.expand || !!filter.selected.length}
                 >
                   <ul>
                     {this.renderFilterItemsByType(filter, filterKey)}
