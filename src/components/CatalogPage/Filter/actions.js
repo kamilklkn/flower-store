@@ -17,3 +17,17 @@ export function setSelectedPriceRange(range) {
   }
 }
 
+export function resetFilter(filterKey) {
+  return {
+    type: actionTypes.RESET_FILTER,
+    payload: filterKey
+  }
+}
+
+export function resetAllFilters() {
+  return {
+    type: actionTypes.RESET_ALL_FILTERS
+  }
+}
+
+

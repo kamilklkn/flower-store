@@ -60,25 +60,32 @@ class Filter extends Component {
     }
   }
 
+  checkSomeFilterSelected(filters) {
+    return Object.values(filters).some(filter => !!filter.selected.length)
+  }
 
   render() {
+    const { filters, resetFilter, resetAllFilters } = this.props
     return (
       <div className={styles.filter}>
         {
           // Более функциональный стиль, чем с Object.keys
           // Потому что, мы будем не из нутри обращаться к this.props.filter[key]
-          Object.entries(this.props.filter)
-          // Сортируем ключи по подярку, чтобы Safari не менял
-          // порядок отображения фильтров
+          // + Сортируем ключи по порядку, в котором они изначаль были,
+          // чтобы Safari не менял порядок отображения фильтров
+          // так происходит после обновления стейта фильтра
+          Object.entries(filters)
             .sort((a, b) => a[1].order > b[1].order ? 1 : -1)
             .map(item => {
               const [filterKey, filter] = item
               return (
                 <ButtonsGroupExpander
                   key={filterKey}
-                  className={filterKey}
+                  filterKey={filterKey}
                   title={filter.title}
                   expandDefault={filter.expand || !!filter.selected.length}
+                  showResetButton={!!filter.selected.length}
+                  onResetFilter={resetFilter}
                 >
                   <ul>
                     {this.renderFilterItemsByType(filter, filterKey)}
@@ -87,6 +94,17 @@ class Filter extends Component {
               )
             })
         }
+
+        {
+          this.checkSomeFilterSelected(filters) && (
+            <div
+              onClick={() => resetAllFilters()}
+              className={styles.resetAllBtn}
+            >
+              Сбросить все фильтры
+            </div>
+          )
+        }
       </div>
     )
   }
@@ -94,7 +112,7 @@ class Filter extends Component {
 
 function mapStateToProps({ filter }) {
   return {
-    filter,
+    filters: filter,
     initialPriceRange: {
       min: filter.priceRange.inititalRange.min,
       max: filter.priceRange.inititalRange.max,
@@ -109,7 +127,9 @@ function mapStateToProps({ filter }) {
 function mapDispatchToProps(dispatch) {
   return {
     updateSelect: (params) => dispatch(actions.updateSelect(params)),
-    setSelectedPriceRange: (range) => dispatch(actions.setSelectedPriceRange(range))
+    setSelectedPriceRange: (range) => dispatch(actions.setSelectedPriceRange(range)),
+    resetFilter: (filterKey) => dispatch(actions.resetFilter(filterKey)),
+    resetAllFilters: () => dispatch(actions.resetAllFilters()),
   }
 }
 

@@ -115,9 +115,9 @@ class Product extends Component {
     }
 
     const { florist, sizes, additionalProducts: additionalProductsIds } = product
-    console.log(additionalProductsIds, allAdditionalProducts)
+    // console.log(additionalProductsIds, allAdditionalProducts)
 
-    console.log(this.getAdditionalProducts(additionalProductsIds, allAdditionalProducts))
+    // console.log(this.getAdditionalProducts(additionalProductsIds, allAdditionalProducts))
     const additionalProducts =
       this.getAdditionalProducts(additionalProductsIds, allAdditionalProducts)
 
@@ -230,8 +230,6 @@ class Product extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  // console.log(ownProps)
-  // console.log(ownProps.match.params.product)
   return {
     products: state.catalog.products,
     allAdditionalProducts: state.catalog.allAdditionalProducts,

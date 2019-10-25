@@ -17,16 +17,26 @@ function resetFilters(state) {
     if ('filtersToReset' in newState[key]
       && newState[key].filtersToReset.length
     ) {
-      newState[key].filtersToReset.forEach(filterKey => {
-        // Сбрасываем выбранное на фильтре
-        newState[filterKey].selected = []
-      })
+      // todo: fix it. It runs on any filter click.
+      // todo: учитывать, что
+      // console.log(key)
+      // newState[key].filtersToReset.forEach(filterKey => {
+      //   // Сбрасываем выбранное на фильтре
+      //   newState[filterKey].selected = []
+      // })
     }
   })
 
   return newState
 }
 
+
+function resetAllFilters(state) {
+  Object.values(state).forEach(filter => {
+    filter.selected = []
+  })
+  return state
+}
 
 const filterFunctions = {
   byColors(products, { selected }) {
@@ -102,6 +112,7 @@ const initialState = {
       max: 5000
     },
     selected: [],
+    expand: true,
     filtersToReset: ['sizes']
   },
   sizes: {
@@ -174,7 +185,6 @@ const initialState = {
 }
 
 
-
 const filter = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_SELECT:
@@ -205,6 +215,18 @@ const filter = (state = initialState, action) => {
           selected: [action.payload.min, action.payload.max]
         }
       }
+
+    case actionTypes.RESET_FILTER:
+      return {
+        ...state,
+        [action.payload]: {
+          ...state[action.payload],
+          selected: []
+        }
+      }
+
+    case actionTypes.RESET_ALL_FILTERS:
+      return resetAllFilters({ ...state })
 
     default:
       return state
