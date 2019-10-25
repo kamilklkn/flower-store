@@ -18,7 +18,7 @@ const grass = [
   }
 ]
 
-const additionalProducts = [
+const allAdditionalProducts = [
   {
     id: 0,
     title: 'Modern clear vase',
@@ -41,7 +41,7 @@ const additionalProducts = [
 const initialState = {
   products: generateProducts(),
   grass,
-  additionalProducts
+  allAdditionalProducts
 }
 
 const catalog = (state = initialState) => {

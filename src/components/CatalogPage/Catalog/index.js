@@ -8,6 +8,7 @@ import styles from "components/CatalogPage/Catalog/Catalog.module.sass"
 import { classes } from "utils"
 
 import Img from "react-image"
+import RoubleSymbol from "components/UI/RoubleSymbol";
 
 
 function filterProducts(products, filter) {
@@ -38,11 +39,7 @@ const TitleWithPrice = ({ title, price, active }) => (
   </div>
 )
 
-function getActiveStatusByPriceRange(price, [ min, max ]) {
-  return price >= min && price <= max
-}
-
-const MyComponent = ({src}) => <Img
+const MyComponent = ({ src }) => <Img
   src={src}
   crossOrigin="anonymous"
   loader={<div>loading</div>}
@@ -55,6 +52,9 @@ const Catalog = ({
                    requiredSizes,
                    selectedPriceRange
                  }) => {
+
+  const [priceMin, priceMax] = selectedPriceRange
+
   return (
     <Row>
       {products.map(product => {
@@ -81,30 +81,26 @@ const Catalog = ({
               {title}
             </Link>
 
-            {
-              showOnlyRequiredSizes ? (
-                  <div className={styles.sizes}>
-                    {
-                      sizes.map((size, i) =>
-                        <TitleWithPrice
-                          key={i}
-                          title={size.title}
-                          price={size.price}
-                          active={
-                            requiredSizes.includes(size.title)
-                            || getActiveStatusByPriceRange(size.price, selectedPriceRange)
-                          }
-                        />
-                      )
-                    }
-                  </div>
-                )
-                : (
-                  <p className={styles.price}>
-                    {firstSize.price} <span>{`\u20BD`}</span>
-                  </p>
-                )
-            }
+            {showOnlyRequiredSizes ? (
+                <div className={styles.sizes}>
+                  {sizes.map((size, i) =>
+                    <TitleWithPrice
+                      key={i}
+                      title={size.title}
+                      price={size.price}
+                      active={
+                        requiredSizes.includes(size.title)
+                        || (size.price >= priceMin && size.price <= priceMax)
+                      }
+                    />
+                  )}
+                </div>
+              )
+              : (
+                <p className={styles.price}>
+                  {firstSize.price} <RoubleSymbol/>
+                </p>
+              )}
 
             <hr/>
           </div>

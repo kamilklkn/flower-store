@@ -11,6 +11,7 @@ import Details from 'components/ProductPage/Details'
 
 import styles from './Product.module.sass'
 import PageLayout from "layouts/Page";
+import FloristSay from "components/ProductPage/FloristSay";
 
 const fallback = () => (
   <div>Loading...</div>
@@ -101,35 +102,46 @@ class Product extends Component {
     </ul>
   )
 
+  getAdditionalProducts(additionalProductsIds, allAdditionalProducts) {
+    return allAdditionalProducts.filter(item => additionalProductsIds.includes(item.id))
+  }
+
   render() {
-    const { products, additionalProducts, grass } = this.props
-    // const product = products[0]
+    const { products, allAdditionalProducts, grass } = this.props
 
     const product = products.find(item => item.slug === this.props.slug)
     if (!product) {
       return <Redirect to="/404"/>
     }
 
-    const additProducts = additionalProducts.filter(
-      item => product.additionalProducts.includes(item.id)
-    )
+    const { florist, sizes, additionalProducts: additionalProductsIds } = product
+    console.log(additionalProductsIds, allAdditionalProducts)
 
-    const activeSize = product.sizes[this.state.activeSizeIndex]
+    console.log(this.getAdditionalProducts(additionalProductsIds, allAdditionalProducts))
+    const additionalProducts =
+      this.getAdditionalProducts(additionalProductsIds, allAdditionalProducts)
+
+    const activeSize = sizes[this.state.activeSizeIndex]
     const activeGrass = grass[this.state.activeGrassIndex]
-
     const totalPrice = activeSize.price + activeGrass.price
 
     return (
       <PageLayout>
         <div className="container mt-3">
           <div className="row">
-            <div className={`col-6 ${styles.photo}`}>
+            <div className={`col-5 ${styles.photo}`}>
               <div className={styles.photoSizeTitle}>
-                {activeSize.title}
+                «{activeSize.title}»
               </div>
               <img src={activeSize.image} alt=""/>
+
+              <FloristSay
+                photo={florist.photo}
+                name={florist.name}
+                text={florist.text}
+              />
             </div>
-            <div className={`col-6 ${styles.usn}`}>
+            <div className={`col-7 ${styles.usn}`}>
               <h1>{product.title}</h1>
 
               <div
@@ -161,7 +173,7 @@ class Product extends Component {
               </div>
 
               <AdditionalProducts
-                products={additProducts}
+                products={additionalProducts}
               />
 
               <br/>
@@ -174,12 +186,9 @@ class Product extends Component {
               />
 
               <p>Купить в один клик</p>
-              <h2>
-                Флорист об этой композиции
-                Фото круглое
-                ФИ
-                текст небольшой
-              </h2>
+
+
+
 
 
               <Details>
@@ -208,6 +217,10 @@ class Product extends Component {
 
               </div>
 
+              {/*{new Array(200).fill('https://randomuser.me/api/portraits/women/').map((item, i) =>*/}
+                {/*<img src={item + i + '.jpg'} alt=""/>*/}
+              {/*)}*/}
+
             </div>
           </div>
         </div>
@@ -221,7 +234,7 @@ function mapStateToProps(state, ownProps) {
   // console.log(ownProps.match.params.product)
   return {
     products: state.catalog.products,
-    additionalProducts: state.catalog.additionalProducts,
+    allAdditionalProducts: state.catalog.allAdditionalProducts,
     grass: state.catalog.grass,
     slug: ownProps.match.params.product
   }

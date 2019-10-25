@@ -1,15 +1,14 @@
 import 'mdn-polyfills/Object.assign'
 import React from 'react'
 import { Provider } from 'react-redux'
+import loadable from "@loadable/component"
 import store from "store/configureStore"
 import Catalog from "pages/Catalog"
-// import Home from 'pages/Home'
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import "bootstrap/scss/bootstrap-grid.scss"
-import loadable from "@loadable/component"
-import PageLayout from "layouts/Page";
+
 
 const Product = loadable(() => import('pages/Product'), () => <div>Loading...</div>)
 

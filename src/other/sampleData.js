@@ -121,6 +121,18 @@ const photoModels = [
   }
 ]
 
+function randomText() {
+  const texts = [
+    `Котам нельзя! С котами нельзя! Брысь!
+     Кондукторшу не поразила суть дела, что кот лезет в трамвай, в чем было бы еще полбеды, а то, что он 
+    собирается платить!`,
+    `Степа взглянул на бумагу и закоченел. Все было на месте. Во-первых, 
+    собственноручная Степина залихватская подпись!`
+  ]
+
+  return texts[random(0,1)]
+}
+
 
 const newModel = {
   id: 1,
@@ -139,10 +151,10 @@ const newModel = {
   additionalProducts: [0, 1],
   shade: 'Мягкий',
   florist: {
-    photo: '%D0%9B%D0%B8%D0%B7%D0%B0.jpg',
+    // photo: 'https://randomuser.me/api/portraits/women/66.jpg',
+    photo: 'https://randomuser.me/api/portraits/women/66.jpg',
     name: 'Лиза',
-    surname: '',
-    opinion: 'По вашему профессиональному мнению как действующего специалиста— представляет ли мистер Сегерс опасность для общества?'
+    text: randomText()
   },
   sizes: [
     {
@@ -223,13 +235,6 @@ export function generateProducts() {
         ...photoModelSizes[a]
       }
     }
-
-    // console.log(product.sizes)
-    //  0  1  2
-    //     1  2
-    //  0  1
-    //  0
-    //        2
 
     for (let a = 0; a < product.sizes.length; a++) {
       let priceMin = 9
