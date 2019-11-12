@@ -1,21 +1,32 @@
-import { createStore, compose, applyMiddleware } from "redux"
+import { applyMiddleware, createStore } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import { createBrowserHistory } from 'history'
+import { routerMiddleware } from 'connected-react-router'
 
-import rootReducer from "./rootReducer"
-import thunk from "redux-thunk"
+import monitorReducersEnhancer from 'store/enhancers/monitorReducer'
+import loggerMiddleware from 'store/middleware/logger'
+import createRootReducer from './reducers'
 
-const composeEnhancers =
-  typeof window === 'object' &&
-  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) :
-    compose
+export const history = createBrowserHistory()
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(
-    applyMiddleware(thunk)
+
+export default function configureStore(preloadedState) {
+  const middlewares = [thunkMiddleware, routerMiddleware(history), loggerMiddleware] //
+  const middlewareEnhancer = applyMiddleware(...middlewares)
+
+  const enhancers = [middlewareEnhancer, monitorReducersEnhancer]
+  const composedEnhancers = composeWithDevTools(...enhancers)
+
+  const store = createStore(
+    createRootReducer(history),
+    preloadedState,
+    composedEnhancers
   )
-)
 
-store.subscribe(() => console.log(store.getState()))
+  if (process.env.NODE_ENV !== 'production' && module.hot) {
+    module.hot.accept('./reducers', () => store.replaceReducer(createRootReducer(history)))
+  }
 
-export default store
+  return store
+}

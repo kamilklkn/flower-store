@@ -1,31 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import Img from "react-image"
 import { Row } from "components/Bootstrap"
 import { Link } from 'react-router-dom'
-import Available from "components/ProductPage/Available"
 
-import styles from "components/CatalogPage/Catalog/Catalog.module.sass"
+import Available from "components/Product/Available"
+import RoubleSymbol from "components/UI/RoubleSymbol"
+
 import { classes } from "utils"
+import styles from "./Catalog.module.sass"
 
-import Img from "react-image"
-import RoubleSymbol from "components/UI/RoubleSymbol";
-
-
-function filterProducts(products, filter) {
-  // console.log(products)
-  // Здесь сделать фильтрацию товаров с использованием reselect
-  // https://medium.com/devschacht/neil-fenton-improving-react-and-redux-performance-with-reselect-40f1d3efba89
-// https://www.npmjs.com/pack age/reselect
-
-  return Object.values(filter).reduce((results, filter) => {
-    // Не запускаем фильтр, если он не установлен
-    if ('selected' in filter && !filter.selected.length) {
-      return results
-    }
-    return filter.func(results, filter)
-  }, products)
-
-}
 
 const TitleWithPrice = ({ title, price, active }) => (
   <div className={classes(
@@ -47,10 +30,13 @@ const MyComponent = ({ src }) => <Img
 
 
 const Catalog = ({
-                   products,
-                   showOnlyRequiredSizes,
-                   requiredSizes,
-                   selectedPriceRange
+                   products = [],
+                   showOnlyRequiredSizes = false,
+                   requiredSizes = [],
+                   selectedPriceRange = {
+                     priceMin: 0,
+                     priceMax: 100000
+                   }
                  }) => {
 
   const [priceMin, priceMax] = selectedPriceRange
@@ -110,16 +96,4 @@ const Catalog = ({
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    products: filterProducts(state.catalog.products, state.filter),
-    showOnlyRequiredSizes: !!state.filter.sizes.selected.length
-      || !!state.filter.priceRange.selected.length,
-    requiredSizes: state.filter.sizes.selected,
-    selectedPriceRange: state.filter.priceRange.selected
-  }
-}
-
-export default connect(
-  mapStateToProps
-)(Catalog)
+export default Catalog

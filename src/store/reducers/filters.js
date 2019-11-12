@@ -1,4 +1,4 @@
-import * as actionTypes from './actionTypes'
+import { FILTERS } from "store/actionTypes"
 import { FILTER_TYPES } from "constants/filterTypes"
 
 // todo временные переменные, это должно быть получено через API
@@ -97,7 +97,7 @@ const filterFunctions = {
     return products.filter(product =>
       !!product.available.now
     )
-  },
+  }
 }
 
 
@@ -185,9 +185,9 @@ const initialState = {
 }
 
 
-const filter = (state = initialState, action) => {
+const filters = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_SELECT:
+    case FILTERS.UPDATE_SELECT:
       /** Экшен снимает/ставит элемент фильтра **/
       const { filterKey, value } = action.payload
       const selected = [...state[filterKey].selected]
@@ -207,7 +207,7 @@ const filter = (state = initialState, action) => {
         }
       }
 
-    case actionTypes.SET_SELECTED_PRICE_RANGE:
+    case FILTERS.SET_SELECTED_PRICE_RANGE:
       return {
         ...resetFilters(state),
         priceRange: {
@@ -216,7 +216,7 @@ const filter = (state = initialState, action) => {
         }
       }
 
-    case actionTypes.RESET_FILTER:
+    case FILTERS.RESET_FILTER:
       return {
         ...state,
         [action.payload]: {
@@ -225,7 +225,7 @@ const filter = (state = initialState, action) => {
         }
       }
 
-    case actionTypes.RESET_ALL_FILTERS:
+    case FILTERS.RESET_ALL_FILTERS:
       return resetAllFilters({ ...state })
 
     default:
@@ -233,4 +233,4 @@ const filter = (state = initialState, action) => {
   }
 }
 
-export default filter
+export default filters

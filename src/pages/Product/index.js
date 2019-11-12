@@ -3,24 +3,24 @@ import { connect } from "react-redux"
 import { Redirect } from 'react-router-dom'
 import loadable from '@loadable/component'
 
-import SizeInformer from "components/ProductPage/SizeInformer"
-import GrassPluserButton from "components/ProductPage/GrassPluserButton"
-import SizeButton from "components/ProductPage/SizeButton"
-import Available from 'components/ProductPage/Available'
-import Details from 'components/ProductPage/Details'
+import SizeInformer from "components/Product/SizeInformer"
+import GrassPluserButton from "components/Product/GrassPluserButton"
+import SizeButton from "components/Product/SizeButton"
+import Available from 'components/Product/Available'
+import Details from 'components/Product/Details'
 
 import styles from './Product.module.sass'
 import PageLayout from "layouts/Page";
-import FloristSay from "components/ProductPage/FloristSay";
+import FloristSay from "components/Product/FloristSay";
 
 const fallback = () => (
   <div>Loading...</div>
 )
 
-const DatePicker = loadable(() => import('components/ProductPage/DatePicker'), fallback)
-const FlowersInstruction = loadable(() => import('components/ProductPage/FlowersInstruction'), fallback)
-const DeliveryInfo = loadable(() => import('components/ProductPage/DeliveryInfo'), fallback)
-const AdditionalProducts = loadable(() => import('components/ProductPage/AdditionalProducts'), fallback)
+const DatePicker = loadable(() => import('components/Product/DatePicker'), fallback)
+const FlowersInstruction = loadable(() => import('components/Product/FlowersInstruction'), fallback)
+const DeliveryInfo = loadable(() => import('components/Product/DeliveryInfo'), fallback)
+const AdditionalProducts = loadable(() => import('components/Product/AdditionalProducts'), fallback)
 
 
 class Product extends Component {

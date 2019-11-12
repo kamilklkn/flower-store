@@ -1,15 +1,15 @@
 import React, { Component } from "react"
 import styles from "./Catalog.module.sass"
-import Catalog from "components/CatalogPage/Catalog"
+import CatalogContainer from "containers/catalog"
 // import Filter from 'components/CatalogPage/Filter'
-import loadable from "@loadable/component"
+// import loadable from "@loadable/component"
 import PageLayout from "layouts/Page"
 
-const fallback = () => (
-  <div>Loading...</div>
-)
+// const fallback = () => (
+//   <div>Loading...</div>
+// )
 
-const Filter = loadable(() => import('components/CatalogPage/Filter'), fallback)
+// const Filter = loadable(() => import('components/CatalogPage/Filter'), fallback)
 
 class CatalogPage extends Component {
   render() {
@@ -19,10 +19,10 @@ class CatalogPage extends Component {
           <div className="container">
             <div className="row">
               <div className="col-3">
-                <Filter/>
+                {/*<Filter/>*/}
               </div>
               <div className="col-9 pt-3">
-                <Catalog/>
+                <CatalogContainer/>
               </div>
             </div>
           </div>

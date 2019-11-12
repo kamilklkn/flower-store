@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux"
 
 import { FILTER_TYPES } from 'constants/filterTypes'
-import * as actions from './actions'
+import * as actions from 'store/actions/filters'
 
 import styles from './Filter.module.sass'
 import ButtonsGroupExpander from "components/CatalogPage/Filter/ButtonsGroupExpander";

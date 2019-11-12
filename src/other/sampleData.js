@@ -206,7 +206,7 @@ export function generateProducts() {
     const photoModelRandomIndex = random(0, photoModels.length - 1)
     const photoModel = photoModels[photoModelRandomIndex]
 
-    product.id = i
+    product.id = 'id' + i + 'n'
     product.order = i
     product.title = photoModel.title
     product.shade = photoModel.shade
