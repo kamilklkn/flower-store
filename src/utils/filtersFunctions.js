@@ -5,51 +5,27 @@ export const byColors = (products, selected = []) =>
 
 
 export const bySizes = (products, selected = []) => {
-  // const filtered = products.filter(product =>
-  //   product.sizes.some(size =>
-  //     selected.includes(size.title)
-  //   )
-  // )
-  //
-  // const modified = filtered.map(product => product.)
-
-
-  return products.reduce((filtered, product) => {
-    const status = product.sizes.some(size =>
+  return products.filter(product =>
+    product.sizes.some(size =>
       selected.includes(size.title)
     )
-
-
-    // todo это походу нужно перенести в контейнер
-    if (!status) return filtered
-
-    product.sizes = product.sizes.map(size => {
-      size.active = selected.includes(size.title)
-      return size
-    })
-
-    status && filtered.push(product)
-
-    return filtered
-
-    // return filtered
-    // return result
-    // const status = product.sizes.some(size =>
-    //   selected.includes(size.title)
-    // )
-    //
-    // console.log(status)
-    //
-    // if (status) {
-    //
-    //   product.sizes = product.sizes.map(size => {
-    //     size.active = status
-    //     return size
-    //   })
-    //
-    //   result.push(product)
-    // }
-  }, [])
+  )
+  // return products.reduce((filtered, product) => {
+  //   const status = product.sizes.some(size =>
+  //     selected.includes(size.title)
+  //   )
+  //
+  //   // todo это походу нужно перенести в контейнер
+  //   if (!status) return filtered
+  //
+  //   product.sizes = product.sizes.map(size => {
+  //     size.active = selected.includes(size.title)
+  //     return size
+  //   })
+  //
+  //   status && filtered.push(product)
+  //   return filtered
+  // }, [])
 }
 
 
@@ -74,6 +50,24 @@ export const byPacking = (products, selected = []) =>
 
 export const bySizesPrice = (products, selected = []) => {
   const [min, max] = selected
+  // return products.reduce((filtered, product) => {
+  //
+  //   const status = product.sizes.some(size =>
+  //     size.price >= min && size.price <= max
+  //   )
+  //
+  //   // todo это походу нужно перенести в контейнер
+  //   if (!status) return filtered
+  //
+  //   product.sizes = product.sizes.map(size => {
+  //     size.active = size.price >= min && size.price <= max
+  //     return size
+  //   })
+  //
+  //   status && filtered.push(product)
+  //   return filtered
+  // }, [])
+
   return products.filter(product =>
     product.sizes.some(size =>
       size.price >= min && size.price <= max

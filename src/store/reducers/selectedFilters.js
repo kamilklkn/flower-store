@@ -1,6 +1,6 @@
 const initialState = {
-  // bySizesPrice: [2300, 70000],
-  bySizes: ['Премиум', 'Стандартный']
+  bySizesPrice: [2500, 6000],
+  // bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
 }
 
 export default (state = initialState, action) => {

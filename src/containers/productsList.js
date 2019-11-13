@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import { connect } from "react-redux"
+import { compose } from "redux"
 import { fetchProducts } from "store/actions/products"
-import { getFilteredProducts, getStatusSizesFilter } from "store/selectors/products"
+import {
+  getFilteredProducts,
+  getStatusSizesFilter,
+  getStatusPriceFilter,
+  getSizesAndPriceSelectedFilters
+} from "store/selectors/products"
 import Product from "components/Product"
 import { Row } from "components/Bootstrap"
+
 
 class ProductsListContainer extends Component {
   static propTypes = {
@@ -19,19 +26,62 @@ class ProductsListContainer extends Component {
     this.props.fetchProducts()
   }
 
-  render() {
-    const { products, isActiveSizesFilter } = this.props
-    console.log('products', products)
 
-    if (!products.length) return <div>Loading...</div>
+  static setActiveStatusInSizesOfProducts = (products, selected, callback) =>
+    products.map(product => {
+      let firstActiveSizeIndex = false
+      const sizes = product.sizes.map((size, i) => {
+        size.active = callback(size, selected)
+        if (size.active && firstActiveSizeIndex === false)
+          firstActiveSizeIndex = i
+        return size
+      })
+
+      return {
+        ...product,
+        firstActiveSizeIndex,
+        sizes
+      }
+    })
+
+
+  render() {
+    const {
+      products,
+      isActiveSizesFilter,
+      isActivePriceFilter,
+      selectedFilters
+    } = this.props
+
+
+    const preparedProducts = compose(
+      (products) => !isActiveSizesFilter ? products :
+        ProductsListContainer.setActiveStatusInSizesOfProducts(
+          products,
+          selectedFilters.bySizes,
+          (size, selected) => selected.includes(size.title)
+        ),
+      (products) => !isActivePriceFilter ? products :
+        ProductsListContainer.setActiveStatusInSizesOfProducts(
+          products,
+          selectedFilters.bySizesPrice,
+          (size, selected) => {
+            const [min, max] = selected
+            return size.price >= min && size.price <= max
+          }
+        )
+    )(products)
+
+
+    if (!preparedProducts.length) return <div>Loading...</div>
 
     return (
       <Row>
-        {products.map(product => (
+        {preparedProducts.map(product => (
           <Product
             key={product.id}
             {...product}
-            showPriceAllSizes={isActiveSizesFilter}
+            showPriceAllSizes={isActiveSizesFilter || isActivePriceFilter}
           />
         ))}
       </Row>
@@ -39,13 +89,11 @@ class ProductsListContainer extends Component {
   }
 }
 
-// todo унести отельно в api grass
-// todo унести в апи additionalProducts
-
-
 const mapStateToProps = state => ({
   products: getFilteredProducts(state),
-  isActiveSizesFilter: getStatusSizesFilter(state)
+  isActiveSizesFilter: getStatusSizesFilter(state),
+  isActivePriceFilter: getStatusPriceFilter(state),
+  selectedFilters: getSizesAndPriceSelectedFilters(state)
 })
 
 const mapDispatchToProps = {
@@ -56,86 +104,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductsListContainer)
-
-
-
-function filterProducts(products, filter) {
-  // console.log(products)
-  // Здесь сделать фильтрацию товаров с использованием reselect
-  // https://medium.com/devschacht/neil-fenton-improving-react-and-redux-performance-with-reselect-40f1d3efba89
-// https://www.npmjs.com/pack age/reselect
-
-  return Object.values(filter).reduce((results, filter) => {
-    // Не запускаем фильтр, если он не установлен
-    if ('selected' in filter && !filter.selected.length) {
-      return results
-    }
-    return filter.func(results, filter)
-  }, products)
-}
-
-
-
-function filterTest(products, filter) {
-  // console.log(products)
-  // Здесь сделать фильтрацию товаров с использованием reselect
-  // https://medium.com/devschacht/neil-fenton-improving-react-and-redux-performance-with-reselect-40f1d3efba89
-// https://www.npmjs.com/pack age/reselect
-
-  return Object.values(filter).reduce((results, filter) => {
-    // Не запускаем фильтр, если он не установлен
-    if ('selected' in filter && !filter.selected.length) {
-      return results
-    }
-    return filter.func(results, filter)
-  }, products)
-
-}
-
-
-
-
-
-// function mapStateToProps(state) {
-
-// const a = compose(
-//   ({products, filters}) => {
-//     console.log('f2')
-//     return {products, filters}
-//   },
-//   ({products, filters}) => {
-//     console.log('f1')
-//     return {products, filters}
-//   },
-// )
-//
-// const myState = a({
-//   products: state.catalog.products.slice(),
-//   filters: {...state.filter}
-// })
-// console.log(myState)
-//
-// myState.products[0].title = 'dsfsdfsdf'
-//
-// showOnlyRequiredSizes: !!state.filter.sizes.selected.length
-// || !!state.filter.priceRange.selected.length,
-//   requiredSizes: state.filter.sizes.selected,
-//   selectedPriceRange: state.filter.priceRange.selected
-// function mapStateToProps(state) {
-//   return {
-//     products: filterProducts(state.catalog.products, state.filter),
-//   }
-// }
-
-
-// function mapStateToProps(state) {
-//   console.log('mapStateToProps', state)
-//   return {
-//     products: [] //state.catalog.products
-//     // products: compose(
-//     //   // updateProducts,
-//     //   filterProducts
-//     // )(state.products)
-//   }
-// }
-

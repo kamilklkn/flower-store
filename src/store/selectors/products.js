@@ -2,16 +2,21 @@ import { createSelector } from 'reselect'
 import * as filtersFunctions from "utils/filtersFunctions"
 
 
-export const getStatusSizesFilter = (state) => 'bySizes' in state.ui.selectedFilters
-
-
 const getProductById = (state, id) => state.entities.products[id]
 
 const getProducts = state =>
   state.ui.catalogPage.ids.map(id => getProductById(state, id))
 
-const getSelectedFilters = state => state.ui.selectedFilters
-
+export const getStatusSizesFilter = state => 'bySizes' in state.ui.selectedFilters
+export const getStatusPriceFilter = state => 'bySizesPrice' in state.ui.selectedFilters
+export const getSelectedFilters = state => state.ui.selectedFilters
+export const getSizesAndPriceSelectedFilters = state => {
+  const { bySizes, bySizesPrice } = getSelectedFilters(state)
+  return {
+    bySizes,
+    bySizesPrice
+  }
+}
 
 export const getFilteredProducts = createSelector(
   [getSelectedFilters, getProducts],
