@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import styles from "./Catalog.module.sass"
-import CatalogContainer from "containers/catalog"
 // import Filter from 'components/CatalogPage/Filter'
 // import loadable from "@loadable/component"
 import PageLayout from "layouts/Page"
+import ProductsListContainer from "containers/productsList"
 
 // const fallback = () => (
 //   <div>Loading...</div>
@@ -22,7 +22,7 @@ class CatalogPage extends Component {
                 {/*<Filter/>*/}
               </div>
               <div className="col-9 pt-3">
-                <CatalogContainer/>
+                <ProductsListContainer/>
               </div>
             </div>
           </div>

@@ -1,4 +1,3 @@
-import { normalizeObjects } from "utils"
 import im_a1 from "assets/im_a1.webp"
 import im_a2 from "assets/im_a2.jpeg"
 
@@ -22,6 +21,4 @@ const items = [
   }
 ]
 
-export default {
-  additionalProducts: normalizeObjects('products', items)
-}
+export default items

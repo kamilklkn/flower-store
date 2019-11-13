@@ -1,28 +1,40 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import { connect } from "react-redux"
-import { fetchProducts } from "store/actions/catalog"
-import Catalog from "components/Catalog"
-import { getProductsSelector } from "store/selectors/catalog"
+import { fetchProducts } from "store/actions/products"
+import { getFilteredProducts, getStatusSizesFilter } from "store/selectors/products"
+import Product from "components/Product"
+import { Row } from "components/Bootstrap"
 
-class CatalogContainer extends Component {
-  componentDidMount() {
-    console.log('fetchProducts')
-    this.props.fetchProducts()
+class ProductsListContainer extends Component {
+  static propTypes = {
+    products: propTypes.array.isRequired
   }
 
   static defaultProps = {
     products: []
   }
 
+  componentDidMount() {
+    this.props.fetchProducts()
+  }
+
   render() {
-    const { products } = this.props
+    const { products, isActiveSizesFilter } = this.props
     console.log('products', products)
 
+    if (!products.length) return <div>Loading...</div>
+
     return (
-      <div>
-        dfsf
-        {/*<Catalog/>*/}
-      </div>
+      <Row>
+        {products.map(product => (
+          <Product
+            key={product.id}
+            {...product}
+            showPriceAllSizes={isActiveSizesFilter}
+          />
+        ))}
+      </Row>
     )
   }
 }
@@ -32,7 +44,8 @@ class CatalogContainer extends Component {
 
 
 const mapStateToProps = state => ({
-  products: getProductsSelector(state)
+  products: getFilteredProducts(state),
+  isActiveSizesFilter: getStatusSizesFilter(state)
 })
 
 const mapDispatchToProps = {
@@ -42,7 +55,25 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CatalogContainer)
+)(ProductsListContainer)
+
+
+
+function filterProducts(products, filter) {
+  // console.log(products)
+  // Здесь сделать фильтрацию товаров с использованием reselect
+  // https://medium.com/devschacht/neil-fenton-improving-react-and-redux-performance-with-reselect-40f1d3efba89
+// https://www.npmjs.com/pack age/reselect
+
+  return Object.values(filter).reduce((results, filter) => {
+    // Не запускаем фильтр, если он не установлен
+    if ('selected' in filter && !filter.selected.length) {
+      return results
+    }
+    return filter.func(results, filter)
+  }, products)
+}
+
 
 
 function filterTest(products, filter) {
@@ -62,21 +93,7 @@ function filterTest(products, filter) {
 }
 
 
-function filterProducts(products, filter) {
-  // console.log(products)
-  // Здесь сделать фильтрацию товаров с использованием reselect
-  // https://medium.com/devschacht/neil-fenton-improving-react-and-redux-performance-with-reselect-40f1d3efba89
-// https://www.npmjs.com/pack age/reselect
 
-  return Object.values(filter).reduce((results, filter) => {
-    // Не запускаем фильтр, если он не установлен
-    if ('selected' in filter && !filter.selected.length) {
-      return results
-    }
-    return filter.func(results, filter)
-  }, products)
-
-}
 
 
 // function mapStateToProps(state) {

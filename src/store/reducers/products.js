@@ -1,16 +1,33 @@
-import { CATALOG } from "store/actionTypes"
+import { PRODUCTS } from "store/actionTypes"
 
-const initialState = {
-  products: {},
-  grass: {},
-  additionalProducts: {}
-}
+// {
+//   simpleDomainData1: {....},
+//   simpleDomainData2: {....},
+//   entities : {
+//     entityType1 : {....},
+//     entityType2 : {....}
+//   },
+//   ui : {
+//     uiSection1 : {....},
+//     uiSection2 : {....}
+//   }
+// }
 
-const catalog = (state = initialState, action) => {
+// const initialState = {
+//   enities: {
+//     products: {}
+//   },
+//   result: []
+// }
+
+
+const initialState = {}
+
+const products = (state = initialState, action) => {
   switch (action.type) {
-    case CATALOG.PRODUCTS_SUCCESS:
+    case PRODUCTS.PRODUCTS_SUCCESS:
       return {
-        ...action.data
+        ...action.response.entities.products
       }
 
     default:
@@ -18,4 +35,4 @@ const catalog = (state = initialState, action) => {
   }
 }
 
-export default catalog
+export default products

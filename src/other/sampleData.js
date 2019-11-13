@@ -224,8 +224,9 @@ export function generateProducts() {
       fromDate: new Date()
     }
 
-    const SizesCount = random(1, 3)
-    const startIndexSplice = random(0, 2)
+    const SizesCount = random(2, 3)
+    const startIndexSplice = random(0, 1)
+    // от 2 до 3  (2, 3)  (0, 1)
     product.sizes = [...newModel.sizes].splice(startIndexSplice, SizesCount)
     const photoModelSizes = [...photoModel.sizes].splice(startIndexSplice, SizesCount)
 

@@ -12,10 +12,10 @@ export const history = createBrowserHistory()
 
 
 export default function configureStore(preloadedState) {
-  const middlewares = [thunkMiddleware, routerMiddleware(history), loggerMiddleware] //
+  const middlewares = [thunkMiddleware, routerMiddleware(history)] //loggerMiddleware
   const middlewareEnhancer = applyMiddleware(...middlewares)
 
-  const enhancers = [middlewareEnhancer, monitorReducersEnhancer]
+  const enhancers = [middlewareEnhancer] //monitorReducersEnhancer
   const composedEnhancers = composeWithDevTools(...enhancers)
 
   const store = createStore(

@@ -1,11 +1,18 @@
 import { combineReducers } from "redux"
 import { connectRouter } from 'connected-react-router'
-// import filters from './filters'
-import catalog from './catalog'
+
+import products from './products'
+import selectedFilters from './selectedFilters'
+import catalogPage from './catalogPage'
 
 const rootReducer = history => combineReducers({
-  catalog,
-  filter: {},
+  entities: combineReducers({
+    products
+  }),
+  ui: combineReducers({
+    catalogPage,
+    selectedFilters
+  }),
   router: connectRouter(history)
 })
 

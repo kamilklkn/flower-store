@@ -8,7 +8,6 @@ import configureStore, { history } from "store/configureStore"
 import { Provider } from "react-redux"
 
 const store = configureStore()
-console.log('getState', store.getState())
 
 render(
   <Provider store={store}>

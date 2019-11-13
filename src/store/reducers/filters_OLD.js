@@ -10,95 +10,33 @@ import { productPacking } from "constants/productPacking"
 import { stability } from "constants/filter/stability"
 
 
-function resetFilters(state) {
-  const newState = { ...state }
+// function resetFilters(state) {
+//   const newState = { ...state }
+//
+//   Object.keys(newState).map(key => {
+//     if ('filtersToReset' in newState[key]
+//       && newState[key].filtersToReset.length
+//     ) {
+//       // todo: fix it. It runs on any filter click.
+//       // todo: учитывать, что
+//       // console.log(key)
+//       // newState[key].filtersToReset.forEach(filterKey => {
+//       //   // Сбрасываем выбранное на фильтре
+//       //   newState[filterKey].selected = []
+//       // })
+//     }
+//   })
+//
+//   return newState
+// }
 
-  Object.keys(newState).map(key => {
-    if ('filtersToReset' in newState[key]
-      && newState[key].filtersToReset.length
-    ) {
-      // todo: fix it. It runs on any filter click.
-      // todo: учитывать, что
-      // console.log(key)
-      // newState[key].filtersToReset.forEach(filterKey => {
-      //   // Сбрасываем выбранное на фильтре
-      //   newState[filterKey].selected = []
-      // })
-    }
-  })
 
-  return newState
-}
-
-
-function resetAllFilters(state) {
-  Object.values(state).forEach(filter => {
-    filter.selected = []
-  })
-  return state
-}
-
-const filterFunctions = {
-  byColors(products, { selected }) {
-    return products.filter(product =>
-      selected.includes(product.color)
-    )
-  },
-  bySizes(products, { selected }) {
-    return products.filter(product =>
-      product.sizes.some(size =>
-        selected.includes(size.title)
-      )
-    )
-  },
-  byShades(products, { selected }) {
-    return products.filter(product => {
-        if (!product.shade) return false
-        return selected.includes(product.shade)
-      }
-    )
-  },
-  byPacking(products, { selected }) {
-    return products.filter(product => {
-        // console.log(product.packing)
-        if (!('packing' in product)) return false
-        return product.packing.some(pack =>
-          selected.includes(pack)
-        )
-      }
-    )
-  },
-  bySizesPrice(products, { selected: [min, max] }) {
-    return products.filter(product =>
-      product.sizes.some(size =>
-        size.price >= min && size.price <= max
-      )
-    )
-  },
-  byFlowers(products, { selected }) {
-    return products.filter(product =>
-      product.sizes.some(size =>
-        size.flowers.some(flowerEntity => {
-            const [flowerTitle] = flowerEntity
-            return selected.includes(flowerTitle)
-          }
-        )
-      )
-    )
-  },
-  byStability(products, { selected }) {
-    return products.filter(product => {
-        if (!product.stability) return false
-        return selected.includes(product.stability)
-      }
-    )
-  },
-  byAvailability(products) {
-    return products.filter(product =>
-      !!product.available.now
-    )
-  }
-}
+// function resetAllFilters(state) {
+//   Object.values(state).forEach(filter => {
+//     filter.selected = []
+//   })
+//   return state
+// }
 
 
 const initialState = {

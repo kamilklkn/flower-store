@@ -1,27 +1,34 @@
-import { CATALOG } from "store/actionTypes"
+import { normalize } from "normalizr"
+
+import { PRODUCTS } from "store/actionTypes"
+import * as schema from "./productsSchema"
 import { fetchProducts as fetchProductsApi } from 'api'
 
+
 export const requestProducts = () => ({
-  type: CATALOG.PRODUCTS_REQUEST
+  type: PRODUCTS.PRODUCTS_REQUEST
 })
 
 
-export const successProducts = (data) => ({
-  type: CATALOG.PRODUCTS_SUCCESS,
-  data
+export const successProducts = (response) => ({
+  type: PRODUCTS.PRODUCTS_SUCCESS,
+  response
 })
+
 
 export const failureProducts = error => ({
-  type: CATALOG.PRODUCTS_FAILURE,
+  type: PRODUCTS.PRODUCTS_FAILURE,
   error
 })
 
+
 export const fetchProducts = () => async dispatch => {
-  console.log('fetchProducts')
   dispatch(requestProducts())
   try {
-    const data = await fetchProductsApi()
-    dispatch(successProducts(data))
+    const response = await fetchProductsApi()
+    dispatch(
+      successProducts(normalize(response, schema.arrayOfProducts))
+    )
   } catch (e) {
     dispatch(failureProducts(e))
   }
