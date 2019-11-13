@@ -27,6 +27,10 @@ class CatalogContainer extends Component {
   }
 }
 
+// todo унести отельно в api grass
+// todo унести в апи additionalProducts
+
+
 const mapStateToProps = state => ({
   products: getProductsSelector(state)
 })
