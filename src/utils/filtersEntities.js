@@ -1,78 +1,42 @@
-import { FILTER_TYPES } from "constants/filterTypes"
-
-// todo временные переменные, это должно быть получено через API
-import { productColors } from "constants/productColors"
-import { productShades } from "constants/productShades"
-import { productSizes } from "constants/productSizes"
-import { flowers } from "constants/flowers"
-import { productPacking } from "constants/productPacking"
-import { stability } from "constants/filter/stability"
-
+import { FILTER_COMPONENTS_TYPES } from "constants/filterComponentsTypes"
 
 export const filtersEntities = {
   bySizesPrice: {
-    order: 0,
-    type: FILTER_TYPES.RANGE,
+    type: FILTER_COMPONENTS_TYPES.RANGE,
     title: 'Цена',
-    filterFunctionName: 'bySizesPrice',
-    inititalRange: {
-      min: 0,
-      max: 5000
-    },
-    expandDefault: true,
-    filtersToReset: ['sizes']
+    // filtersToReset: ['sizes'] // todo do it
   },
   bySizes: {
-    order: 1,
     title: 'Размер',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: productSizes,
-    expandDefault: true,
-    filtersToReset: ['priceRange']
+    type: FILTER_COMPONENTS_TYPES.ITEMS,
+    // filtersToReset: ['priceRange'] // todo do it
   },
   byPacking: {
-    order: 2,
     title: 'Оформление букета',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: productPacking,
-    expandDefault: true
+    type: FILTER_COMPONENTS_TYPES.ITEMS,
   },
   byAvailability: {
-    order: 3,
     title: 'Наличие',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: [{
-      id: 0,
-      name: 'Только в наличии'
-    }],
-    expandDefault: true
+    type: FILTER_COMPONENTS_TYPES.ITEMS,
   },
   byShades: {
-    order: 4,
     title: 'Оттенок',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: productShades,
-    expandDefault: false
+    type: FILTER_COMPONENTS_TYPES.ITEMS,
+    openedDefault: false
   },
   byStability: {
-    order: 5,
     title: 'Стойкость',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: stability,
-    expandDefault: false
+    type: FILTER_COMPONENTS_TYPES.ITEMS,
+    openedDefault: false
   },
   byColors: {
-    order: 6,
     title: 'Цвет композиции',
-    type: FILTER_TYPES.COLORS_BUTTONS,
-    items: productColors,
-    expandDefault: false
+    type: FILTER_COMPONENTS_TYPES.COLORS_BUTTONS,
+    openedDefault: false
   },
   byFlowers: {
-    order: 7,
     title: 'Состав букета',
-    type: FILTER_TYPES.ITEMS_OBJECTS,
-    items: flowers,
-    expandDefault: false
+    type: FILTER_COMPONENTS_TYPES.ITEMS,
+    openedDefault: false
   }
 }

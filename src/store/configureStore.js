@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createBrowserHistory } from 'history'
 import { routerMiddleware } from 'connected-react-router'
 
-import monitorReducersEnhancer from 'store/enhancers/monitorReducer'
+// import monitorReducersEnhancer from 'store/enhancers/monitorReducer'
 import loggerMiddleware from 'store/middleware/logger'
 import createRootReducer from './reducers'
 
@@ -12,7 +12,7 @@ export const history = createBrowserHistory()
 
 
 export default function configureStore(preloadedState) {
-  const middlewares = [thunkMiddleware, routerMiddleware(history)] //loggerMiddleware
+  const middlewares = [thunkMiddleware, routerMiddleware(history), loggerMiddleware] //loggerMiddleware
   const middlewareEnhancer = applyMiddleware(...middlewares)
 
   const enhancers = [middlewareEnhancer] //monitorReducersEnhancer

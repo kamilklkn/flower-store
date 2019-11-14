@@ -2,12 +2,14 @@ import { combineReducers } from "redux"
 import { connectRouter } from 'connected-react-router'
 
 import products from './products'
+import filters from './filters'
 import selectedFilters from './selectedFilters'
 import catalogPage from './catalogPage'
 
 const rootReducer = history => combineReducers({
   entities: combineReducers({
-    products
+    products,
+    filters
   }),
   ui: combineReducers({
     catalogPage,

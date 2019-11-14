@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Available.module.sass'
-import { getAvailableDate } from "utils/date";
+import { getAvailableDate } from "utils"
 
 
 const Available = ({ now = true, fromDate = false, className = false }) => {

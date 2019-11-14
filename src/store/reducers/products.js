@@ -1,31 +1,12 @@
-import { PRODUCTS } from "store/actionTypes"
-
-// {
-//   simpleDomainData1: {....},
-//   simpleDomainData2: {....},
-//   entities : {
-//     entityType1 : {....},
-//     entityType2 : {....}
-//   },
-//   ui : {
-//     uiSection1 : {....},
-//     uiSection2 : {....}
-//   }
-// }
-
-// const initialState = {
-//   enities: {
-//     products: {}
-//   },
-//   result: []
-// }
-
+import {
+  PRODUCTS_SUCCESS,
+} from "store/actionTypes"
 
 const initialState = {}
 
 const products = (state = initialState, action) => {
   switch (action.type) {
-    case PRODUCTS.PRODUCTS_SUCCESS:
+    case PRODUCTS_SUCCESS:
       return {
         ...action.response.entities.products
       }

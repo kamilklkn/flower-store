@@ -10,8 +10,12 @@ const InputPriceRange = ({
   const [range, setRange] = useState({ ...initial })
 
   useEffect(() => {
-    current.min === undefined && setRange({ ...initial })
+    setRange({ ...current })
   }, [initial, current])
+
+  // console.log('range', range)
+  // console.log('initial', initial)
+  // console.log('current', current)
 
   return (
     <InputRange

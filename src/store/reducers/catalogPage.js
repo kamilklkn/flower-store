@@ -1,4 +1,4 @@
-import { PRODUCTS } from "store/actionTypes"
+import { PRODUCTS_SUCCESS } from "store/actionTypes"
 
 const initialState = {
   ids: []
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case PRODUCTS.PRODUCTS_SUCCESS:
+    case PRODUCTS_SUCCESS:
       return {
         ids: action.response.result
       }

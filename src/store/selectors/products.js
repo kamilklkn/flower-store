@@ -7,6 +7,7 @@ const getProductById = (state, id) => state.entities.products[id]
 const getProducts = state =>
   state.ui.catalogPage.ids.map(id => getProductById(state, id))
 
+
 export const getStatusSizesFilter = state => 'bySizes' in state.ui.selectedFilters
 export const getStatusPriceFilter = state => 'bySizesPrice' in state.ui.selectedFilters
 export const getSelectedFilters = state => state.ui.selectedFilters
@@ -17,6 +18,8 @@ export const getSizesAndPriceSelectedFilters = state => {
     bySizesPrice
   }
 }
+export const getCountSelectedFilters = (state) =>
+  Object.keys(getSelectedFilters(state)).length
 
 export const getFilteredProducts = createSelector(
   [getSelectedFilters, getProducts],

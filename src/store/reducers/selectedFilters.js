@@ -1,8 +1,14 @@
-import { FILTERS } from "store/actionTypes"
+import {
+  SELECTED_FILTERS_UPDATE_SELECTED,
+  SELECTED_FILTERS_SET_PRICE_RANGE,
+  SELECTED_FILTERS_RESET_ALL,
+  SELECTED_FILTERS_RESET
+} from "store/actionTypes"
+
 
 const initialState = {
-  bySizesPrice: [2500, 6000],
-  bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
+  // bySizesPrice: [2500, 6000],
+  // bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
 }
 
 const getStateWithoutKey = (state, filterKey) => {
@@ -12,14 +18,14 @@ const getStateWithoutKey = (state, filterKey) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FILTERS.RESET_ALL_FILTERS:
+    case SELECTED_FILTERS_RESET_ALL:
       return {}
 
-    case FILTERS.RESET_FILTER: {
+    case SELECTED_FILTERS_RESET: {
       return getStateWithoutKey(state, action.filterKey)
     }
 
-    case FILTERS.UPDATE_SELECTED:
+    case SELECTED_FILTERS_UPDATE_SELECTED:
       const { filterKey, value } = action
 
       const selected = [filterKey] in state ? [...state[filterKey]] : []
@@ -36,7 +42,7 @@ export default (state = initialState, action) => {
         return getStateWithoutKey(state, filterKey)
       }
 
-    case FILTERS.SET_SELECTED_PRICE_RANGE:
+    case SELECTED_FILTERS_SET_PRICE_RANGE:
       const { min, max } = action
       return {
         ...state,

@@ -1,13 +1,14 @@
 import React from 'react'
 import styles from './Button.module.sass'
-import { classes } from "utils"
+import cn from 'classnames'
 
-const Button = ({ id, title, active, onClick }) =>
+const Button = ({
+                  title = '[title]',
+                  active = false,
+                  onClick = f => f
+                }) =>
   <li
-    className={classes(
-      styles.btn,
-      active && styles.active
-    )}
+    className={cn(styles.btn, active && styles.active)}
     onClick={onClick}
   >
     {title}

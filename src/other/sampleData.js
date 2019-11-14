@@ -1,4 +1,3 @@
-// import React from 'react'
 import random from 'lodash/random'
 
 import im1 from "assets/1.jpeg"
@@ -10,26 +9,8 @@ import im6 from "assets/6.jpeg"
 import im7 from "assets/7.jpeg"
 import im8 from "assets/8.jpg"
 import im9 from "assets/9.jpg"
-import { getNameById } from "utils";
-import { productPacking } from "constants/productPacking";
 
 
-// const images = [
-//   'https://klumba.store/api/crop/media/bafeed31-2c44-49cd-8c7f-c0ddddecd586.JPG?geometry=400x400&crop=center',
-//   'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG?geometry=400x400&crop=center', // 1
-//   'https://klumba.store/api/crop/media/0c93f2f6-bfed-45f8-be9c-adfae9171914_wZIx1Yr.JPG?geometry=670x760&upscale=true&crop=center', // 0
-//   'https://klumba.store/api/crop/media/%D1%81%D0%B0%D0%BB%D0%B5%D0%BD%D0%B5%D1%80%D0%BE_%D0%BC_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0.JPG?geometry=400x400&crop=center', // 2
-//   'https://klumba.store/api/crop/media/CCD7920A-A6F2-42F9-9EFA-8C0A6A939879_G87ayYX.jpg?geometry=400x400&crop=center', //3
-//   // '', //4
-//   // '', //5
-//   // '', //6
-//   // '', //7
-//   // '', //8
-//   // '', //9
-//   // 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D0%B8_%D1%86%D0%B2%D0%B5%D1%82%D1%8B_%D1%87%D0%B8%D1%82%D0%B0_%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%BA%D0%BB%D1%83%D0%BC%D0%B1%D0%B0.JPG?geometry=670x760&upscale=true&crop=center',
-//   // 'https://klumba.store/api/crop/media/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2019-06-23_10-51-04.jpg?geometry=670x760&upscale=true&crop=center',
-//   // 'https://klumba.store/api/crop/media/%D0%93%D0%BE%D1%80%D1%82%D0%B5%D0%BD%D0%B7%D0%B8%D1%8F_%D0%A6%D0%B2%D0%B5%D1%82%D1%8B_%D0%A7%D0%B8%D1%82%D0%B0_%D0%94%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0_%D0%9A%D0%BB%D1%83%D0%BC%D0%B1%D0%B0_yVtD5M3.JPG?geometry=670x760&upscale=true&crop=center',
-// ]
 
 const photoModels = [
   {
@@ -61,6 +42,7 @@ const photoModels = [
   {
     title: 'Монобукет кустовой розы',
     shade: 'Нежный',
+    packing: ['Фет'],
     color: 'Молочный',
     bouquetType: 'Монобукет',
     sizes: [
@@ -91,7 +73,7 @@ const photoModels = [
   {
     title: 'Сборный в коробке',
     shade: 'Яркий',
-    packing: [getNameById(2, productPacking)],
+    packing: ['Шляпная коробка', 'Коробка'],
     color: 'Сборный',
     bouquetType: 'Сборный',
     sizes: [
