@@ -22,18 +22,15 @@ class ProductsListContainer extends Component {
     products: []
   }
 
-  componentDidMount() {
-    this.props.fetchProducts()
-  }
-
-
   static setActiveStatusInSizesOfProducts = (products, selected, callback) =>
     products.map(product => {
       let firstActiveSizeIndex = false
       const sizes = product.sizes.map((size, i) => {
         size.active = callback(size, selected)
+
         if (size.active && firstActiveSizeIndex === false)
           firstActiveSizeIndex = i
+
         return size
       })
 
@@ -44,6 +41,9 @@ class ProductsListContainer extends Component {
       }
     })
 
+  componentDidMount() {
+    this.props.fetchProducts()
+  }
 
   render() {
     const {
@@ -52,7 +52,6 @@ class ProductsListContainer extends Component {
       isActivePriceFilter,
       selectedFilters
     } = this.props
-
 
     const preparedProducts = compose(
       (products) => !isActiveSizesFilter ? products :
@@ -71,7 +70,6 @@ class ProductsListContainer extends Component {
           }
         )
     )(products)
-
 
     if (!preparedProducts.length) return <div>Loading...</div>
 

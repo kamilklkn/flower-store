@@ -11,6 +11,7 @@ import SizeInfo from "components/Product/SizeInfo"
 
 import styles from "components/Product/Product.module.sass"
 
+
 const Product = ({
                    id = 0,
                    title = '[title]',
@@ -82,5 +83,6 @@ Product.propTypes = {
   showPriceAllSizes: PropTypes.bool,
   firstActiveSizeIndex: PropTypes.number
 }
+
 
 export default Product

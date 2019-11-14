@@ -9,6 +9,33 @@ import { flowers } from "constants/flowers"
 import { productPacking } from "constants/productPacking"
 import { stability } from "constants/filter/stability"
 
+{
+  type: 'UPDATE_SELECTED',
+    filterKey: 'bySizes',
+  value: 'Стандартный'
+}
+
+{
+  type: 'RESET_FILTER',
+    filterKey: 'bySizes'
+}
+
+{
+  type: 'UPDATE_SELECTED',
+    filterKey: 'bySizes',
+  value: 'Большой'
+}
+
+{
+  type: 'RESET_ALL_FILTERS'
+}
+
+{
+  type: 'SET_SELECTED_PRICE_RANGE',
+    min: 3000,
+  max: 5000
+}
+
 
 // function resetFilters(state) {
 //   const newState = { ...state }
