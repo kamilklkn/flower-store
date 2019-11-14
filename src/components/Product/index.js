@@ -37,8 +37,8 @@ const Product = ({
     <div className={cn(styles.product, 'col-4', 'mb-2', 'pl-1', 'pr-1')} key={id}>
       <Link className={styles.image} to={`/catalog/${slug}`}>
         {/*<p className={styles.size}>{firstSize.h}см / {firstSize.w}см</p>*/}
-        <SizeInfo className={styles.size} height={firstSize.h} weight={firstSize.w}/>
         <Photo src={firstSize.image}/>
+        <SizeInfo className={styles.size} height={firstSize.h} weight={firstSize.w}/>
       </Link>
 
 
