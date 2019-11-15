@@ -4,31 +4,30 @@ import {
   SELECTED_FILTERS_RESET_ALL,
   SELECTED_FILTERS_RESET
 } from "store/actionTypes"
-
+import { getObjectWithoutKeys } from "utils"
 
 const initialState = {
   // bySizesPrice: [2500, 6000],
   // bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
 }
 
-const getStateWithoutKey = (state, filterKey) => {
-  const { [filterKey]: removedKey, ...withoutKey } = state
-  return withoutKey
-}
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case SELECTED_FILTERS_RESET_ALL:
       return {}
 
+
     case SELECTED_FILTERS_RESET: {
-      return getStateWithoutKey(state, action.filterKey)
+      return getObjectWithoutKeys(state, [action.filterKey])
     }
 
-    case SELECTED_FILTERS_UPDATE_SELECTED:
-      const { filterKey, value } = action
 
-      const selected = [filterKey] in state ? [...state[filterKey]] : []
+    case SELECTED_FILTERS_UPDATE_SELECTED:
+      // сбрасываение фильтра цены присходит через middleware
+      const { filterKey, value } = action
+      const { [filterKey]: selected = [] } = state
+
       selected.includes(value) ?
         selected.splice(selected.indexOf(value), 1) :
         selected.push(value)
@@ -39,10 +38,12 @@ export default (state = initialState, action) => {
           [filterKey]: selected
         }
       } else {
-        return getStateWithoutKey(state, filterKey)
+        return getObjectWithoutKeys(state, [filterKey])
       }
 
+
     case SELECTED_FILTERS_SET_PRICE_RANGE:
+      // сбрасываение фильтра размера присходит через middleware
       const { min, max } = action
       return {
         ...state,

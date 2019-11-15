@@ -18,6 +18,17 @@ export const normalizeObjects = (entitiesName, items) => {
 
 
 const mounts = 'января,февраля,марта,апреля,мая,июня,июля,августа,сентября,октября,ноября,декабря'
+
 export function getAvailableDate(date) {
   return date.getDate() + ' ' + mounts.split(',')[date.getMonth()]
+}
+
+export const getObjectWithoutKeys = (object, keysToRemove) => {
+  return Object.entries(object).reduce((results, item) => {
+    const [key, value] = item
+
+    return keysToRemove.includes(key) ?
+      { ...results } :
+      { ...results, [key]: value }
+  }, {})
 }
