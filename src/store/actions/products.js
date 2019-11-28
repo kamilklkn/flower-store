@@ -1,24 +1,24 @@
 import { normalize } from "normalizr"
-import { PRODUCTS_FAILURE,
-  PRODUCTS_REQUEST,
-  PRODUCTS_SUCCESS } from "store/actionTypes"
+import { FETCH_PRODUCTS_FAILURE,
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_PRODUCTS_SUCCESS } from "store/actionTypes"
 import * as schema from "./productsSchema"
 import { fetchProducts as fetchProductsApi } from 'api'
 
 
 export const requestProducts = () => ({
-  type: PRODUCTS_REQUEST
+  type: FETCH_PRODUCTS_REQUEST
 })
 
 
 export const successProducts = (response) => ({
-  type: PRODUCTS_SUCCESS,
+  type: FETCH_PRODUCTS_SUCCESS,
   response
 })
 
 
 export const failureProducts = error => ({
-  type: PRODUCTS_FAILURE,
+  type: FETCH_PRODUCTS_FAILURE,
   error
 })
 

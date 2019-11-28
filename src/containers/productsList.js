@@ -11,6 +11,7 @@ import {
 } from "store/selectors/products"
 import Product from "components/Product"
 import { Row } from "components/Bootstrap"
+import Preloader from "components/Preloader"
 
 
 class ProductsListContainer extends Component {
@@ -71,7 +72,10 @@ class ProductsListContainer extends Component {
         )
     )(products)
 
-    if (!preparedProducts.length) return <div>Loading...</div>
+    // todo это должно приходить из redux,
+    //  это должно быть отдельным экшеном начала загрузки
+    //  (понять где это располагать в сторе)
+    if (!preparedProducts.length) return <Preloader/>
 
     return (
       <Row>

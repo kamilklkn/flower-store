@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 // import CartButton from "components/Cart/CartButton";
 
 class PageLayout extends Component {
@@ -6,9 +7,8 @@ class PageLayout extends Component {
     return (
       <>
         {/*<CartButton/>*/}
-        <main>
-          {this.props.children}
-        </main>
+
+        {this.props.children}
       </>
     )
   }

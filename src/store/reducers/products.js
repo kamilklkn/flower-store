@@ -1,14 +1,19 @@
 import {
-  PRODUCTS_SUCCESS,
+  FETCH_PRODUCTS_SUCCESS
 } from "store/actionTypes"
 
-const initialState = {}
+const initialState = {
+  byId: {},
+  allIds: []
+}
 
 const products = (state = initialState, action) => {
   switch (action.type) {
-    case PRODUCTS_SUCCESS:
+    case FETCH_PRODUCTS_SUCCESS:
+      const { entities , result } = action.response
       return {
-        ...action.response.entities.products
+        byId: { ...entities.products },
+        allIds: [...result]
       }
 
     default:

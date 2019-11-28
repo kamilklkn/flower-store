@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.10.3",
+    "all": "^0.0.0",
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.5.2",

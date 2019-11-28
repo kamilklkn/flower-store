@@ -4,12 +4,10 @@ export const filtersEntities = {
   bySizesPrice: {
     type: FILTER_COMPONENTS_TYPES.RANGE,
     title: 'Цена',
-    // filtersToReset: ['sizes'] // todo do it
   },
   bySizes: {
     title: 'Размер',
     type: FILTER_COMPONENTS_TYPES.ITEMS,
-    // filtersToReset: ['priceRange'] // todo do it
   },
   byPacking: {
     title: 'Оформление букета',

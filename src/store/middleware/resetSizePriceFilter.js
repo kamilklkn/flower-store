@@ -10,13 +10,15 @@ const resetSizePriceFilter = store => next => action => {
   switch (action.type) {
     case SELECTED_FILTERS_UPDATE_SELECTED:
       if (action.filterKey === 'bySizes') next(resetFilter('bySizesPrice'))
-      break
+      return next(action)
+
     case SELECTED_FILTERS_SET_PRICE_RANGE:
       next(resetFilter('bySizes'))
-      break
-  }
+      return next(action)
 
-  return next(action)
+    default:
+      return next(action)
+  }
 }
 
 export default resetSizePriceFilter

@@ -1,11 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
-
 import * as serviceWorker from './serviceWorker'
-import App from './App'
-import './index.css'
 import configureStore, { history } from "store/configureStore"
 import { Provider } from "react-redux"
+import App from './App'
+
+import "bootstrap/scss/bootstrap-grid.scss"
+import './index.css'
 
 const store = configureStore()
 
