@@ -7,13 +7,16 @@ import { routerMiddleware } from 'connected-react-router'
 // import monitorReducersEnhancer from 'store/enhancers/monitorReducer'
 // import loggerMiddleware from 'store/middleware/logger'
 import createRootReducer from './reducers'
-import resetSizePriceFilter from "store/middleware/resetSizePriceFilter"
+
+import resetFilters from "store/middleware/resetFilters"
+import cleanerAdditionalProductsMiddleware from "store/middleware/cleanerAdditionalProducts"
 
 export const history = createBrowserHistory()
 
 
 export default function configureStore(preloadedState) {
-  const middlewares = [thunkMiddleware, routerMiddleware(history), resetSizePriceFilter] //loggerMiddleware
+  const middlewares = [thunkMiddleware, routerMiddleware(history),
+    resetFilters, cleanerAdditionalProductsMiddleware] //loggerMiddleware
   const middlewareEnhancer = applyMiddleware(...middlewares)
 
   const enhancers = [middlewareEnhancer] //monitorReducersEnhancer

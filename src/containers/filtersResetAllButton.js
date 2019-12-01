@@ -1,4 +1,4 @@
-import * as actions from "store/actions/selectedFilters"
+import * as actions from "store/actions/selectedFiltersActions"
 import { connect } from "react-redux"
 import ResetAllButton from "components/Filter/ResetAllButton"
 import { getCountSelectedFilters } from "store/selectors/products"

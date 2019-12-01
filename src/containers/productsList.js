@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import propTypes from 'prop-types'
 import { connect } from "react-redux"
 import { compose } from "redux"
-import { fetchProducts } from "store/actions/products"
+import { fetchProducts } from "store/actions/productsActions"
 import {
   getFilteredProducts,
   getStatusSizesFilter,

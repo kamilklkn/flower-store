@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { getSelectedFilters } from "store/selectors/products"
-import * as actions from "store/actions/selectedFilters"
+import * as actions from "store/actions/selectedFiltersActions"
 import ButtonsGroupCollapse from "components/Filter/ButtonsGroupCollapse"
 import { getFilters } from "store/selectors/filters"
 

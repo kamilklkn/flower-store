@@ -2,7 +2,7 @@ import { normalize } from "normalizr"
 import { FETCH_PRODUCTS_FAILURE,
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_SUCCESS } from "store/actionTypes"
-import * as schema from "./productsSchema"
+import * as schema from "store/schemas/productsSchema"
 import { fetchProducts as fetchProductsApi } from 'api'
 
 
@@ -24,6 +24,7 @@ export const failureProducts = error => ({
 
 
 export const fetchProducts = () => async dispatch => {
+  console.log('action fetchProducts')
   dispatch(requestProducts())
   try {
     const response = await fetchProductsApi()

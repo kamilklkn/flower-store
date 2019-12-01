@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router'
 import products from './products'
 import filters from './filters'
 import selectedFilters from './selectedFilters'
+import cart from "./cart/rootReducer"
 
 
 const rootReducer = history => combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = history => combineReducers({
     filters
   }),
   ui: combineReducers({
-    selectedFilters
+    selectedFilters,
+    cart,
   }),
   router: connectRouter(history)
 })

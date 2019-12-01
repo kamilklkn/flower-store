@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import * as filtersFunctions from "utils/filtersFunctions"
 
+export const getProductsSelector = state => state.entities.products.byId
 
 const getProducts = state =>
   state.entities.products.allIds.map(id => getProductById(state, id))
