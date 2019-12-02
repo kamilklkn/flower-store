@@ -30,6 +30,12 @@ const initialState = {
       title: 'Монобукет кустовой розы',
       image: 'http://localhost:3000/static/media/5.d5ce967b.jpeg',
       size: 'Премиум',
+      options: {
+        grass: {
+          title: 'Побольше',
+          price: 300
+        }
+      },
       price: 5000,
       count: 5
     }

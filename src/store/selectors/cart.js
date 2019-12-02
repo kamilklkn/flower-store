@@ -1,6 +1,6 @@
 import { createSelector } from "reselect"
 
-function getTotalByOptions(options = {}) {
+export function getTotalByOptions(options = {}) {
   return Object.entries(options).reduce((total, [optionKey, option]) => {
     return total +  option.price
   }, 0)
@@ -19,7 +19,7 @@ const totalProductPriceSelector = createSelector(
       const product = itemsById[id]
       const { count, price, options } = product
       const totalByOptions = getTotalByOptions(options)
-      return total + ((count * price) + (count * totalByOptions))
+      return total + ((price + totalByOptions) * count)
     }, 0)
   }
 )

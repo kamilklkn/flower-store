@@ -4,7 +4,7 @@ import cn from 'classnames'
 import styles from './cartContainer.module.sass'
 import Preloader from "components/Preloader"
 import RoubleSymbol from "components/UI/RoubleSymbol"
-import { getAdditionalItemsSelector, getItemsSelector, totalSelector } from "store/selectors/cart"
+import { getAdditionalItemsSelector, getItemsSelector, getTotalByOptions, totalSelector } from "store/selectors/cart"
 import { cartProductDecrease, cartProductIncrease, cartProductRemove } from "store/actions/cart/productsActions"
 import {
   cartAdditionalProductDecrease,
@@ -203,6 +203,10 @@ class CartContainer extends Component {
     })
   }
 
+  getProductTotalPrice = (price, count, optionsTotal) => {
+    return (price + optionsTotal) * count
+  }
+
 
   renderProductsInCart = (items, onIncrease, onDecrease, onRemove) =>
     items.map(({
@@ -227,11 +231,18 @@ class CartContainer extends Component {
           <button onClick={() => onIncrease(id)}>+</button>
         </div>
         <div className={cn('col-2', styles.price)}>
-          <b>{price.toLocaleString('ru-RU')} <RoubleSymbol/></b>
+          {
+            this.getProductTotalPrice(
+              price,
+              count,
+              getTotalByOptions(options)
+            ).toLocaleString('ru-RU')
+          } <RoubleSymbol/>
         </div>
         <div className="col-1">
           <button onClick={() => onRemove(id)}>Удалить</button>
         </div>
+        <div className={styles.hr}/>
       </div>
     ))
 
