@@ -6,8 +6,8 @@ import {
 } from "store/actionTypes"
 
 const itemReducer = (state = {}, action) => {
-  console.log(action)
-  console.log(state)
+  // console.log(action)
+  // console.log(state)
 
   switch (action.type) {
     case CART_PRODUCT_INCREASE:

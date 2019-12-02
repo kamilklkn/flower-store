@@ -4,21 +4,14 @@ import cn from 'classnames'
 import styles from './cartContainer.module.sass'
 import Preloader from "components/Preloader"
 import RoubleSymbol from "components/UI/RoubleSymbol"
-import {
-  getAdditionalItemsSelector,
-  getItemsSelector,
-  totalPriceSelector, totalSelector
-} from "store/selectors/cart"
-import {
-  cartProductDecrease,
-  cartProductIncrease,
-  cartProductRemove
-} from "store/actions/cart/productsActions"
+import { getAdditionalItemsSelector, getItemsSelector, totalSelector } from "store/selectors/cart"
+import { cartProductDecrease, cartProductIncrease, cartProductRemove } from "store/actions/cart/productsActions"
 import {
   cartAdditionalProductDecrease,
   cartAdditionalProductIncrease,
   cartAdditionalProductRemove
 } from "store/actions/cart/additionalProductsActions"
+import { cartProductOptionDelete } from "store/actions/cart/optionsAction"
 
 
 // import TextField from '@material-ui/core/TextField'
@@ -133,6 +126,27 @@ const payOptions = {
 //   return [value, inputProps]
 // }
 
+const ButtonDeleteOption = ({ onClick }) => (
+  <button onClick={onClick}>x</button>
+)
+
+const Options = ({ id, box, grass, onDelete }) => (
+  <div className={styles.options}>
+    {box && (
+      <div>
+        {box.title} коробка (+{box.price} <RoubleSymbol/>)
+        <ButtonDeleteOption onClick={() => onDelete(id, 'box')}/>
+      </div>
+    )}
+    {grass && (
+      <div>
+        {grass.title} зелени (+{grass.price} <RoubleSymbol/>)
+        <ButtonDeleteOption onClick={() => onDelete(id, 'grass')}/>
+      </div>
+    )}
+  </div>
+)
+
 
 class CartContainer extends Component {
   state = {
@@ -175,6 +189,10 @@ class CartContainer extends Component {
     })
   }
 
+  handleDeleteOption = (id, optionKey) => {
+    this.props.onDeleteOption(id, optionKey)
+  }
+
   handlePay = (value) => {
     // const { name, value } = event.target;
 
@@ -185,13 +203,21 @@ class CartContainer extends Component {
 
 
   renderProductsInCart = (items, onIncrease, onDecrease, onRemove) =>
-    items.map(({ id, image, title, price, count }) => (
+    items.map(({
+                 id = 1,
+                 image = '',
+                 title = '[title]',
+                 price = 0,
+                 options = {},
+                 count = 1
+               }) => (
       <div key={id} className={cn(styles.product, 'row', 'align-items-center', 'justify-content-between')}>
         <div className="col-2">
           <img src={image} alt={title} style={{ maxWidth: '100%' }}/>
         </div>
-        <div className={cn('col-5', styles.title)}>
+        <div className={cn('col-5', 'col-xs-8', styles.title)}>
           {title}
+          <Options {...options} id={id} onDelete={this.handleDeleteOption}/>
         </div>
         <div className={cn('col-2', styles.counter)}>
           <button onClick={() => onDecrease(id)} disabled={count === 1}>-</button>
@@ -217,15 +243,12 @@ class CartContainer extends Component {
     if (loading) return <Preloader/>
 
     const { products, additionalProducts, totalPrice } = this.props
-console.log(additionalProducts)
+
 
     return (
       <div className={cn('row', 'justify-content-center', 'cart')}>
-        <div className="col-9">
+        <div className="col-8">
           <h1>Корзина</h1>
-
-          {/*<div className={cn('row', '')}>*/}
-          {/*<div className="col-12">*/}
 
           {
             this.renderProductsInCart(
@@ -237,7 +260,7 @@ console.log(additionalProducts)
           }
 
           {!!additionalProducts.length && (
-            <h3>Дополнительно:</h3>
+            <h3>Приятные мелочи</h3>
           )}
           {
             this.renderAdditionalProductsInCart(
@@ -333,7 +356,9 @@ const mapDispatchToProps = dispatch => ({
 
   onIncreaseAdditionalItem: (id) => dispatch(cartAdditionalProductIncrease(id)),
   onDecreaseAdditionalItem: (id) => dispatch(cartAdditionalProductDecrease(id)),
-  onRemoveAdditionalItem: (id) => dispatch(cartAdditionalProductRemove(id))
+  onRemoveAdditionalItem: (id) => dispatch(cartAdditionalProductRemove(id)),
+
+  onDeleteOption: (id, optionKey) => dispatch(cartProductOptionDelete(id, optionKey))
 })
 
 export default connect(

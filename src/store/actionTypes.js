@@ -20,5 +20,7 @@ export const CART_ADDITIONAL_PRODUCTS_CLEAR = 'CART_ADDITIONAL_PRODUCTS_CLEAR'
 
 export const CART_CLEAR = 'CART_CLEAR'
 
+export const CART_PRODUCT_OPTION_DELETE = 'CART_PRODUCT_OPTION_DELETE'
+
 // Naming Convention
 // [тип запроса]_[объект]_[действие]

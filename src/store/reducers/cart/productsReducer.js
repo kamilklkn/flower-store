@@ -1,6 +1,6 @@
 import {
   CART_PRODUCT_ADD, CART_PRODUCT_DECREASE,
-  CART_PRODUCT_INCREASE,
+  CART_PRODUCT_INCREASE, CART_PRODUCT_OPTION_DELETE,
   CART_PRODUCT_REMOVE
 } from "store/actionTypes"
 import itemReducer from "store/reducers/cart/itemReducer"
@@ -9,15 +9,27 @@ const initialState = {
   byId: {
     id1: {
       id: 'id1',
-      title: 'Сборный в коробке (Премиум)',
+      title: 'Сборный в коробке',
       image: 'http://localhost:3000/static/media/8.8dc61bc0.jpg',
-      price: 8600,
-      count: 2
+      options: {
+        grass: {
+          title: 'Побольше',
+          price: 300
+        },
+        box: {
+          title: 'Бархатная',
+          price: 1500
+        }
+      },
+      size: 'Большой',
+      price: 9600,
+      count: 1
     },
     id2: {
       id: 'id2',
-      title: 'Монобукет кустовой розы (Большой)',
+      title: 'Монобукет кустовой розы',
       image: 'http://localhost:3000/static/media/5.d5ce967b.jpeg',
+      size: 'Премиум',
       price: 5000,
       count: 5
     }
@@ -39,13 +51,25 @@ const initialState = {
 // }
 
 
+function optionDelete(state, action) {
+  const product = state[action.id]
+  console.log(product)
+  const { [action.optionKey]: _, ...noKey } = product.options
+
+  return {
+    ...product,
+    options: {
+      ...noKey
+    }
+  }
+}
+
 
 export const byId = (state, action) => {
   switch (action.type) {
     case CART_PRODUCT_INCREASE:
     case CART_PRODUCT_DECREASE:
       const product = state[action.id]
-      console.log(product)
       return {
         ...state,
         [action.id]: itemReducer(product, action)
@@ -61,8 +85,15 @@ export const byId = (state, action) => {
       }
 
     case CART_PRODUCT_REMOVE:
-      const { [action.id]: _, ...withoutKey } = state
-      return { ...withoutKey }
+      const { [action.id]: _, ...noKey } = state
+      return { ...noKey }
+
+    case CART_PRODUCT_OPTION_DELETE:
+      console.log('products CART_PRODUCT_OPTION_DELETE', action)
+      return {
+        ...state,
+        [action.id]: optionDelete(state, action)
+      }
 
     default:
       return state

@@ -16,7 +16,8 @@ const cleanerAdditionalProducts = store => next => action => {
     const nextState = store.getState()
 
     if (!nextState.ui.cart.products.allIds.length) {
-      return next(cartAdditionalProductsClear())
+      result = next(cartAdditionalProductsClear())
+      return result
     }
   }
 
