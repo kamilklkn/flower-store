@@ -1,5 +1,11 @@
 import { createSelector } from "reselect"
 
+function getTotalByOptions(options = {}) {
+  return Object.entries(options).reduce((total, [optionKey, option]) => {
+    return total +  option.price
+  }, 0)
+}
+
 const cartItemsSelector = state => state.ui.cart.products.byId
 const cartItemsAllIdsSelector = state => state.ui.cart.products.allIds
 
@@ -10,8 +16,10 @@ const totalProductPriceSelector = createSelector(
   [cartItemsAllIdsSelector, cartItemsSelector],
   (allIds, itemsById) => {
     return allIds.reduce((total, id) => {
-      const { count, price } = itemsById[id]
-      return total + (count * price)
+      const product = itemsById[id]
+      const { count, price, options } = product
+      const totalByOptions = getTotalByOptions(options)
+      return total + ((count * price) + (count * totalByOptions))
     }, 0)
   }
 )
@@ -20,7 +28,8 @@ const totalAdditionalProductPriceSelector = createSelector(
   [cartAdditionalItemsAllIdsSelector, cartAdditionalItemsSelector],
   (allIds, itemsById) => {
     return allIds.reduce((total, id) => {
-      const { count, price } = itemsById[id]
+      const product = itemsById[id]
+      const { count, price } = product
       return total + (count * price)
     }, 0)
   }

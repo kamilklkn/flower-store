@@ -135,13 +135,15 @@ const Options = ({ id, box, grass, onDelete }) => (
     {box && (
       <div>
         {box.title} коробка (+{box.price} <RoubleSymbol/>)
-        <ButtonDeleteOption onClick={() => onDelete(id, 'box')}/>
+        <ButtonDeleteOption
+          onClick={() => onDelete(id, 'box')}/>
       </div>
     )}
     {grass && (
       <div>
         {grass.title} зелени (+{grass.price} <RoubleSymbol/>)
-        <ButtonDeleteOption onClick={() => onDelete(id, 'grass')}/>
+        <ButtonDeleteOption
+          onClick={() => onDelete(id, 'grass')}/>
       </div>
     )}
   </div>
