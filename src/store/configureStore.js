@@ -6,7 +6,7 @@ import { routerMiddleware } from 'connected-react-router'
 
 // import monitorReducersEnhancer from 'store/enhancers/monitorReducer'
 // import loggerMiddleware from 'store/middleware/logger'
-import createRootReducer from './reducers'
+import createRootReducer from './reducers/rootReducer'
 
 import resetFilters from "store/middleware/resetFilters"
 import cleanerAdditionalProductsMiddleware from "store/middleware/cleanerAdditionalProducts"
@@ -29,7 +29,7 @@ export default function configureStore(preloadedState) {
   )
 
   if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('./reducers', () => store.replaceReducer(createRootReducer(history)))
+    module.hot.accept('./reducers/rootReducer', () => store.replaceReducer(createRootReducer(history)))
   }
 
   return store

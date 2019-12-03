@@ -71,7 +71,7 @@ function optionDelete(state, action) {
 }
 
 
-export const byId = (state, action) => {
+const byIdReducer = (state, action) => {
   switch (action.type) {
     case CART_PRODUCT_INCREASE:
     case CART_PRODUCT_DECREASE:
@@ -106,7 +106,7 @@ export const byId = (state, action) => {
   }
 }
 
-export const allIds = (state, action) => {
+const allIdsReducer = (state, action) => {
   switch (action.type) {
     case CART_PRODUCT_REMOVE:
       return state.filter(id => id !== action.id)
@@ -120,8 +120,8 @@ export const allIds = (state, action) => {
 }
 
 const productsReducer = (state = initialState, action) => ({
-  byId: byId(state.byId, action),
-  allIds: allIds(state.allIds, action)
+  byId: byIdReducer(state.byId, action),
+  allIds: allIdsReducer(state.allIds, action)
 })
 
 export default productsReducer

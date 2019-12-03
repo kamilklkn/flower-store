@@ -108,7 +108,10 @@ class ButtonsGroupCollapse extends Component {
             ({ isOpened: !prevState.isOpened })
           )}
           className={styles.group}
-        >{title}</span>
+        >
+          {title}
+          {!isOpened && <span> &bull;</span>}
+        </span>
 
           {isSet && (
             <span

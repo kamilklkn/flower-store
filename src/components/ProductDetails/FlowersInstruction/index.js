@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const FlowersInstruction = () => {
   const [visible, setVisible] = useState(false)
@@ -16,7 +16,7 @@ const FlowersInstruction = () => {
       }
 
     </div>
-  );
-};
+  )
+}
 
-export default FlowersInstruction;
+export default FlowersInstruction

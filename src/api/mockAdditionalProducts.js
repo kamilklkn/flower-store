@@ -1,7 +1,9 @@
 import im_a1 from "assets/im_a1.webp"
 import im_a2 from "assets/im_a2.jpeg"
 
-const items = [
+// todo Перенеси сюда доп товары и сделай мок
+
+export default [
   {
     id: 'id0',
     title: 'Modern clear vase',
@@ -20,5 +22,3 @@ const items = [
     image: im_a2
   }
 ]
-
-export default items

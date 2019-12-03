@@ -19,7 +19,7 @@ const initialState = {
 }
 
 
-const byId = (state, action) => {
+const byIdReducer = (state, action) => {
   switch (action.type) {
     case CART_ADDITIONAL_PRODUCT_INCREASE:
     case CART_ADDITIONAL_PRODUCT_DECREASE:
@@ -51,7 +51,7 @@ const byId = (state, action) => {
   }
 }
 
-const allIds = (state, action) => {
+const allIdsReducer = (state, action) => {
   switch (action.type) {
     case CART_ADDITIONAL_PRODUCT_REMOVE:
       return state.filter(id => id !== action.id)
@@ -69,8 +69,8 @@ const allIds = (state, action) => {
 
 
 const additionalProductsReducer = (state = initialState, action) => ({
-  byId: byId(state.byId, action),
-  allIds: allIds(state.allIds, action)
+  byId: byIdReducer(state.byId, action),
+  allIds: allIdsReducer(state.allIds, action)
 })
 
 export default additionalProductsReducer

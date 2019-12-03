@@ -1,9 +1,10 @@
 import React from "react"
+import cn from 'classnames'
 
-export const Row = (props) => {
+export const Row = ({children, className}) => {
   return (
-    <div className="row">
-      {props.children}
+    <div className={cn('row', className && className)}>
+      {children}
     </div>
   )
 }

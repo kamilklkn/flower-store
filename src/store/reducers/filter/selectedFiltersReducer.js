@@ -7,12 +7,12 @@ import {
 import { getObjectWithoutKeys } from "utils"
 
 const initialState = {
-  // bySizesPrice: [2500, 6000],
-  // bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
+  // bySizesPrice: [2500, 6000], // todo fix it (не выставляется при загрузке)
+  bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
 }
 
 
-export default (state = initialState, action) => {
+const selectedFiltersReducer = (state = initialState, action) => {
   switch (action.type) {
     case SELECTED_FILTERS_RESET_ALL:
       return {}
@@ -57,3 +57,5 @@ export default (state = initialState, action) => {
       return state
   }
 }
+
+export default selectedFiltersReducer

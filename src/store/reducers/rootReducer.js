@@ -1,20 +1,24 @@
 import { combineReducers } from "redux"
 import { connectRouter } from 'connected-react-router'
-
-import products from './products'
-import filters from './filters'
-import selectedFilters from './selectedFilters'
+import products from './productsReducer'
+import filters from './filter/filtersReducer'
+import selectedFilters from './filter/selectedFiltersReducer'
 import cart from "./cart/rootReducer"
-
+import grass from "./grassReducer"
+import activeProduct from './productReducer'
+import additionalProducts from "./additionalProductsReducer"
 
 const rootReducer = history => combineReducers({
   entities: combineReducers({
     products,
+    additionalProducts,
+    grass,
     filters
   }),
   ui: combineReducers({
     selectedFilters,
-    cart,
+    activeProduct,
+    cart
   }),
   router: connectRouter(history)
 })

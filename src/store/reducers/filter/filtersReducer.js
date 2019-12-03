@@ -23,9 +23,24 @@ const initialState = {
   byAvailability: ['Только в наличии']
 }
 
-export default (state = initialState, action) => {
+const filtersReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state
   }
 }
+
+export default filtersReducer
+
+// todo: do filter Монобукет / Сборный
+
+// export const bouquet = [
+//   {
+//     id: 0,
+//     name: 'Монобукет'
+//   },
+//   {
+//     id: 1,
+//     name: 'Сборный'
+//   },
+// ]

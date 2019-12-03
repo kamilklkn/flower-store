@@ -1,4 +1,5 @@
 import {
+  FETCH_PRODUCT_REQUEST,
   FETCH_PRODUCTS_SUCCESS
 } from "store/actionTypes"
 
@@ -7,12 +8,12 @@ const initialState = {
   allIds: []
 }
 
-const products = (state = initialState, action) => {
+const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS_SUCCESS:
       const { entities , result } = action.response
       return {
-        byId: { ...entities.products },
+        byId: { ...entities.items },
         allIds: [...result]
       }
 
@@ -21,4 +22,4 @@ const products = (state = initialState, action) => {
   }
 }
 
-export default products
+export default productsReducer

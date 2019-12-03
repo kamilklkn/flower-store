@@ -4,7 +4,9 @@ import ProductDetailsContainer from "containers/productDetails"
 
 const ProductPage = () => (
   <PageLayout>
-    <ProductDetailsContainer/>
+    <div className="container">
+      <ProductDetailsContainer/>
+    </div>
   </PageLayout>
 )
 

@@ -1,4 +1,4 @@
 import { schema } from 'normalizr'
 
-export const product = new schema.Entity('products')
-export const arrayOfProducts = new schema.Array(product)
+const itemEntity = new schema.Entity('items')
+export const items = new schema.Array(itemEntity)

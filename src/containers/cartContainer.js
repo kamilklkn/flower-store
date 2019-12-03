@@ -215,6 +215,7 @@ class CartContainer extends Component {
                  title = '[title]',
                  price = 0,
                  options = {},
+                 size,
                  count = 1
                }) => (
       <div key={id} className={cn(styles.product, 'row', 'align-items-center', 'justify-content-between')}>
@@ -222,7 +223,8 @@ class CartContainer extends Component {
           <img src={image} alt={title} style={{ maxWidth: '100%' }}/>
         </div>
         <div className={cn('col-5', 'col-xs-8', styles.title)}>
-          {title}
+          <p>{title}</p>
+          <span>{size}</span>
           <Options {...options} id={id} onDelete={this.handleDeleteOption}/>
         </div>
         <div className={cn('col-2', styles.counter)}>
@@ -287,6 +289,8 @@ class CartContainer extends Component {
           <p className={styles.allCost}>
             Сумма заказа: <b>{totalPrice.toLocaleString('ru-RU')} <RoubleSymbol/></b>
           </p>
+
+          <h4>Рекомендуем к вашему заказу</h4>
 
           {/*</div>*/}
           {/*</div>*/}
