@@ -1,6 +1,7 @@
 import { createSelector } from "reselect"
 
-const additionalProductsEntitiesSelector = state =>
+// todo это не должно так использоваться в Cart
+export const additionalProductsEntitiesSelector = state =>
   state.entities.additionalProducts
 
 export const additionalProductsSelector = createSelector(

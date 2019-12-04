@@ -7,6 +7,7 @@ import RoubleSymbol from "components/UI/RoubleSymbol"
 import { getAdditionalItemsSelector, getItemsSelector, getTotalByOptions, totalSelector } from "store/selectors/cart"
 import { cartProductDecrease, cartProductIncrease, cartProductRemove } from "store/actions/cart/productsActions"
 import {
+  cartAdditionalProductAdd,
   cartAdditionalProductDecrease,
   cartAdditionalProductIncrease,
   cartAdditionalProductRemove
@@ -14,6 +15,7 @@ import {
 import { cartProductOptionDelete } from "store/actions/cart/optionsAction"
 import loadable from "@loadable/component"
 import pMinDelay from "p-min-delay"
+import { additionalProductsEntitiesSelector } from "store/selectors/additionalProducts"
 
 const fallback = () => (
   <div>Loading...</div>
@@ -208,9 +210,13 @@ class CartContainer extends Component {
     this.props.onDeleteOption(id, optionKey)
   }
 
-  handleAdditionalProductClick = ({ id, price }) => {
-    // console.log('sdfs')
-    console.log(this.getAdditionalProductsIds())
+  handleAdditionalProductClick = ({ id }) => {
+    // todo Fix it
+    const product = this.props.additionalProductsEntities.byId[id]
+    console.log(product)
+    this.props.onAddAdditionalProduct({
+      ...product
+    })
   }
 
   handlePay = (value) => {
@@ -387,6 +393,7 @@ class CartContainer extends Component {
 const mapStateToProps = state => ({
   products: getItemsSelector(state),
   additionalProducts: getAdditionalItemsSelector(state),
+  additionalProductsEntities: additionalProductsEntitiesSelector(state),
   totalPrice: totalSelector(state)
 })
 
@@ -395,6 +402,7 @@ const mapDispatchToProps = dispatch => ({
   onDecreaseItem: (id) => dispatch(cartProductDecrease(id)),
   onRemoveItem: (id) => dispatch(cartProductRemove(id)),
 
+  onAddAdditionalProduct: (id) => dispatch(cartAdditionalProductAdd(id)),
   onIncreaseAdditionalItem: (id) => dispatch(cartAdditionalProductIncrease(id)),
   onDecreaseAdditionalItem: (id) => dispatch(cartAdditionalProductDecrease(id)),
   onRemoveAdditionalItem: (id) => dispatch(cartAdditionalProductRemove(id)),
