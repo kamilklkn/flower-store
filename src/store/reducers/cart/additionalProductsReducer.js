@@ -7,15 +7,15 @@ import itemReducer from "store/reducers/cart/itemReducer"
 
 const initialState = {
   byId: {
-    id1: {
-      id: 'id1',
-      title: 'Ваза',
+    id0: {
+      id: 'id0',
+      title: 'Modern clear vase',
       image: 'https://bon-pion.ru/images/virtuemart/product/resized/1547237481_45756504_550x550.jpg',
-      price: 55555,
+      price: 900,
       count: 1
     }
   },
-  allIds: ['id1']
+  allIds: ['id0']
 }
 
 

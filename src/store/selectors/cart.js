@@ -35,6 +35,7 @@ const totalAdditionalProductPriceSelector = createSelector(
   }
 )
 
+// todo fix name this totalPrice
 export const totalSelector = createSelector(
   totalProductPriceSelector,
   totalAdditionalProductPriceSelector,
@@ -52,6 +53,9 @@ export const getAdditionalItemsSelector = createSelector(
   (allIds, itemsById) => allIds.map(id => itemsById[id])
 )
 
-
+export const allItemsCountsSelector = createSelector(
+  [getItemsSelector, getAdditionalItemsSelector],
+  (products, additionalProducts) => [...products, ...additionalProducts].length
+)
 
 

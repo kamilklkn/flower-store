@@ -1,20 +1,27 @@
-import React from 'react';
-import { connect } from "react-redux";
-import RoubleSymbol from "components/UI/RoubleSymbol";
+import React from 'react'
+import { connect } from "react-redux"
+import RoubleSymbol from "components/UI/RoubleSymbol"
+import { allItemsCountsSelector, totalSelector } from "store/selectors/cart"
+import { push } from 'connected-react-router'
 
-const CartButton = ({ amount }) => {
+const CartButton = ({ itemsCount, total, push }) => {
   return (
-    <div>
-      {amount} <RoubleSymbol/>
+    <div onClick={() => push('/cart/')}>
+      {itemsCount} товара на {total.toLocaleString('RU-ru')} <RoubleSymbol/>
     </div>
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    productCount: 0,
-    amount: 1000
-  }
-}
+const mapStateToProps = (state) => ({
+  itemsCount: allItemsCountsSelector(state),
+  total: totalSelector(state)
+})
 
-export default connect(mapStateToProps)(CartButton)
+const mapDispatchToProps = dispatch => ({
+  push: (link) => dispatch(push(link))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CartButton)

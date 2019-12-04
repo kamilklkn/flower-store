@@ -16,7 +16,6 @@ class AdditionalProductsContainer extends Component {
 
   render() {
     const { products, activeIds } = this.props
-    console.log(products)
 
     if (!products.length) return <Preloader/>
 

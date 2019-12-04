@@ -12,7 +12,17 @@ import {
   cartAdditionalProductRemove
 } from "store/actions/cart/additionalProductsActions"
 import { cartProductOptionDelete } from "store/actions/cart/optionsAction"
+import loadable from "@loadable/component"
+import pMinDelay from "p-min-delay"
 
+const fallback = () => (
+  <div>Loading...</div>
+)
+
+const AdditionalProducts = loadable(() =>
+  pMinDelay(import('containers/additionalProductsContainer'), 100), {
+  fallback: fallback()
+})
 
 // import TextField from '@material-ui/core/TextField'
 // import Input from '@material-ui/core/Input'
@@ -159,6 +169,9 @@ class CartContainer extends Component {
     pay: 'Наличными при получении'
   }
 
+  getAdditionalProductsIds = () => {
+    return this.props.additionalProducts.map((item) => item.id)
+  }
 
   handleRemoveItem = (id) => {
     this.props.onRemoveItem(id)
@@ -193,6 +206,11 @@ class CartContainer extends Component {
 
   handleDeleteOption = (id, optionKey) => {
     this.props.onDeleteOption(id, optionKey)
+  }
+
+  handleAdditionalProductClick = ({ id, price }) => {
+    // console.log('sdfs')
+    console.log(this.getAdditionalProductsIds())
   }
 
   handlePay = (value) => {
@@ -291,7 +309,13 @@ class CartContainer extends Component {
           </p>
 
           <h4>Рекомендуем к вашему заказу</h4>
+          <AdditionalProducts
+            activeIds={this.getAdditionalProductsIds()}
+            onClick={this.handleAdditionalProductClick}
+          />
 
+          <br/>
+          <br/>
           {/*</div>*/}
           {/*</div>*/}
 
