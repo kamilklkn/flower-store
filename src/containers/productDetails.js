@@ -20,7 +20,6 @@ import RoubleSymbol from "components/UI/RoubleSymbol"
 import Details from "components/ProductDetails/Details"
 import FlowersInstruction from "components/ProductDetails/FlowersInstruction"
 import DeliveryInfo from "components/ProductDetails/DeliveryInfo"
-import AdditionalProductsContainer from 'containers/additionalProductsContainer'
 
 const fallback = () => (
   <div>Loading...</div>
@@ -28,6 +27,11 @@ const fallback = () => (
 
 const DatePicker = loadable(() =>
   pMinDelay(import('components/ProductDetails/DatePicker'), 500), {
+  fallback: fallback()
+})
+
+const AdditionalProducts = loadable(() =>
+  pMinDelay(import('containers/additionalProductsContainer'), 100), {
   fallback: fallback()
 })
 
@@ -44,6 +48,8 @@ class ProductDetailsContainer extends Component {
   state = {
     activeSizeIndex: 0,
     activeGrassIndex: 0,
+    activeBoxIndex: 0,
+    activeAdditionalProducts: [],
     showCalendar: false,
     error: false
   }
@@ -66,7 +72,7 @@ class ProductDetailsContainer extends Component {
   }
 
 
-  renderGrassPluserButtons = (grasses) => (
+  renderGrassPluserButtons = (grasses, activeIndex, onClick) => (
     <div className={styles.grassPluserButtons}>
       {grasses.map((button, i) =>
         <GrassPluserButton
@@ -74,8 +80,8 @@ class ProductDetailsContainer extends Component {
           index={i}
           title={button.title}
           price={button.price}
-          active={this.state.activeGrassIndex === i}
-          onClick={this.handleGrassPluserButtonClick}
+          active={activeIndex === i}
+          onClick={onClick}
         />
       )}
     </div>
@@ -95,6 +101,20 @@ class ProductDetailsContainer extends Component {
     </ul>
   )
 
+  getTotalPriceAdditionalProducts = () => {
+    return this.state.activeAdditionalProducts.reduce(
+      (total, current) => {
+        if (Object.prototype.hasOwnProperty.call(current, 'price')) {
+          return total + current.price
+        } else {
+          return total
+        }
+      }, 0)
+  }
+
+  getAdditionalProductsIds = () => {
+    return this.state.activeAdditionalProducts.map(({ id }) => id)
+  }
 
   handleSizeButtonClick = (activeSizeIndex) => {
     this.setState({
@@ -102,10 +122,34 @@ class ProductDetailsContainer extends Component {
     })
   }
 
-  handleGrassPluserButtonClick = (activeGrassIndex) => {
+  handleGrassButtonClick = (activeGrassIndex) => {
     this.setState({
       activeGrassIndex
     })
+  }
+
+  handleBoxButtonClick = (activeBoxIndex) => {
+    this.setState({
+      activeBoxIndex
+    })
+  }
+
+  handleAdditionalProductClick = ({ id, price }) => {
+    if (this.getAdditionalProductsIds().includes(id)) {
+      this.setState(prevState => ({
+        activeAdditionalProducts:
+          prevState.activeAdditionalProducts.filter(item => item.id !== id)
+      }))
+    } else {
+      const newItem = {
+        id,
+        price
+      }
+      this.setState(prevState => ({
+        activeAdditionalProducts:
+          [...prevState.activeAdditionalProducts, newItem]
+      }))
+    }
   }
 
   componentDidMount() {
@@ -123,17 +167,37 @@ class ProductDetailsContainer extends Component {
   render() {
     const { product, grass } = this.props
 
+    const box = [
+      {
+        id: "id0",
+        price: 0,
+        title: "Нет"
+      },
+      {
+        id: "id0",
+        price: 1500,
+        title: "Да"
+      }
+    ]
+
     // todo Понять как сделать редирект на 404
     // this.props.goToLink('/404')
     // if (!isLoading) return <Page404 />
 
     if (!product) return <Preloader/>
 
-    const { activeSizeIndex, activeGrassIndex, showCalendar } = this.state
+    const {
+      activeSizeIndex, activeGrassIndex, activeBoxIndex,
+      activeAdditionalProducts,
+      showCalendar
+    } = this.state
     const { florist, sizes } = product
     const activeSize = sizes[activeSizeIndex]
     const activeGrass = grass[activeGrassIndex]
-    const totalPrice = activeSize.price + activeGrass.price
+    const activeBox = box[activeBoxIndex]
+    const totalPrice =
+      activeSize.price + activeGrass.price + activeBox.price +
+      this.getTotalPriceAdditionalProducts()
 
     return (
       <div className="row mt-2">
@@ -164,27 +228,47 @@ class ProductDetailsContainer extends Component {
             w={activeSize.w}
           />
 
-          <div style={{ marginTop: 20 }}>
-            Добавить зелени?
-            {this.renderGrassPluserButtons(grass)}
-          </div>
+          <p className={styles.btitle}>Добавить зелени?</p>
+          {this.renderGrassPluserButtons(
+            grass,
+            activeGrassIndex,
+            this.handleGrassButtonClick
+          )}
+
+          {product.title.includes('Сборный') && (
+            <>
+              <p className={styles.btitle}>Использовать бархатную коробку?</p>
+              {this.renderGrassPluserButtons(
+                box,
+                activeBoxIndex,
+                this.handleBoxButtonClick
+              )}
+            </>
+          )}
+
+          {/*// todo Дополнительные фото к товару*/}
+          {/*// todo Выделение и подсчет доп товара*/}
+          {/*// todo Добавление товара в корзину*/}
+          {/*// todo  ОК  Дополнительная Каробка бархатная как трава*/}
+          {/*// todo Отзыв случайный*/}
+
+          <p className={styles.btitle}>Приятные мелочи</p>
+          <AdditionalProducts
+            activeIds={this.getAdditionalProductsIds()}
+            onClick={this.handleAdditionalProductClick}
+          />
 
 
-          <AdditionalProductsContainer/>
-
-          <br/>
-          <h1>{totalPrice} <RoubleSymbol/></h1>
-
-          <p>Когда доставить?</p>
+          <p className={styles.btitle}>Когда доставить?</p>
           {!showCalendar && (
-            <div className={styles.delivery}>
-              <div>Сегодня</div>
-              <div>Завтра</div>
+            <div className={styles.deliveryButtons}>
+              <div>Сегодня <span>11 декабря</span></div>
+              <div>Завтра <span>12 декабря</span></div>
               <div onClick={() => this.setState(prevState => ({
                 showCalendar: !prevState.showCalendar
               }))}
               >
-                Выбрать
+                {`Выбрать дату`}
               </div>
             </div>
           )}
@@ -196,15 +280,16 @@ class ProductDetailsContainer extends Component {
             />
           )}
 
+          <br/>
+          <h1>{totalPrice.toLocaleString('ru-RU')} <RoubleSymbol/></h1>
+
+
           <div>В козину</div>
           <p>Купить в один клик</p>
 
           <Details>
             {activeSize.flowers && (
-              <>
-                Состав композиции:
-                {this.renderFlowers(activeSize.flowers)}
-              </>
+             this.renderFlowers(activeSize.flowers)
             )}
           </Details>
 

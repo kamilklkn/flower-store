@@ -10,14 +10,22 @@ class AdditionalProductsContainer extends Component {
   //   this.props.fetchData()
   // }
 
+  handleClick = (id) => {
+    this.props.onClick(id)
+  }
+
   render() {
-    const { products } = this.props
+    const { products, activeIds } = this.props
     console.log(products)
 
     if (!products.length) return <Preloader/>
 
     return (
-        <AdditionalProducts products={products}/>
+        <AdditionalProducts
+          products={products}
+          activeIds={activeIds}
+          onSelect={this.handleClick}
+        />
     )
   }
 }

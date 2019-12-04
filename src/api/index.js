@@ -27,6 +27,6 @@ export const fetchProduct = async (slug) => {
 
 export const fetchAdditionalProducts = async () => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => resolve(mockAdditional), 1000)
+    setTimeout(() => resolve(mockAdditional), 0)
   })
 }

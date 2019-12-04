@@ -1,5 +1,6 @@
-import React from 'react';
-import styles from './GrassPluserButton.module.sass';
+import React from 'react'
+import styles from './GrassPluserButton.module.sass'
+import RoubleSymbol from "components/UI/RoubleSymbol"
 
 
 const GrassPluserButton = ({ index, title, price, active, onClick }) => {
@@ -12,9 +13,12 @@ const GrassPluserButton = ({ index, title, price, active, onClick }) => {
       className={cls.join(' ')}
       onClick={() => onClick(index)}
     >
-      {title} {price > 0 && `(+${price}\u20BD)`}
+      {title}
+      {price > 0 && (
+        <> +{price} <RoubleSymbol/></>
+      )}
     </div>
   )
 }
 
-export default GrassPluserButton;
+export default GrassPluserButton

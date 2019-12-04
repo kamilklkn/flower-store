@@ -1,19 +1,43 @@
 import React from 'react'
-import styles from './AdditionalProducts.module.sass'
+import cn from 'classnames'
 import { Row } from "components/Bootstrap"
-import { classes } from 'utils'
+import styles from './AdditionalProducts.module.sass'
+import RoubleSymbol from "components/UI/RoubleSymbol"
 
-const AdditionalProducts = ({ products }) => {
+const AdditionalProducts = ({
+                              products = [],
+                              activeIds = [],
+                              onSelect = () => {
+                              }
+                            }) => {
   return (
     <Row className={styles.additionalProducts}>
       {
-        products.map(product =>
-          <div className={classes('col-3', styles.product, product.active && styles.active)}>
-            <img src={product.image} alt={product.title}/>
-            <span>{product.price} {`\u20BD`}</span>
-            {product.active && 'active'}
-          </div>
-        )
+        products.map(({ id, title = '', price, image }, idx) => {
+          const active = activeIds.includes(id)
+          return (
+            <div
+              key={id}
+              className={cn('col-4', 'pr-1', idx > 0 && 'pl-1')}
+              onClick={() => onSelect({
+                id,
+                price
+              })}
+            >
+              <div className={cn(
+                styles.product,
+                active && styles.active
+              )}>
+                <img src={image} alt={title}/>
+                <span className={styles.title}>{title}</span>
+                <span className={styles.price}>{price} <RoubleSymbol/></span>
+                {active && (
+                  <div className={styles.added}>Добавлено</div>
+                )}
+              </div>
+            </div>
+          )
+        })
       }
     </Row>
   )
