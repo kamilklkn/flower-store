@@ -59,7 +59,6 @@ const initialState = {
 
 function optionDelete(state, action) {
   const product = state[action.id]
-  console.log(product)
   const { [action.optionKey]: _, ...noKey } = product.options
 
   return {
@@ -82,6 +81,7 @@ const byIdReducer = (state, action) => {
       }
 
     case CART_PRODUCT_ADD:
+      console.log(action.product)
       return {
         ...state,
         [action.product.id]: {
@@ -95,7 +95,6 @@ const byIdReducer = (state, action) => {
       return { ...noKey }
 
     case CART_PRODUCT_OPTION_DELETE:
-      console.log('products CART_PRODUCT_OPTION_DELETE', action)
       return {
         ...state,
         [action.id]: optionDelete(state, action)

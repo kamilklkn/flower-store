@@ -31,7 +31,6 @@ export const failureProducts = error => ({
 })
 
 
-
 export const requestProduct = () => ({
   type: FETCH_PRODUCT_REQUEST
 })

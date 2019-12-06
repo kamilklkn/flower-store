@@ -20,6 +20,7 @@ import RoubleSymbol from "components/UI/RoubleSymbol"
 import Details from "components/ProductDetails/Details"
 import FlowersInstruction from "components/ProductDetails/FlowersInstruction"
 import DeliveryInfo from "components/ProductDetails/DeliveryInfo"
+import { cartProductAdd } from "store/actions/cart/productsActions"
 
 const fallback = () => (
   <div>Loading...</div>
@@ -35,6 +36,21 @@ const AdditionalProducts = loadable(() =>
   fallback: fallback()
 })
 
+// todo fix it перенеси это конфигуратор товара, так как в ПУ
+//  будет чекбокс для указания, есть доп коробка и цена для нее
+//  считывать title в корзине нет смысла так как это не названия коробки
+const box = [
+  {
+    id: "id0",
+    price: 0,
+    title: "Нет"
+  },
+  {
+    id: "id0",
+    price: 1500,
+    title: "Да"
+  }
+]
 
 class ProductDetailsContainer extends Component {
   // static propTypes = {
@@ -152,6 +168,51 @@ class ProductDetailsContainer extends Component {
     }
   }
 
+  handleAddToCart = () => {
+    const { product, grass, c } = this.props
+
+    // todo вынеси это отдельными функциями для получения и внутри карточке
+    //  избавляемся от дублирования кода
+    const {
+      activeSizeIndex,
+      activeGrassIndex,
+      activeBoxIndex
+    } = this.state
+
+    // todo add it to new
+    //   activeAdditionalProducts: [],
+
+    const image = product.sizes[activeSizeIndex].image
+    const sizePrice = product.sizes[activeSizeIndex].price
+    const sizeTitle = product.sizes[activeSizeIndex].title
+    const grassItem = grass[activeGrassIndex]
+    const boxItem = box[activeBoxIndex]
+
+    // console.log(grassItem)
+    // console.log(boxItem)
+
+    // todo вынеси это отдельной функцией,
+    //  чтобы ключи объекты были стандартизированы и прозрачны
+    const newProduct = {
+      id: product.id,
+      title: product.title,
+      image: image,
+      options: {
+        grass: {
+          title: grassItem.title,
+          price: grassItem.price
+        },
+        box: {
+          title: boxItem.title,
+          price: boxItem.price
+        }
+      },
+      size: sizeTitle,
+      price: sizePrice // + grassItem.price + boxItem.price
+    }
+    this.props.addToCart(newProduct)
+  }
+
   componentDidMount() {
     const { slug, fetchProduct } = this.props
 
@@ -166,19 +227,6 @@ class ProductDetailsContainer extends Component {
 
   render() {
     const { product, grass } = this.props
-
-    const box = [
-      {
-        id: "id0",
-        price: 0,
-        title: "Нет"
-      },
-      {
-        id: "id0",
-        price: 1500,
-        title: "Да"
-      }
-    ]
 
     // todo Понять как сделать редирект на 404
     // this.props.goToLink('/404')
@@ -259,7 +307,24 @@ class ProductDetailsContainer extends Component {
           />
 
 
-          <p className={styles.btitle}>Когда доставить?</p>
+          <p className={styles.btitle}>(*) Когда доставить?</p>
+          {!showCalendar && (
+            <div className={styles.deliveryButtons}>
+              <div>Сегодня <span>11 декабря</span></div>
+              <div>Завтра <span>12 декабря</span></div>
+              <div onClick={() => this.setState(prevState => ({
+                showCalendar: !prevState.showCalendar
+              }))}
+              >
+                {`Выбрать дату`}
+              </div>
+            </div>
+          )}
+          <p className={styles.btitle}>( ) Заберу букет сам</p>
+
+
+          <p className={styles.btitle}>( ) Когда доставить?</p>
+          <p className={styles.btitle}>(*) Заберу букет сам</p>
           {!showCalendar && (
             <div className={styles.deliveryButtons}>
               <div>Сегодня <span>11 декабря</span></div>
@@ -284,12 +349,18 @@ class ProductDetailsContainer extends Component {
           <h1>{totalPrice.toLocaleString('ru-RU')} <RoubleSymbol/></h1>
 
 
-          <div>В козину</div>
+          <div
+            className={styles.deliveryButtons}
+            onClick={this.handleAddToCart}
+          >
+            В корзину
+          </div>
+
           <p>Купить в один клик</p>
 
           <Details>
             {activeSize.flowers && (
-             this.renderFlowers(activeSize.flowers)
+              this.renderFlowers(activeSize.flowers)
             )}
           </Details>
 
@@ -308,7 +379,8 @@ class ProductDetailsContainer extends Component {
 const mapStateToProps = state => ({
   slug: slugFromUrlSelector(state),
   product: activeProductSelector(state),
-  grass: grassSelector(state)
+  grass: grassSelector(state),
+  box
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -316,6 +388,7 @@ const mapDispatchToProps = dispatch => ({
     console.log(slug)
     return dispatch(fetchProduct(slug))
   },
+  addToCart: (product) => dispatch(cartProductAdd(product)),
   goToLink: push
 })
 

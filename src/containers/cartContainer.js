@@ -287,7 +287,7 @@ class CartContainer extends Component {
     return (
       <div className={cn('row', 'justify-content-center', 'cart')}>
         <div className="col-8">
-          <h1>Корзина</h1>
+          <h1 className={styles.h1Title}>Корзина</h1>
 
           {
             this.renderProductsInCart(
