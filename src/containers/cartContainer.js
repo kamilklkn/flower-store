@@ -179,7 +179,6 @@ class CartContainer extends Component {
     this.props.onRemoveItem(id)
   }
 
-
   handleRemoveAdditionalItem = id => {
     this.props.onRemoveAdditionalItem(id)
   }
@@ -397,20 +396,21 @@ const mapStateToProps = state => ({
   totalPrice: totalSelector(state)
 })
 
-const mapDispatchToProps = dispatch => ({
-  onIncreaseItem: (id) => dispatch(cartProductIncrease(id)),
-  onDecreaseItem: (id) => dispatch(cartProductDecrease(id)),
-  onRemoveItem: (id) => dispatch(cartProductRemove(id)),
 
-  onAddAdditionalProduct: (id) => dispatch(cartAdditionalProductAdd(id)),
-  onIncreaseAdditionalItem: (id) => dispatch(cartAdditionalProductIncrease(id)),
-  onDecreaseAdditionalItem: (id) => dispatch(cartAdditionalProductDecrease(id)),
-  onRemoveAdditionalItem: (id) => dispatch(cartAdditionalProductRemove(id)),
-
-  onDeleteOption: (id, optionKey) => dispatch(cartProductOptionDelete(id, optionKey))
-})
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    onIncreaseItem: cartProductIncrease,
+    onDecreaseItem: cartProductDecrease,
+    onRemoveItem: cartProductRemove,
+
+    onAddAdditionalProduct: cartAdditionalProductAdd,
+    onIncreaseAdditionalItem: cartAdditionalProductIncrease,
+    onDecreaseAdditionalItem: cartAdditionalProductDecrease,
+    onRemoveAdditionalItem: cartAdditionalProductRemove,
+
+    onDeleteOption: cartProductOptionDelete
+
+  }
 )(CartContainer)
