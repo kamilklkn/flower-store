@@ -101,7 +101,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchProducts
 }
-
+sdfsfd
 export default connect(
   mapStateToProps,
   mapDispatchToProps
