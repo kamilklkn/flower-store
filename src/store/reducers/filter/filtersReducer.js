@@ -2,6 +2,7 @@ const initialState = {
   bySizesPrice: [0, 10000], // initial min max for price range
   byPacking: ['Бумага флисовая', 'Шляпная коробка', 'Фет', 'Коробка'],
   bySizes: ['Стандартный', 'Большой', 'Премиум'],
+  byCollections: ['23 февраля', '8 марта', 'Новый год'],
   byColors: [
     {
       title: 'Сборный',

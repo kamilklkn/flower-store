@@ -163,8 +163,7 @@ class Product extends Component {
 
               <SizeInformer
                 className={styles.sizeInformer}
-                h={activeSize.h}
-                w={activeSize.w}
+                circle={activeSize.circle}
               />
 
               <div>

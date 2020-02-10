@@ -271,9 +271,8 @@ class ProductDetailsContainer extends Component {
           {this.renderSizesButtons(product.sizes)}
 
           <SizeInformer
-            className={styles.sizeInformer}
-            h={activeSize.h}
-            w={activeSize.w}
+             className={styles.sizeInformer}
+             circle={activeSize.circle}
           />
 
           <p className={styles.btitle}>Добавить зелени?</p>

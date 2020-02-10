@@ -142,8 +142,7 @@ const newModel = {
   sizes: [
     {
       title: 'Стандартный',
-      h: 25,
-      w: 35,
+      circle: 45,
       image: 'f_auto,q_auto/t_Product100s/v1/R',
       price: 2500,
       flowers: [
@@ -154,8 +153,7 @@ const newModel = {
     },
     {
       title: 'Большой',
-      h: 34,
-      w: 40,
+      circle: 59,
       image: 'f_auto,q_auto/t_Product100s/v1/R',
       price: 3400,
       flowers: [
@@ -166,8 +164,7 @@ const newModel = {
     },
     {
       title: 'Премиум',
-      h: 50,
-      w: 68,
+      circle: 80,
       image: 'f_auto,q_auto/t_Product100s/v1/R',
       price: 5200,
       flowers: [
@@ -200,6 +197,7 @@ export function generateProducts() {
 
     product.slug = 'product' + i
     product.stability = ['+', '++', '+++'][random(0, 2)]
+    product.collecitions = ['23 февраля', '8 марта', 'Новый год'][random(0, 2)]
 
     product.available = {
       now: !!random(0, 1),
@@ -225,24 +223,19 @@ export function generateProducts() {
       let priceMax = 23
       let hMin = 20
       let hMax = 45
-      let wMin = 30
-      let wMax = 80
+
       if (a === 1) {
         priceMin = 24
         priceMax = 40
         hMin = 29
-        wMin = 47
       }
       if (a === 2) {
         priceMin = 43
         priceMax = 64
         hMin = 38
-        wMin = 68
       }
 
-      product.sizes[a].h = random(hMin, hMax)
-      product.sizes[a].w = random(wMin, wMax)
-
+      product.sizes[a].circle = random(hMin, hMax)
       product.sizes[a].price = random(priceMin, priceMax) * 100
     }
 

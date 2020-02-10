@@ -1,17 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const SizeInfo = ({height, weight, className}) => {
+const SizeInfo = ({circle, className}) => {
   return (
     <span className={className}>
-      {height}см / {weight}см
+      {circle} см
     </span>
   )
 }
 
 SizeInfo.propTypes = {
-  height: PropTypes.number.isRequired,
-  weight: PropTypes.number.isRequired,
+  circle: PropTypes.number.isRequired,
 }
 
 export default SizeInfo

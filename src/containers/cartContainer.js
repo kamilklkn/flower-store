@@ -1,416 +1,307 @@
-import React, { Component } from 'react'
-import { connect } from "react-redux"
+import React, { Component, useState } from 'react'
 import cn from 'classnames'
 import styles from './cartContainer.module.sass'
-import Preloader from "components/Preloader"
-import RoubleSymbol from "components/UI/RoubleSymbol"
-import { getAdditionalItemsSelector, getItemsSelector, getTotalByOptions, totalSelector } from "store/selectors/cart"
-import { cartProductDecrease, cartProductIncrease, cartProductRemove } from "store/actions/cart/productsActions"
-import {
-  cartAdditionalProductAdd,
-  cartAdditionalProductDecrease,
-  cartAdditionalProductIncrease,
-  cartAdditionalProductRemove
-} from "store/actions/cart/additionalProductsActions"
-import { cartProductOptionDelete } from "store/actions/cart/optionsAction"
-import loadable from "@loadable/component"
-import pMinDelay from "p-min-delay"
-import { additionalProductsEntitiesSelector } from "store/selectors/additionalProducts"
+import { Row } from "components/Bootstrap"
 
-const fallback = () => (
-  <div>Loading...</div>
-)
-
-const AdditionalProducts = loadable(() =>
-  pMinDelay(import('containers/additionalProductsContainer'), 100), {
-  fallback: fallback()
-})
-
-// import TextField from '@material-ui/core/TextField'
-// import Input from '@material-ui/core/Input'
-
-// import "bootstrap/scss/bootstrap.scss"
-
-
-// import FilledInput from '@bit/mui-org.material-ui.filled-input'
-// import FormHelperText from '@bit/mui-org.material-ui.form-helper-text'
-// import Input from '@bit/mui-org.material-ui.input'
-
-// use it
-// import { makeStyles } from '@bit/mui-org.material-ui.styles'
-// import FormControl from '@bit/mui-org.material-ui.form-control'
-// import InputLabel from '@bit/mui-org.material-ui.input-label'
-// import OutlinedInput from '@bit/mui-org.material-ui.outlined-input'
-
-
-// const useStyles = makeStyles(theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap'
-//   },
-//   formControl: {
-//     margin: theme.spacing(1)
-//   }
-// }))
-
-// const Input = ({ placeholder, value, onChange }) => {
-//   const [labelWidth, setLabelWidth] = React.useState(0)
-//   const labelRef = React.useRef(null)
-//   const classes = useStyles()
-//
-//   React.useEffect(() => {
-//     setLabelWidth(labelRef.current.offsetWidth)
-//   }, [])
-//
-//   return (
-//     <FormControl className={classes.formControl} variant="outlined">
-//       <InputLabel ref={labelRef} htmlFor="component-outlined">
-//         {placeholder}
-//       </InputLabel>
-//       <OutlinedInput
-//         id="component-outlined"
-//         value={value}
-//         onChange={onChange}
-//         labelWidth={labelWidth}
-//       />
-//     </FormControl>
-//   )
-// }
-
-
-const payOptions = {
-  money: 'Наличными при получении',
-  card: 'Оплата банковской картой Visa, Mastercard, Мир'
+const Step = ({ title, number, active, isShow, children }) => {
+   return (
+      <div className={styles.step}>
+         <p className={cn(styles.blockTitle, active && styles.active)}>
+            <span className={styles.number}>{number}</span>
+            {title}
+         </p>
+         {children}
+      </div>
+   )
 }
 
+const InfoPopover = ({ title, text }) => {
+   const [show, setShow] = useState(false)
+   return (
+      <span className={styles.popover}>
+         <span
+            className={styles.number}
+            onMouseEnter={() => setShow(true)}
+            onMouseOut={() => setShow(false)}
+         >?
+         </span>
+         <span className={cn(styles.popup, show && styles.show)}>
+            <b>{title}</b>
+            {text}
+         </span>
+      </span>
+   )
+}
 
-// const Pay = ({ onSelected }) => {
-//   const [genderValue, genderInputProps] = useRadioButtons(payOptions.money)
-//
-//
-//   React.useEffect(() => {
-//     onSelected(genderValue)
-//   }, [genderValue])
-//
-//   return (
-//     <div>
-//       {/*<form>*/}
-//       {/*<fieldset>*/}
-//
-//       <input
-//         value={payOptions.money}
-//         checked={genderValue === payOptions.money}
-//         {...genderInputProps}
-//       />
-//
-//
-//       <input
-//         value={payOptions.card}
-//         checked={genderValue === payOptions.card}
-//         {...genderInputProps}
-//       />
-//
-//       <input
-//         value={payOptions.card}
-//         checked={genderValue === payOptions.card}
-//         {...genderInputProps}
-//       />
-//       {/*</fieldset>*/}
-//       {/*</form>*/}
-//     </div>
-//   )
-// }
-
-
-// function useRadioButtons(name) {
-//   const [value, setState] = useState(name)
-//
-//   const handleChange = e => {
-//     setState(e.target.value)
-//   }
-//
-//   const inputProps = {
-//     name,
-//     type: "radio",
-//     onChange: handleChange
-//   }
-//
-//   return [value, inputProps]
-// }
-
-const ButtonDeleteOption = ({ onClick }) => (
-  <button onClick={onClick}>x</button>
+const NextButton = ({ onClick }) => (
+   <button className={styles.nextButton} onClick={onClick}>Продолжить</button>
 )
 
-const Options = ({ id, box, grass, onDelete }) => (
-  <div className={styles.options}>
-    {box && (
-      <div>
-        {box.title} коробка (+{box.price} <RoubleSymbol/>)
-        <ButtonDeleteOption
-          onClick={() => onDelete(id, 'box')}/>
-      </div>
-    )}
-    {grass && (
-      <div>
-        {grass.title} зелени (+{grass.price} <RoubleSymbol/>)
-        <ButtonDeleteOption
-          onClick={() => onDelete(id, 'grass')}/>
-      </div>
-    )}
-  </div>
+const ChangeButton = ({ onClick }) => (
+   <span className={styles.changeButton} onClick={onClick}>изменить</span>
 )
+
+const Input = ({ value, onChange, placeholder = '', type = '', checked = false }) => {
+   switch (type) {
+      case 'checkbox':
+         return <input
+            type="checkbox"
+            checked={checked}
+            onChange={onChange}/>
+      default:
+         return <input
+            type="text"
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}/>
+   }
+}
+
+const Textarea = ({
+                     value = '',
+                     placeholder = '',
+                     maxRows = 8,
+                     max = 400,
+                     maxRowsTitle = 'строк',
+                     onChange
+                  }) => {
+   return (
+      <>
+         <textarea placeholder={placeholder}
+                   rows={maxRows}
+                   value={value}
+                   onChange={onChange}/>
+         {/*<span>{value.split(/\r*\n/).length}/{maxRows} {maxRowsTitle}</span>*/}
+         <span>{value.length}/{max}</span>
+      </>
+   )
+}
 
 
 class CartContainer extends Component {
-  state = {
-    name: '',
-    phone: '',
-    loading: false,
-    labelWidth: 0,
-    pay: 'Наличными при получении'
-  }
+   state = {
+      customer: {
+         isEdit: false,
+         name: 'Алексей',
+         phone: '+79960225657'
+      },
+      recipient: {
+         isEdit: true,
+         iamResipient: false,
+         iDontKnowRecipientNumber: false,
+         name: '',
+         phone: ''
+      },
+      orderEnhancers: {
+         postcard: true,
+         postcardText: '',
+         photoWithRecipient: false,
+         isSurprice: false,
+         anonymousCustomer: false
+      },
+      delivery: {
+         isEdit: false,
+         courier: true,
+         pickUpOrderYourself: false,
+         courierDirection: {
+            askAddressFromRecipient: false,
+            street: 'dffs',
+            house: '',
+            flat: '',
+            comment: '',
+            price: 0
+         }
+      }
+   }
 
-  getAdditionalProductsIds = () => {
-    return this.props.additionalProducts.map((item) => item.id)
-  }
+   handleInputChange = (statePath) => (e) => {
+      console.log('handleInputChange', e)
+      const target = e.target
+      const value = target.type === 'checkbox' ? target.checked : target.value
+      console.log(value)
+      // if (target.value.length === max) return
 
-  handleRemoveItem = (id) => {
-    this.props.onRemoveItem(id)
-  }
+      this.setState(prevState => {
+         const path = statePath.split('.')
 
-  handleRemoveAdditionalItem = id => {
-    this.props.onRemoveAdditionalItem(id)
-  }
+         const newState = path.reduce((state, item, i, arr) => {
+            if (typeof item !== 'object' && i === arr.length - 1) {
+               state[item] = value
+               return state
+            }
+            return state[item]
+         }, prevState)
 
-  handleProductIncrease = id => {
-    this.props.onIncreaseItem(id)
-  }
+         return {
+            ...newState
+         }
+      })
+   }
 
-  handleProductDecrease = id => {
-    this.props.onDecreaseItem(id)
-  }
+   handleNextChangeButton = (step) => {
+      const blocks = Object.keys(this.state)
 
-  handleAdditionalProductIncrease = id => {
-    this.props.onIncreaseAdditionalItem(id)
-  }
+      this.setState(prev => {
+         const otherBlocks = blocks.reduce((state, currentStep) => {
+            return {
+               ...state,
+               [currentStep]: {
+                  ...prev[currentStep],
+                  isEdit: false
+               }
+            }
+         }, prev)
 
-  handleAdditionalProductDecrease = id => {
-    this.props.onDecreaseAdditionalItem(id)
-  }
+         return {
+            ...otherBlocks,
+            [step]: {
+               ...prev[step],
+               isEdit: true
+            }
+         }
+      })
+   }
 
-  handleChange = (stateKey, value) => {
-    this.setState({
-      [stateKey]: value
-    })
-  }
+   render() {
+      const {
+         customer, recipient, delivery,
+         orderEnhancers
+      } = this.state
 
-  handleDeleteOption = (id, optionKey) => {
-    this.props.onDeleteOption(id, optionKey)
-  }
+      const deliveryTitle = delivery.courier ?
+         'Время доставки' : 'Время самовывоза'
 
-  handleAdditionalProductClick = ({ id }) => {
-    // todo Fix it
-    const product = this.props.additionalProductsEntities.byId[id]
-    console.log(product)
-    this.props.onAddAdditionalProduct({
-      ...product
-    })
-  }
+      return (
+         <Row>
+            <div className={cn('col-4')}>
+               <Step number={1} title="Ваши контакты" active={customer.isEdit}>
+                  {!customer.isEdit ? (
+                     <>
+                        <ChangeButton onClick={() => this.handleNextChangeButton('customer')}/>
+                        <p>{customer.name}</p>
+                        <p>{customer.phone}</p>
+                     </>
+                  ) : (
+                     <>
+                        <Input
+                           placeholder="Имя"
+                           value={customer.name}
+                           onChange={this.handleInputChange('customer.name')}/>
+                        <Input
+                           placeholder="Мобильный телефон"
+                           value={customer.phone}
+                           onChange={this.handleInputChange('customer.phone')}/>
 
-  handlePay = (value) => {
-    // const { name, value } = event.target;
+                        <p className={styles.blockText}> Ваши данные – это тайна.
+                           Получателю доступен только текст открытки
+                           (её можно написать далее)</p>
+                        <NextButton onClick={() => this.handleNextChangeButton('recipient')}/>
+                     </>
+                  )}
+               </Step>
+               <Step number={2} title="Получатель" active={recipient.isEdit}>
+                  {!recipient.isEdit ? (
+                     <>
+                        <ChangeButton onClick={() => this.handleNextChangeButton('recipient')}/>
+                        <p>{recipient.name}</p>
+                        <p>{recipient.phone}</p>
+                     </>
+                  ) : (
+                     <>
+                        <label>
+                           <Input
+                              type="checkbox"
+                              checked={recipient.iamResipient}
+                              onChange={this.handleInputChange('recipient.iamResipient')}/>
+                           Я получатель:
+                        </label>
 
-    this.setState({
-      pay: value
-    })
-  }
+                        {!recipient.iamResipient && (
+                           <>
+                              <Input
+                                 placeholder="Имя получателя"
+                                 value={recipient.name}
+                                 onChange={this.handleInputChange('recipient.name')}/>
 
-  getProductTotalPrice = (price, count, optionsTotal) => {
-    return (price + optionsTotal) * count
-  }
+                              <label>
+                                 <Input
+                                    type="checkbox"
+                                    checked={recipient.iDontKnowRecipientNumber}
+                                    onChange={this.handleInputChange('recipient.iDontKnowRecipientNumber')}/>
+                                 Я не знаю номер получателя:
+                              </label>
 
+                              {!recipient.iDontKnowRecipientNumber && (
+                                 <Input
+                                    placeholder="Телефон получателя"
+                                    value={recipient.phone}
+                                    onChange={this.handleInputChange('recipient.phone')}/>
+                              )}
+                           </>
+                        )}
 
-  renderProductsInCart = (items, onIncrease, onDecrease, onRemove) =>
-    items.map(({
-                 id = 1,
-                 image = '',
-                 title = '[title]',
-                 price = 0,
-                 options = {},
-                 size,
-                 count = 1
-               }) => (
-      <div key={id} className={cn(styles.product, 'row', 'align-items-center', 'justify-content-between')}>
-        <div className="col-2">
-          <img src={image} alt={title} style={{ maxWidth: '100%' }}/>
-        </div>
-        <div className={cn('col-5', 'col-xs-8', styles.title)}>
-          <p>{title}</p>
-          <span>{size}</span>
-          <Options {...options} id={id} onDelete={this.handleDeleteOption}/>
-        </div>
-        <div className={cn('col-2', styles.counter)}>
-          <button onClick={() => onDecrease(id)} disabled={count === 1}>-</button>
-          {count}
-          <button onClick={() => onIncrease(id)}>+</button>
-        </div>
-        <div className={cn('col-2', styles.price)}>
-          {
-            this.getProductTotalPrice(
-              price,
-              count,
-              getTotalByOptions(options)
-            ).toLocaleString('ru-RU')
-          } <RoubleSymbol/>
-        </div>
-        <div className="col-1">
-          <button onClick={() => onRemove(id)}>Удалить</button>
-        </div>
-        <div className={styles.hr}/>
-      </div>
-    ))
+                        <label>
+                           <Input
+                              type="checkbox"
+                              checked={orderEnhancers.postcard}
+                              onChange={this.handleInputChange('orderEnhancers.postcard')}/>
+                           Бесплатная открытка
+                        </label>
+                        {orderEnhancers.postcard && (
+                           <Textarea
+                              max={400}
+                              value={orderEnhancers.postcardText}
+                              onChange={this.handleInputChange('orderEnhancers.postcardText')}/>
+                        )}
 
+                        <label>
+                           <Input
+                              type="checkbox"
+                              checked={orderEnhancers.photoWithRecipient}
+                              onChange={this.handleInputChange('orderEnhancers.photoWithRecipient')}/>
+                           Сделать фото с получателем
+                        </label>
 
-  renderAdditionalProductsInCart = (...arg) =>
-    this.renderProductsInCart(...arg)
+                        <label>
+                           <Input
+                              type="checkbox"
+                              checked={orderEnhancers.isSurprice}
+                              onChange={this.handleInputChange('orderEnhancers.isSurprice')}/>
+                           Сюрприз, не звонить перед вручением
+                        </label>
 
+                        <label>
+                           <Input
+                              type="checkbox"
+                              checked={orderEnhancers.anonymousCustomer}
+                              onChange={this.handleInputChange('orderEnhancers.anonymousCustomer')}/>
+                           Анонимный заказ
+                           <InfoPopover title="Анонимный заказ" text="Мы не передадим получателю никаких данных о вас."/>
+                        </label>
 
-  render() {
-    const { loading } = this.state
-    if (loading) return <Preloader/>
-
-    const { products, additionalProducts, totalPrice } = this.props
-
-
-    return (
-      <div className={cn('row', 'justify-content-center', 'cart')}>
-        <div className="col-8">
-          <h1 className={styles.h1Title}>Корзина</h1>
-
-          {
-            this.renderProductsInCart(
-              products,
-              this.handleProductIncrease,
-              this.handleProductDecrease,
-              this.handleRemoveItem
-            )
-          }
-
-          {!!additionalProducts.length && (
-            <h3>Приятные мелочи</h3>
-          )}
-          {
-            this.renderAdditionalProductsInCart(
-              additionalProducts,
-              this.handleAdditionalProductIncrease,
-              this.handleAdditionalProductDecrease,
-              this.handleRemoveAdditionalItem
-            )
-          }
-
-          <p className={styles.allCost}>
-            Сумма заказа: <b>{totalPrice.toLocaleString('ru-RU')} <RoubleSymbol/></b>
-          </p>
-
-          <h4>Рекомендуем к вашему заказу</h4>
-          <AdditionalProducts
-            activeIds={this.getAdditionalProductsIds()}
-            onClick={this.handleAdditionalProductClick}
-          />
-
-          <br/>
-          <br/>
-          {/*</div>*/}
-          {/*</div>*/}
-
-
-          Дата доставки
-          Время доставки
-
-          {/*<Input*/}
-          {/*placeholder="Ваше имя"*/}
-          {/*value={this.state.name}*/}
-          {/*onChange={(event) => this.handleChange('name', event.target.value)}/>*/}
-
-          {/*<Input*/}
-          {/*placeholder="+7 (___) ___-____"*/}
-          {/*value={this.state.phone}*/}
-          {/*onChange={(event) => this.handleChange('phone', event.target.value)}/>*/}
-
-          {/*<TextField*/}
-          {/*outlined*/}
-          {/*label='Ваше имя'*/}
-          {/*>*/}
-          {/*<Input*/}
-          {/*value={this.state.value}*/}
-          {/*onChange={(e) => this.setState({value: e.currentTarget.value})} />*/}
-          {/*</TextField>*/}
-
-
-          <h2>Получатель</h2>
-          {/*<Input*/}
-          {/*placeholder="Имя"*/}
-          {/*value={this.state.name}*/}
-          {/*onChange={(event) => this.handleChange('name', event.target.value)}/>*/}
-
-          {/*<Input*/}
-          {/*placeholder="+7 (___) ___-____"*/}
-          {/*value={this.state.phone}*/}
-          {/*onChange={(event) => this.handleChange('phone', event.target.value)}/>*/}
-
-          Добавить визитку c запиской - бесплатно!
-          Записка на открытке
-
-
-          <h3>Способ оплаты</h3>
-          {/*<Pay onSelected={this.handlePay}/>*/}
-          {this.state.pay}
-          {/*/!*https://codesandbox.io/s/6l6v9p0qkr*!/*/}
-          {/*<div>*/}
-          {/*<input type="radio"*/}
-          {/*name="payMoney"*/}
-          {/*value={this.payOptions.money}*/}
-          {/*checked={true}*/}
-          {/*onChange={this.handlePay}/>{this.payOptions.money}*/}
-
-          {/*<input type="radio"*/}
-          {/*name="payCard"*/}
-          {/*value={this.payOptions.card}*/}
-          {/*onChange={this.handlePay}/>{this.payOptions.card}*/}
-          {/*</div>*/}
-
-
-          <button type="button" className="btn btn-primary">Главный</button>
-        </div>
-      </div>
-    )
-  }
+                        <NextButton onClick={() => this.handleNextChangeButton('delivery')}/>
+                     </>
+                  )}
+               </Step>
+               <Step number={3} title="Адрес доставки" active={delivery.isEdit}>
+                  {!delivery.isEdit ? (
+                     <>
+                        <ChangeButton onClick={() => this.handleNextChangeButton('delivery')}/>
+                     </>
+                  ) : (
+                     <>
+                        <NextButton onClick={() => this.handleNextChangeButton('pay')}/>
+                     </>
+                  )}
+               </Step>
+               <Step title={deliveryTitle}>
+               </Step>
+               <Step title="Оплата">
+               </Step>
+            </div>
+         </Row>
+      )
+   }
 }
 
-
-const mapStateToProps = state => ({
-  products: getItemsSelector(state),
-  additionalProducts: getAdditionalItemsSelector(state),
-  additionalProductsEntities: additionalProductsEntitiesSelector(state),
-  totalPrice: totalSelector(state)
-})
-
-
-
-export default connect(
-  mapStateToProps,
-  {
-    onIncreaseItem: cartProductIncrease,
-    onDecreaseItem: cartProductDecrease,
-    onRemoveItem: cartProductRemove,
-
-    onAddAdditionalProduct: cartAdditionalProductAdd,
-    onIncreaseAdditionalItem: cartAdditionalProductIncrease,
-    onDecreaseAdditionalItem: cartAdditionalProductDecrease,
-    onRemoveAdditionalItem: cartAdditionalProductRemove,
-
-    onDeleteOption: cartProductOptionDelete
-
-  }
-)(CartContainer)
+export default CartContainer

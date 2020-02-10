@@ -98,7 +98,7 @@ class ButtonsGroupCollapse extends Component {
     const { isOpened } = this.state
     const { [filterKey]: filterItems = [] } = filters
     const { [filterKey]: filterSelectedItems = [] } = selectedFilters
-    const isSet = !!filterSelectedItems.length
+    // const isSet = !!filterSelectedItems.length
 
     return (
       <div className={cn(styles[filterKey])}>
@@ -113,12 +113,12 @@ class ButtonsGroupCollapse extends Component {
           {!isOpened && <span> &bull;</span>}
         </span>
 
-          {isSet && (
-            <span
-              onClick={() => resetFilter(filterKey)}
-              className={styles.reset}
-            >Сбросить</span>
-          )}
+          {/*{isSet && (*/}
+            {/*<span*/}
+              {/*onClick={() => resetFilter(filterKey)}*/}
+              {/*className={styles.reset}*/}
+            {/*>Сбросить</span>*/}
+          {/*)}*/}
         </p>
 
         {isOpened && (
