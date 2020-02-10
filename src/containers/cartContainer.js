@@ -3,6 +3,11 @@ import cn from 'classnames'
 import styles from './cartContainer.module.sass'
 import { Row } from "components/Bootstrap"
 
+const DELIVERY_IS = {
+   COURIER: 'COURIER',
+   YOURSELF: 'YOURSELF'
+}
+
 const Step = ({ title, number, active, isShow, children }) => {
    return (
       <div className={styles.step}>
@@ -41,19 +46,38 @@ const ChangeButton = ({ onClick }) => (
    <span className={styles.changeButton} onClick={onClick}>изменить</span>
 )
 
-const Input = ({ value, onChange, placeholder = '', type = '', checked = false }) => {
+const Input = ({ label = '', value, name, onChange, placeholder = '', type = '', checked = false }) => {
    switch (type) {
       case 'checkbox':
-         return <input
-            type="checkbox"
-            checked={checked}
-            onChange={onChange}/>
+         return (
+            <label>
+               <input
+                  type="checkbox"
+                  checked={checked}
+                  onChange={onChange}/>
+               {label}
+            </label>
+         )
+      case 'radio':
+         return (
+            <label>
+               <input
+                  type="radio"
+                  value={value}
+                  name={name}
+                  checked={checked}
+                  onChange={onChange}/>
+               {label}
+            </label>
+         )
       default:
-         return <input
-            type="text"
-            placeholder={placeholder}
-            value={value}
-            onChange={onChange}/>
+         return (
+            <input
+               type="text"
+               placeholder={placeholder}
+               value={value}
+               onChange={onChange}/>
+         )
    }
 }
 
@@ -86,7 +110,7 @@ class CartContainer extends Component {
          phone: '+79960225657'
       },
       recipient: {
-         isEdit: true,
+         isEdit: false,
          iamResipient: false,
          iDontKnowRecipientNumber: false,
          name: '',
@@ -94,15 +118,14 @@ class CartContainer extends Component {
       },
       orderEnhancers: {
          postcard: true,
-         postcardText: '',
-         photoWithRecipient: false,
-         isSurprice: false,
-         anonymousCustomer: false
+         postcardText: ''
+         // photoWithRecipient: false,
+         // isSurprice: false,
+         // anonymousCustomer: false
       },
       delivery: {
-         isEdit: false,
-         courier: true,
-         pickUpOrderYourself: false,
+         isEdit: true,
+         is: DELIVERY_IS.COURIER,
          courierDirection: {
             askAddressFromRecipient: false,
             street: 'dffs',
@@ -115,11 +138,8 @@ class CartContainer extends Component {
    }
 
    handleInputChange = (statePath) => (e) => {
-      console.log('handleInputChange', e)
       const target = e.target
       const value = target.type === 'checkbox' ? target.checked : target.value
-      console.log(value)
-      // if (target.value.length === max) return
 
       this.setState(prevState => {
          const path = statePath.split('.')
@@ -167,8 +187,9 @@ class CartContainer extends Component {
          customer, recipient, delivery,
          orderEnhancers
       } = this.state
+      const { courierDirection: cdirection } = delivery
 
-      const deliveryTitle = delivery.courier ?
+      const deliveryTitle = delivery.is === DELIVERY_IS.COURIER ?
          'Время доставки' : 'Время самовывоза'
 
       return (
@@ -203,18 +224,27 @@ class CartContainer extends Component {
                   {!recipient.isEdit ? (
                      <>
                         <ChangeButton onClick={() => this.handleNextChangeButton('recipient')}/>
-                        <p>{recipient.name}</p>
-                        <p>{recipient.phone}</p>
+                        {recipient.iamResipient && <p>Получаю сам</p>}
+                        {!recipient.iamResipient && <p>{recipient.name}</p>}
+                        {!recipient.iamResipient && recipient.iDontKnowRecipientNumber &&
+                        <p>Не знаю номер получателя</p>}
+                        {!recipient.iDontKnowRecipientNumber && <p>{recipient.phone}</p>}
+                        {orderEnhancers.postcard ? (
+                           <p>
+                              <span>Текст открытки:</span>
+                              {orderEnhancers.postcardText}
+                           </p>
+                        ) : (
+                           <p>Без открытки</p>
+                        )}
                      </>
                   ) : (
                      <>
-                        <label>
-                           <Input
-                              type="checkbox"
-                              checked={recipient.iamResipient}
-                              onChange={this.handleInputChange('recipient.iamResipient')}/>
-                           Я получатель:
-                        </label>
+                        <Input
+                           label="Я получатель"
+                           type="checkbox"
+                           checked={recipient.iamResipient}
+                           onChange={this.handleInputChange('recipient.iamResipient')}/>
 
                         {!recipient.iamResipient && (
                            <>
@@ -223,13 +253,11 @@ class CartContainer extends Component {
                                  value={recipient.name}
                                  onChange={this.handleInputChange('recipient.name')}/>
 
-                              <label>
-                                 <Input
-                                    type="checkbox"
-                                    checked={recipient.iDontKnowRecipientNumber}
-                                    onChange={this.handleInputChange('recipient.iDontKnowRecipientNumber')}/>
-                                 Я не знаю номер получателя:
-                              </label>
+                              <Input
+                                 label="Я не знаю номер получателя"
+                                 type="checkbox"
+                                 checked={recipient.iDontKnowRecipientNumber}
+                                 onChange={this.handleInputChange('recipient.iDontKnowRecipientNumber')}/>
 
                               {!recipient.iDontKnowRecipientNumber && (
                                  <Input
@@ -240,44 +268,18 @@ class CartContainer extends Component {
                            </>
                         )}
 
-                        <label>
-                           <Input
-                              type="checkbox"
-                              checked={orderEnhancers.postcard}
-                              onChange={this.handleInputChange('orderEnhancers.postcard')}/>
-                           Бесплатная открытка
-                        </label>
+                        <Input
+                           label="Бесплатная открытка"
+                           type="checkbox"
+                           checked={orderEnhancers.postcard}
+                           onChange={this.handleInputChange('orderEnhancers.postcard')}/>
+
                         {orderEnhancers.postcard && (
                            <Textarea
                               max={400}
                               value={orderEnhancers.postcardText}
                               onChange={this.handleInputChange('orderEnhancers.postcardText')}/>
                         )}
-
-                        <label>
-                           <Input
-                              type="checkbox"
-                              checked={orderEnhancers.photoWithRecipient}
-                              onChange={this.handleInputChange('orderEnhancers.photoWithRecipient')}/>
-                           Сделать фото с получателем
-                        </label>
-
-                        <label>
-                           <Input
-                              type="checkbox"
-                              checked={orderEnhancers.isSurprice}
-                              onChange={this.handleInputChange('orderEnhancers.isSurprice')}/>
-                           Сюрприз, не звонить перед вручением
-                        </label>
-
-                        <label>
-                           <Input
-                              type="checkbox"
-                              checked={orderEnhancers.anonymousCustomer}
-                              onChange={this.handleInputChange('orderEnhancers.anonymousCustomer')}/>
-                           Анонимный заказ
-                           <InfoPopover title="Анонимный заказ" text="Мы не передадим получателю никаких данных о вас."/>
-                        </label>
 
                         <NextButton onClick={() => this.handleNextChangeButton('delivery')}/>
                      </>
@@ -287,14 +289,102 @@ class CartContainer extends Component {
                   {!delivery.isEdit ? (
                      <>
                         <ChangeButton onClick={() => this.handleNextChangeButton('delivery')}/>
+                        {delivery.is === DELIVERY_IS.COURIER ? (
+                           <>
+                              <p>{cdirection.street},
+                                 {cdirection.house},
+                                 {cdirection.flat}</p>
+                              {cdirection.comment && (
+                                 <>
+                                    <hr/>
+                                    <p>{cdirection.comment}</p>
+                                 </>
+                              )}
+
+                           </>
+                        ) : (
+                           <>
+                              <p>Чита, ...адрес</p>
+                              <div>Карта</div>
+                           </>
+                        )}
+
                      </>
                   ) : (
                      <>
+                        <Row>
+                           <div className="col-md-4">
+                              <Input
+                                 label="Курьером"
+                                 type="radio"
+                                 name="delVar"
+                                 value={DELIVERY_IS.COURIER}
+                                 checked={delivery.is === DELIVERY_IS.COURIER}
+                                 onChange={this.handleInputChange('delivery.is')}/>
+                           </div>
+                           <div className="col-md-8 ">
+                              <Input
+                                 label="Самовывоз"
+                                 type="radio"
+                                 name="delVar"
+                                 value={DELIVERY_IS.YOURSELF}
+                                 checked={delivery.is === DELIVERY_IS.YOURSELF}
+                                 onChange={this.handleInputChange('delivery.is')}/>
+                           </div>
+                        </Row>
+
+                        {delivery.is === DELIVERY_IS.COURIER ? (
+                           <>
+                              <Input
+                                 label="Узнать адрес у получателя"
+                                 type="checkbox"
+                                 checked={cdirection.askAddressFromRecipient}
+                                 onChange={this.handleInputChange('delivery.courierDirection.askAddressFromRecipient')}/>
+
+                              {!cdirection.askAddressFromRecipient && (
+                                 <>
+                                    <Input
+                                       placeholder="Улица"
+                                       value={cdirection.street}
+                                       onChange={this.handleInputChange('delivery.courierDirection.street')}/>
+
+                                    <Row>
+                                       <div className="col-md-6 pr-1">
+                                          <Input
+                                             placeholder="Дом / корпус"
+                                             value={cdirection.house}
+                                             onChange={this.handleInputChange('delivery.courierDirection.house')}/>
+                                       </div>
+                                       <div className="col-md-6 pl-1">
+                                          <Input
+                                             placeholder="Квартира / офис"
+                                             value={cdirection.flat}
+                                             onChange={this.handleInputChange('delivery.courierDirection.flat')}/>
+                                       </div>
+                                    </Row>
+
+                                    <Textarea
+                                       maxRows={2}
+                                       max={400}
+                                       placeholder="Комментарий к заказу"
+                                       value={cdirection.comment}
+                                       onChange={this.handleInputChange('delivery.courierDirection.comment')}/>
+
+                                 </>
+                              )}
+                           </>
+                        ) : (
+                           <>
+                              <p>Чита, ...адрес</p>
+                              <div>Карта</div>
+                           </>
+                        )}
+
                         <NextButton onClick={() => this.handleNextChangeButton('pay')}/>
                      </>
                   )}
                </Step>
-               <Step title={deliveryTitle}>
+               <Step number={4} title={deliveryTitle} active={delivery.isEdit}>
                </Step>
                <Step title="Оплата">
                </Step>
