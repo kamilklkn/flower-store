@@ -1,140 +1,87 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import cn from 'classnames'
-import styles from './cartContainer.module.sass'
+import * as Yup from 'yup'
+// import styles from './cartContainer.module.sass'
 import { Row } from "components/Bootstrap"
+import Step from "components/Cart/Common/Step"
+import NextButton from "components/Cart/Common/NextButton"
+import ChangeButton from "components/Cart/Common/ChangeButton"
+import CustomerForm from "components/Cart/Steps/CustomerFrom"
+import CustomerResult from "components/Cart/Steps/CustomerResult"
+import RecipientForm from "components/Cart/Steps/RecipientForm"
+import RecipientResult from "components/Cart/Steps/RecipientResult"
+import DeliveryResult from "components/Cart/Steps/DeliveryResult"
+import DeliveryForm from "components/Cart/Steps/DeliveryForm"
+import DeliveryTimeForm from "components/Cart/Steps/DeliveryTimeForm"
+import DeliveryTimeResult from "components/Cart/Steps/DeliveryTimeResult"
+import PayForm from "components/Cart/Steps/PayForm"
+import PayResult from "components/Cart/Steps/PayResult"
+import { DELIVERY_IS, PAY_TYPES } from "constants/common"
 
-const DELIVERY_IS = {
-   COURIER: 'COURIER',
-   YOURSELF: 'YOURSELF'
-}
-
-const Step = ({ title, number, active, isShow, children }) => {
-   return (
-      <div className={styles.step}>
-         <p className={cn(styles.blockTitle, active && styles.active)}>
-            <span className={styles.number}>{number}</span>
-            {title}
-         </p>
-         {children}
-      </div>
-   )
-}
-
-const InfoPopover = ({ title, text }) => {
-   const [show, setShow] = useState(false)
-   return (
-      <span className={styles.popover}>
-         <span
-            className={styles.number}
-            onMouseEnter={() => setShow(true)}
-            onMouseOut={() => setShow(false)}
-         >?
-         </span>
-         <span className={cn(styles.popup, show && styles.show)}>
-            <b>{title}</b>
-            {text}
-         </span>
-      </span>
-   )
-}
-
-const NextButton = ({ onClick }) => (
-   <button className={styles.nextButton} onClick={onClick}>Продолжить</button>
-)
-
-const ChangeButton = ({ onClick }) => (
-   <span className={styles.changeButton} onClick={onClick}>изменить</span>
-)
-
-const Input = ({ label = '', value, name, onChange, placeholder = '', type = '', checked = false }) => {
-   switch (type) {
-      case 'checkbox':
-         return (
-            <label>
-               <input
-                  type="checkbox"
-                  checked={checked}
-                  onChange={onChange}/>
-               {label}
-            </label>
-         )
-      case 'radio':
-         return (
-            <label>
-               <input
-                  type="radio"
-                  value={value}
-                  name={name}
-                  checked={checked}
-                  onChange={onChange}/>
-               {label}
-            </label>
-         )
-      default:
-         return (
-            <input
-               type="text"
-               placeholder={placeholder}
-               value={value}
-               onChange={onChange}/>
-         )
+const initialState = {
+   customer: {
+      isEdit: true,
+      isValid: false,
+      name: 'Алексей',
+      phone: '+79960225657'
+   },
+   recipient: {
+      isEdit: false,
+      isValid: false,
+      iamResipient: false,
+      iDontKnowRecipientNumber: false,
+      name: '',
+      phone: '',
+      postcard: true,
+      postcardText: ''
+      // photoWithRecipient: false,
+      // isSurprice: false,
+      // anonymousCustomer: false
+   },
+   delivery: {
+      isEdit: false,
+      isValid: false,
+      is: DELIVERY_IS.COURIER,
+      courierDirection: {
+         askRecipient: false,
+         street: 'dffs',
+         house: '',
+         flat: '',
+         comment: '',
+         price: 0
+      }
+   },
+   deliveryDateTime: {
+      isEdit: false,
+      isValid: false,
+      askRecipient: false
+   },
+   pay: {
+      isEdit: false,
+      isValid: false,
+      payType: PAY_TYPES.CARD,
+      legalEntity: {
+         name: '',
+         inn: '',
+         kpp: ''
+      }
+   },
+   other: {
+      isEdit: false,
+      isValid: false,
+      comment: 'sdf'
    }
-}
-
-const Textarea = ({
-                     value = '',
-                     placeholder = '',
-                     maxRows = 8,
-                     max = 400,
-                     maxRowsTitle = 'строк',
-                     onChange
-                  }) => {
-   return (
-      <>
-         <textarea placeholder={placeholder}
-                   rows={maxRows}
-                   value={value}
-                   onChange={onChange}/>
-         {/*<span>{value.split(/\r*\n/).length}/{maxRows} {maxRowsTitle}</span>*/}
-         <span>{value.length}/{max}</span>
-      </>
-   )
 }
 
 
 class CartContainer extends Component {
    state = {
-      customer: {
-         isEdit: false,
-         name: 'Алексей',
-         phone: '+79960225657'
-      },
-      recipient: {
-         isEdit: false,
-         iamResipient: false,
-         iDontKnowRecipientNumber: false,
-         name: '',
-         phone: ''
-      },
-      orderEnhancers: {
-         postcard: true,
-         postcardText: ''
-         // photoWithRecipient: false,
-         // isSurprice: false,
-         // anonymousCustomer: false
-      },
-      delivery: {
-         isEdit: true,
-         is: DELIVERY_IS.COURIER,
-         courierDirection: {
-            askAddressFromRecipient: false,
-            street: 'dffs',
-            house: '',
-            flat: '',
-            comment: '',
-            price: 0
-         }
-      }
+      customer: initialState.customer,
+      recipient: initialState.recipient,
+      delivery: initialState.delivery,
+      deliveryDateTime: initialState.deliveryDateTime,
+      pay: initialState.pay,
+      other: initialState.other
    }
 
    handleInputChange = (statePath) => (e) => {
@@ -158,7 +105,7 @@ class CartContainer extends Component {
       })
    }
 
-   handleNextChangeButton = (step) => {
+   handleNextChangeButton = (step) => () => {
       const blocks = Object.keys(this.state)
 
       this.setState(prev => {
@@ -182,211 +129,151 @@ class CartContainer extends Component {
       })
    }
 
+   validate = (obj) => {
+      return true
+   }
+
+   getStepsWith_isEdit_false = () => {
+      const state = this.state
+      const stepsNames = Object.keys(this.state)
+
+      return stepsNames.reduce((steps, currentStep) => {
+         return {
+            ...steps,
+            [currentStep]: {
+               ...state[currentStep],
+               isEdit: false
+            }
+         }
+      }, state)
+   }
+
+   handleNextButton = (step, nextStep) => () => {
+      const currentStep = this.state[step]
+      if (this.validate(currentStep)) {
+
+         this.setState(prev => {
+            const steps = this.getStepsWith_isEdit_false()
+
+            return {
+               ...steps,
+               [step]: {
+                  ...steps[step],
+                  isValid: true
+               },
+               [nextStep]: {
+                  ...prev[nextStep],
+                  isEdit: true
+               }
+            }
+         })
+
+         return
+      }
+
+      alert('no valid')
+   }
+
    render() {
       const {
          customer, recipient, delivery,
-         orderEnhancers
+         deliveryDateTime, pay, other
       } = this.state
-      const { courierDirection: cdirection } = delivery
 
       const deliveryTitle = delivery.is === DELIVERY_IS.COURIER ?
+         'Адрес доставки' : 'Адрес самовывоза'
+
+      const deliveryTimeTitle = delivery.is === DELIVERY_IS.COURIER ?
          'Время доставки' : 'Время самовывоза'
+
+      // todo: NETWORK RELEASE - сделать это через CMS
+      // Для установки radio по умолчанию, так как у курьера нет оплаты по карте
+      let payType = pay.payType
+      if (delivery.is === DELIVERY_IS.COURIER && payType === PAY_TYPES.CARD) {
+         // Курьер может принимать только наличные
+         payType = PAY_TYPES.CASH
+      }
 
       return (
          <Row>
             <div className={cn('col-4')}>
                <Step number={1} title="Ваши контакты" active={customer.isEdit}>
-                  {!customer.isEdit ? (
-                     <>
-                        <ChangeButton onClick={() => this.handleNextChangeButton('customer')}/>
-                        <p>{customer.name}</p>
-                        <p>{customer.phone}</p>
-                     </>
+                  {customer.isEdit ? (
+                     <CustomerForm {...customer} onInputChange={this.handleInputChange}>
+                        <NextButton onClick={this.handleNextButton('customer', 'recipient')}/>
+                     </CustomerForm>
                   ) : (
-                     <>
-                        <Input
-                           placeholder="Имя"
-                           value={customer.name}
-                           onChange={this.handleInputChange('customer.name')}/>
-                        <Input
-                           placeholder="Мобильный телефон"
-                           value={customer.phone}
-                           onChange={this.handleInputChange('customer.phone')}/>
-
-                        <p className={styles.blockText}> Ваши данные – это тайна.
-                           Получателю доступен только текст открытки
-                           (её можно написать далее)</p>
-                        <NextButton onClick={() => this.handleNextChangeButton('recipient')}/>
-                     </>
+                     <CustomerResult  {...customer}>
+                        {customer.isValid && (
+                           <ChangeButton onClick={this.handleNextChangeButton('customer')}/>
+                        )}
+                     </CustomerResult>
                   )}
                </Step>
                <Step number={2} title="Получатель" active={recipient.isEdit}>
-                  {!recipient.isEdit ? (
-                     <>
-                        <ChangeButton onClick={() => this.handleNextChangeButton('recipient')}/>
-                        {recipient.iamResipient && <p>Получаю сам</p>}
-                        {!recipient.iamResipient && <p>{recipient.name}</p>}
-                        {!recipient.iamResipient && recipient.iDontKnowRecipientNumber &&
-                        <p>Не знаю номер получателя</p>}
-                        {!recipient.iDontKnowRecipientNumber && <p>{recipient.phone}</p>}
-                        {orderEnhancers.postcard ? (
-                           <p>
-                              <span>Текст открытки:</span>
-                              {orderEnhancers.postcardText}
-                           </p>
-                        ) : (
-                           <p>Без открытки</p>
-                        )}
-                     </>
+                  {recipient.isEdit ? (
+                     <RecipientForm {...recipient} onInputChange={this.handleInputChange}>
+                        <NextButton onClick={this.handleNextButton('recipient', 'delivery')}/>
+                     </RecipientForm>
                   ) : (
-                     <>
-                        <Input
-                           label="Я получатель"
-                           type="checkbox"
-                           checked={recipient.iamResipient}
-                           onChange={this.handleInputChange('recipient.iamResipient')}/>
-
-                        {!recipient.iamResipient && (
-                           <>
-                              <Input
-                                 placeholder="Имя получателя"
-                                 value={recipient.name}
-                                 onChange={this.handleInputChange('recipient.name')}/>
-
-                              <Input
-                                 label="Я не знаю номер получателя"
-                                 type="checkbox"
-                                 checked={recipient.iDontKnowRecipientNumber}
-                                 onChange={this.handleInputChange('recipient.iDontKnowRecipientNumber')}/>
-
-                              {!recipient.iDontKnowRecipientNumber && (
-                                 <Input
-                                    placeholder="Телефон получателя"
-                                    value={recipient.phone}
-                                    onChange={this.handleInputChange('recipient.phone')}/>
-                              )}
-                           </>
+                     <RecipientResult {...recipient}>
+                        {recipient.isValid && (
+                           <ChangeButton onClick={this.handleNextChangeButton('recipient')}/>
                         )}
-
-                        <Input
-                           label="Бесплатная открытка"
-                           type="checkbox"
-                           checked={orderEnhancers.postcard}
-                           onChange={this.handleInputChange('orderEnhancers.postcard')}/>
-
-                        {orderEnhancers.postcard && (
-                           <Textarea
-                              max={400}
-                              value={orderEnhancers.postcardText}
-                              onChange={this.handleInputChange('orderEnhancers.postcardText')}/>
-                        )}
-
-                        <NextButton onClick={() => this.handleNextChangeButton('delivery')}/>
-                     </>
+                     </RecipientResult>
                   )}
                </Step>
-               <Step number={3} title="Адрес доставки" active={delivery.isEdit}>
-                  {!delivery.isEdit ? (
-                     <>
-                        <ChangeButton onClick={() => this.handleNextChangeButton('delivery')}/>
-                        {delivery.is === DELIVERY_IS.COURIER ? (
-                           <>
-                              <p>{cdirection.street},
-                                 {cdirection.house},
-                                 {cdirection.flat}</p>
-                              {cdirection.comment && (
-                                 <>
-                                    <hr/>
-                                    <p>{cdirection.comment}</p>
-                                 </>
-                              )}
-
-                           </>
-                        ) : (
-                           <>
-                              <p>Чита, ...адрес</p>
-                              <div>Карта</div>
-                           </>
-                        )}
-
-                     </>
+               <Step number={3} title={deliveryTitle} active={delivery.isEdit}>
+                  {delivery.isEdit ? (
+                     <DeliveryForm {...delivery} onInputChange={this.handleInputChange}>
+                        <NextButton onClick={this.handleNextButton('delivery', 'deliveryDateTime')}/>
+                     </DeliveryForm>
                   ) : (
-                     <>
-                        <Row>
-                           <div className="col-md-4">
-                              <Input
-                                 label="Курьером"
-                                 type="radio"
-                                 name="delVar"
-                                 value={DELIVERY_IS.COURIER}
-                                 checked={delivery.is === DELIVERY_IS.COURIER}
-                                 onChange={this.handleInputChange('delivery.is')}/>
-                           </div>
-                           <div className="col-md-8 ">
-                              <Input
-                                 label="Самовывоз"
-                                 type="radio"
-                                 name="delVar"
-                                 value={DELIVERY_IS.YOURSELF}
-                                 checked={delivery.is === DELIVERY_IS.YOURSELF}
-                                 onChange={this.handleInputChange('delivery.is')}/>
-                           </div>
-                        </Row>
-
-                        {delivery.is === DELIVERY_IS.COURIER ? (
-                           <>
-                              <Input
-                                 label="Узнать адрес у получателя"
-                                 type="checkbox"
-                                 checked={cdirection.askAddressFromRecipient}
-                                 onChange={this.handleInputChange('delivery.courierDirection.askAddressFromRecipient')}/>
-
-                              {!cdirection.askAddressFromRecipient && (
-                                 <>
-                                    <Input
-                                       placeholder="Улица"
-                                       value={cdirection.street}
-                                       onChange={this.handleInputChange('delivery.courierDirection.street')}/>
-
-                                    <Row>
-                                       <div className="col-md-6 pr-1">
-                                          <Input
-                                             placeholder="Дом / корпус"
-                                             value={cdirection.house}
-                                             onChange={this.handleInputChange('delivery.courierDirection.house')}/>
-                                       </div>
-                                       <div className="col-md-6 pl-1">
-                                          <Input
-                                             placeholder="Квартира / офис"
-                                             value={cdirection.flat}
-                                             onChange={this.handleInputChange('delivery.courierDirection.flat')}/>
-                                       </div>
-                                    </Row>
-
-                                    <Textarea
-                                       maxRows={2}
-                                       max={400}
-                                       placeholder="Комментарий к заказу"
-                                       value={cdirection.comment}
-                                       onChange={this.handleInputChange('delivery.courierDirection.comment')}/>
-
-                                 </>
-                              )}
-                           </>
-                        ) : (
-                           <>
-                              <p>Чита, ...адрес</p>
-                              <div>Карта</div>
-                           </>
+                     <DeliveryResult {...delivery}>
+                        {delivery.isValid && (
+                           <ChangeButton onClick={this.handleNextChangeButton('delivery')}/>
                         )}
-
-                        <NextButton onClick={() => this.handleNextChangeButton('pay')}/>
-                     </>
+                     </DeliveryResult>
                   )}
                </Step>
-               <Step number={4} title={deliveryTitle} active={delivery.isEdit}>
+               <Step number={4} title={deliveryTimeTitle} active={deliveryDateTime.isEdit}>
+                  {deliveryDateTime.isEdit ? (
+                     <DeliveryTimeForm
+                        {...deliveryDateTime}
+                        deliveryIs={delivery.is}
+                        onInputChange={this.handleInputChange}
+                     >
+                        <NextButton onClick={this.handleNextButton('deliveryDateTime', 'pay')}/>
+                     </DeliveryTimeForm>
+                  ) : (
+                     <DeliveryTimeResult {...deliveryDateTime}>
+                        {deliveryDateTime.isValid && (
+                           <ChangeButton onClick={this.handleNextChangeButton('deliveryDateTime')}/>
+                        )}
+                     </DeliveryTimeResult>
+                  )}
                </Step>
-               <Step title="Оплата">
+               <Step number={5} title="Оплата" active={pay.isEdit}>
+                  {pay.isEdit ? (
+                     <PayForm
+                        {...pay}
+                        cardTypeEnabled={delivery.is === DELIVERY_IS.YOURSELF}
+                        cardTypeTitle={delivery.is === DELIVERY_IS.YOURSELF ?
+                           'Наличные' : 'Наличными курьеру'}
+                        payType={payType}
+                        comment={other.comment}
+                        onInputChange={this.handleInputChange}
+                     >
+                        КНОПКА ЗАКАЗАТЬ с подтверждением
+                        {/*<NextButton onClick={this.handleNextChangeButton('deliveryTime')}/>*/}
+                     </PayForm>
+                  ) : (
+                     <PayResult {...pay}>
+                        {pay.isValid && (
+                           <ChangeButton onClick={this.handleNextChangeButton('pay')}/>
+                        )}
+                     </PayResult>
+                  )}
                </Step>
             </div>
          </Row>
