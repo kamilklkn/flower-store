@@ -7,7 +7,7 @@ import styles from './pageLayout.module.sass'
 class PageLayout extends Component {
   render() {
     return (
-      <>
+      <div className={styles.gray}>
         <div className={styles.menu}>
           <Link to="/catalog/">Каталог</Link>
           <Link to="/cart/">Корзина</Link>
@@ -15,7 +15,7 @@ class PageLayout extends Component {
         </div>
 
         {this.props.children}
-      </>
+      </div>
     )
   }
 }

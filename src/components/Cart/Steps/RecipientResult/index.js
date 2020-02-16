@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from 'components/Cart/cart.module.sass'
 
 const RecipientResult = ({
                             name,
@@ -9,7 +10,7 @@ const RecipientResult = ({
                             postcardText,
                             children
                          }) => (
-   <>
+   <div className={styles.result}>
       {children}
 
       {iamResipient && (
@@ -32,7 +33,7 @@ const RecipientResult = ({
       ) : (
          <p>Без открытки</p>
       )}
-   </>
+   </div>
 )
 
 export default RecipientResult

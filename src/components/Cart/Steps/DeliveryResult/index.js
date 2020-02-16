@@ -1,12 +1,13 @@
 import React from 'react'
 import { DELIVERY_IS } from "constants/common"
+import styles from "components/Cart/cart.module.sass"
 
 const DeliveryResult = ({
                            is,
                            courierDirection,
                            children
                         }) => (
-   <>
+   <div className={styles.result}>
       {children}
 
       {is === DELIVERY_IS.COURIER ? (
@@ -28,7 +29,7 @@ const DeliveryResult = ({
             <div>Карта</div>
          </>
       )}
-   </>
+   </div>
 )
 
 export default DeliveryResult

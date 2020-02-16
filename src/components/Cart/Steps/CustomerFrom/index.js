@@ -3,7 +3,7 @@ import Input from "components/Cart/Common/Input"
 import styles from 'components/Cart/cart.module.sass'
 
 const CustomerForm = ({ name, phone, onInputChange, children }) => (
-   <>
+   <div className={styles.form}>
       <Input
          placeholder="Имя"
          value={name}
@@ -18,7 +18,7 @@ const CustomerForm = ({ name, phone, onInputChange, children }) => (
          (её можно написать далее)</p>
 
       {children}
-   </>
+   </div>
 )
 
 export default CustomerForm

@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from "components/Cart/Common/Input"
 import Textarea from "components/Cart/Common/Textarea"
+import styles from 'components/Cart/cart.module.sass'
 
 const RecipientForm = ({
                           iamResipient,
@@ -12,7 +13,7 @@ const RecipientForm = ({
                           onInputChange,
                           children
                        }) => (
-   <>
+   <div className={styles.form}>
       <Input
          label="Я получатель"
          type="checkbox"
@@ -49,13 +50,13 @@ const RecipientForm = ({
 
       {postcard && (
          <Textarea
-            max={400}
+            max={100}
             value={postcardText}
             onChange={onInputChange('recipient.postcardText')}/>
       )}
 
       {children}
-   </>
+   </div>
 )
 
 export default RecipientForm

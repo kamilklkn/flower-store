@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import cn from 'classnames'
-import * as Yup from 'yup'
+import {
+   string as YupString,
+   object as YupObject,
+   setLocale
+} from 'yup'
 // import styles from './cartContainer.module.sass'
 import { Row } from "components/Bootstrap"
 import Step from "components/Cart/Common/Step"
@@ -16,12 +20,17 @@ import DeliveryTimeForm from "components/Cart/Steps/DeliveryTimeForm"
 import DeliveryTimeResult from "components/Cart/Steps/DeliveryTimeResult"
 import PayForm from "components/Cart/Steps/PayForm"
 import PayResult from "components/Cart/Steps/PayResult"
-import { DELIVERY_IS, PAY_TYPES } from "constants/common"
+import { DELIVERY_IS, PAY_TYPES, VALIDATION_MESSAGES as VM } from "constants/common"
+import styles from "components/Cart/cart.module.sass"
+import { connect } from "react-redux"
+import { orderConfirmationSelector } from "store/selectors/cart"
+import { fetchOrderConfirmation } from "store/actions/cart/ordersActions"
+
 
 const initialState = {
    customer: {
-      isEdit: true,
-      isValid: false,
+      isEdit: false,
+      isValid: true,
       name: 'Алексей',
       phone: '+79960225657'
    },
@@ -57,31 +66,64 @@ const initialState = {
       askRecipient: false
    },
    pay: {
-      isEdit: false,
-      isValid: false,
+      isEdit: true,
+      isValid: true,
       payType: PAY_TYPES.CARD,
       legalEntity: {
          name: '',
          inn: '',
          kpp: ''
-      }
-   },
-   other: {
-      isEdit: false,
-      isValid: false,
+      },
       comment: 'sdf'
    }
 }
 
 
-class CartContainer extends Component {
+const validateOptions = {
+   abortEarly: false
+}
+
+const customerSchema = YupObject().shape({
+   // name: YupString().min(3, VM.MIN_SYMBOLS(3, 'символа')).required(VM.REQUIRE),
+   name: YupObject().shape({
+      one: YupString().min(3, VM.MIN_SYMBOLS(3, 'символа')).required(VM.REQUIRE)
+   }),
+   phone: YupString().min(3, VM.MIN_SYMBOLS(3, 'символа')).required(VM.REQUIRE)
+})
+
+
+customerSchema
+   .validate({
+      name: {
+         one: ''
+      },
+      phone: ''
+   }, validateOptions)
+   .then((valid) => {
+      console.log(valid)
+   })
+   .catch((err) => {
+      const errors = err.inner.map(item => ({
+         path: item.path,
+         message: item.message
+      }))
+      console.log(errors)
+   })
+
+
+class Cart extends Component {
    state = {
       customer: initialState.customer,
       recipient: initialState.recipient,
       delivery: initialState.delivery,
       deliveryDateTime: initialState.deliveryDateTime,
       pay: initialState.pay,
-      other: initialState.other
+      confirmation: {
+         isEdit: false,
+         done: false,
+         error: false,
+         smsCode: ''
+      }
    }
 
    handleInputChange = (statePath) => (e) => {
@@ -105,29 +147,6 @@ class CartContainer extends Component {
       })
    }
 
-   handleNextChangeButton = (step) => () => {
-      const blocks = Object.keys(this.state)
-
-      this.setState(prev => {
-         const otherBlocks = blocks.reduce((state, currentStep) => {
-            return {
-               ...state,
-               [currentStep]: {
-                  ...prev[currentStep],
-                  isEdit: false
-               }
-            }
-         }, prev)
-
-         return {
-            ...otherBlocks,
-            [step]: {
-               ...prev[step],
-               isEdit: true
-            }
-         }
-      })
-   }
 
    validate = (obj) => {
       return true
@@ -146,6 +165,20 @@ class CartContainer extends Component {
             }
          }
       }, state)
+   }
+
+   handleChangeButton = (step) => () => {
+      this.setState(prev => {
+         const steps = this.getStepsWith_isEdit_false()
+
+         return {
+            ...steps,
+            [step]: {
+               ...prev[step],
+               isEdit: true
+            }
+         }
+      })
    }
 
    handleNextButton = (step, nextStep) => () => {
@@ -174,11 +207,39 @@ class CartContainer extends Component {
       alert('no valid')
    }
 
+   handleSendOrder = () => {
+      const { confirmation: { smsCode, error, done } } = this.state
+      const { orderConfirmation } = this.props
+
+      if (!orderConfirmation.code && !done) {
+         this.props.fetchOrderConfirmation()
+         return
+      }
+
+      if (orderConfirmation.code.toString() === smsCode.toString()) {
+         this.setState(prev => ({
+            confirmation: {
+               ...prev.confirmation,
+               done: true
+            }
+         }))
+      } else {
+         this.setState(prev => ({
+            confirmation: {
+               ...prev.confirmation,
+               error: true
+            }
+         }))
+      }
+   }
+
    render() {
       const {
          customer, recipient, delivery,
-         deliveryDateTime, pay, other
+         deliveryDateTime, pay, confirmation
       } = this.state
+
+      const { orderConfirmation } = this.props
 
       const deliveryTitle = delivery.is === DELIVERY_IS.COURIER ?
          'Адрес доставки' : 'Адрес самовывоза'
@@ -194,6 +255,16 @@ class CartContainer extends Component {
          payType = PAY_TYPES.CASH
       }
 
+      if (confirmation.done) {
+         return (
+            <Row>
+               Готово!
+            </Row>
+         )
+      }
+
+      // todo: переписать это через контекст
+      //   https://ru.reactjs.org/docs/context.html
       return (
          <Row>
             <div className={cn('col-4')}>
@@ -203,11 +274,11 @@ class CartContainer extends Component {
                         <NextButton onClick={this.handleNextButton('customer', 'recipient')}/>
                      </CustomerForm>
                   ) : (
-                     <CustomerResult  {...customer}>
-                        {customer.isValid && (
-                           <ChangeButton onClick={this.handleNextChangeButton('customer')}/>
-                        )}
-                     </CustomerResult>
+                     customer.isValid && (
+                        <CustomerResult  {...customer}>
+                           <ChangeButton onClick={this.handleChangeButton('customer')}/>
+                        </CustomerResult>
+                     )
                   )}
                </Step>
                <Step number={2} title="Получатель" active={recipient.isEdit}>
@@ -216,11 +287,11 @@ class CartContainer extends Component {
                         <NextButton onClick={this.handleNextButton('recipient', 'delivery')}/>
                      </RecipientForm>
                   ) : (
-                     <RecipientResult {...recipient}>
-                        {recipient.isValid && (
-                           <ChangeButton onClick={this.handleNextChangeButton('recipient')}/>
-                        )}
-                     </RecipientResult>
+                     recipient.isValid && (
+                        <RecipientResult {...recipient}>
+                           <ChangeButton onClick={this.handleChangeButton('recipient')}/>
+                        </RecipientResult>
+                     )
                   )}
                </Step>
                <Step number={3} title={deliveryTitle} active={delivery.isEdit}>
@@ -229,11 +300,11 @@ class CartContainer extends Component {
                         <NextButton onClick={this.handleNextButton('delivery', 'deliveryDateTime')}/>
                      </DeliveryForm>
                   ) : (
-                     <DeliveryResult {...delivery}>
-                        {delivery.isValid && (
-                           <ChangeButton onClick={this.handleNextChangeButton('delivery')}/>
-                        )}
-                     </DeliveryResult>
+                     delivery.isValid && (
+                        <DeliveryResult {...delivery}>
+                           <ChangeButton onClick={this.handleChangeButton('delivery')}/>
+                        </DeliveryResult>
+                     )
                   )}
                </Step>
                <Step number={4} title={deliveryTimeTitle} active={deliveryDateTime.isEdit}>
@@ -246,33 +317,39 @@ class CartContainer extends Component {
                         <NextButton onClick={this.handleNextButton('deliveryDateTime', 'pay')}/>
                      </DeliveryTimeForm>
                   ) : (
-                     <DeliveryTimeResult {...deliveryDateTime}>
-                        {deliveryDateTime.isValid && (
-                           <ChangeButton onClick={this.handleNextChangeButton('deliveryDateTime')}/>
-                        )}
-                     </DeliveryTimeResult>
+                     deliveryDateTime.isValid && (
+                        <DeliveryTimeResult {...deliveryDateTime}>
+                           <ChangeButton onClick={this.handleChangeButton('deliveryDateTime')}/>
+                        </DeliveryTimeResult>
+                     )
                   )}
                </Step>
                <Step number={5} title="Оплата" active={pay.isEdit}>
                   {pay.isEdit ? (
                      <PayForm
                         {...pay}
+                        orderConfirmation={orderConfirmation}
+                        confirmError={confirmation.error}
                         cardTypeEnabled={delivery.is === DELIVERY_IS.YOURSELF}
                         cardTypeTitle={delivery.is === DELIVERY_IS.YOURSELF ?
                            'Наличные' : 'Наличными курьеру'}
                         payType={payType}
-                        comment={other.comment}
                         onInputChange={this.handleInputChange}
                      >
-                        КНОПКА ЗАКАЗАТЬ с подтверждением
-                        {/*<NextButton onClick={this.handleNextChangeButton('deliveryTime')}/>*/}
+                        <button className={styles.nextButton} onClick={this.handleSendOrder}>
+                           {orderConfirmation.code ? 'Подтвердить' : 'Оформить заказ'}
+                        </button>
+
+                        {/*klumba.store*/}
+                        {/*Ваш заказ №12 получен, мы вам перезвоним.*/}
+
                      </PayForm>
                   ) : (
-                     <PayResult {...pay}>
-                        {pay.isValid && (
-                           <ChangeButton onClick={this.handleNextChangeButton('pay')}/>
-                        )}
-                     </PayResult>
+                     pay.isValid && (
+                        <PayResult {...pay}>
+                           <ChangeButton onClick={this.handleChangeButton('pay')}/>
+                        </PayResult>
+                     )
                   )}
                </Step>
             </div>
@@ -280,5 +357,18 @@ class CartContainer extends Component {
       )
    }
 }
+
+const mapStateToProps = state => ({
+   orderConfirmation: orderConfirmationSelector(state)
+})
+
+const mapDispatchToProps = {
+   fetchOrderConfirmation
+}
+
+const CartContainer = connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Cart)
 
 export default CartContainer

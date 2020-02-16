@@ -3,6 +3,7 @@ import Input from "components/Cart/Common/Input"
 import Textarea from "components/Cart/Common/Textarea"
 import { Row } from "components/Bootstrap"
 import { DELIVERY_IS } from "constants/common"
+import styles from "components/Cart/cart.module.sass"
 
 const DeliveryForm = ({
                          is,
@@ -10,7 +11,7 @@ const DeliveryForm = ({
                          onInputChange,
                          children
                       }) => (
-   <>
+   <div className={styles.form}>
       <Row>
          <div className="col-md-4">
             <Input
@@ -60,12 +61,15 @@ const DeliveryForm = ({
                            value={courierDirection.flat}
                            onChange={onInputChange('delivery.courierDirection.flat')}/>
                      </div>
+
+                     Подъезд
+                     Этаж
                   </Row>
 
                   <Textarea
                      maxRows={2}
-                     max={400}
-                     placeholder="Комментарий к заказу"
+                     max={100}
+                     placeholder="Комментарий"
                      value={courierDirection.comment}
                      onChange={onInputChange('delivery.courierDirection.comment')}/>
 
@@ -80,7 +84,7 @@ const DeliveryForm = ({
       )}
       
       {children}
-   </>
+   </div>
 )
 
 export default DeliveryForm

@@ -27,15 +27,23 @@
     word-wrap: break-word
     color: #3c3c3c
 
+.result,
+.form
+  margin-top: 22px
+
 
 .blockText
   text-align: center
+  margin-bottom: 22px
 
 .blockTitle
+  margin-bottom: 22px
   color: #8e8e93
-  margin-bottom: 22px!important
   font-size: 17px !important
+  &.isEmpty
+    margin-bottom: 0 !important
   &.active
+    margin-bottom: 22px !important
     color: #000000
     span.number
       border-color: #000
@@ -81,6 +89,9 @@
   border: 0
   border-radius: 6px
   margin: 30px 0 0 0
+  cursor: pointer
+  &:hover
+    background: #444
 
 
 .popover
@@ -91,7 +102,7 @@
     background: #000
     color: #ffffff
     cursor: pointer
-    width: 22px
+    width: 24px
     height: 20px
     line-height: 20px
     &:hover

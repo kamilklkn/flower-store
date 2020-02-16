@@ -9,7 +9,10 @@ const Step = ({
                  children
               }) => (
    <div className={styles.step}>
-      <p className={cn(styles.blockTitle, active && styles.active)}>
+      <p className={cn(
+         styles.blockTitle,
+         active && styles.active
+      )}>
          <span className={styles.number}>{number}</span>
          {title}
       </p>

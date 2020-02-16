@@ -13,7 +13,7 @@ const DeliveryTimeForm = ({
    const isCourier = deliveryIs === DELIVERY_IS.COURIER
 
    return (
-      <>
+      <div className={styles.form}>
          {isCourier && (
             <Input
                label="Узнать время у получателя"
@@ -43,7 +43,7 @@ const DeliveryTimeForm = ({
          )}
 
          {children}
-      </>
+      </div>
    )
 }
 

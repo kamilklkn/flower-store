@@ -1,4 +1,9 @@
-import { CART_PRODUCT_ADD, CART_PRODUCT_DECREASE, CART_PRODUCT_INCREASE, CART_PRODUCT_REMOVE } from "store/actionTypes"
+import {
+  CART_PRODUCT_ADD,
+  CART_PRODUCT_DECREASE,
+  CART_PRODUCT_INCREASE,
+  CART_PRODUCT_REMOVE
+} from "store/actionTypes"
 
 export const cartProductIncrease = id => ({
   type: CART_PRODUCT_INCREASE,

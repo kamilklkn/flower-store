@@ -9,3 +9,8 @@ export const PAY_TYPES = {
    TO_CORPORATE_CARD: 'TO_CORPORATE_CARD',
    ACCOUNT_FOR_A_LEGAL_ENTITY: 'ACCOUNT_FOR_A_LEGAL_ENTITY'
 }
+
+export const VALIDATION_MESSAGES = {
+   REQUIRE: 'Необходимо заполнить',
+   MIN_SYMBOLS: (min, otherText) => `Минимум ${min} ${otherText}`
+}
