@@ -9,36 +9,42 @@ export const filtersEntities = {
       title: 'Размер',
       type: FILTER_COMPONENTS_TYPES.ITEMS
    },
-   byCollections: {
-      title: 'Коллекция',
-      type: FILTER_COMPONENTS_TYPES.ITEMS,
-      openedDefault: true
-   },
+   // byCollections: {
+   //    title: 'Коллекция',
+   //    type: FILTER_COMPONENTS_TYPES.ITEMS,
+   //    openedDefault: true
+   // },
    byPacking: {
-      title: 'Оформление букета',
+      title: 'Оформление',
       type: FILTER_COMPONENTS_TYPES.ITEMS
    },
    byAvailability: {
       title: 'Наличие',
       type: FILTER_COMPONENTS_TYPES.ITEMS
    },
-   byShades: {
-      title: 'Оттенок',
+   // byBouquetType: {
+   //    title: 'Вид',
+   //    type: FILTER_COMPONENTS_TYPES.ITEMS,
+   //    openedDefault: true
+   // },
+   byFlowers: {
+      title: 'Состав',
       type: FILTER_COMPONENTS_TYPES.ITEMS,
       openedDefault: false
    },
-   byStability: {
-      title: 'Стойкость',
+   byShades: {
+      title: 'Гамма',
       type: FILTER_COMPONENTS_TYPES.ITEMS,
       openedDefault: false
    },
    byColors: {
-      title: 'Цвет композиции',
+      title: 'Цвет',
       type: FILTER_COMPONENTS_TYPES.COLORS_BUTTONS,
       openedDefault: false
    },
-   byFlowers: {
-      title: 'Состав букета',
+
+   byStability: {
+      title: 'Стойкость',
       type: FILTER_COMPONENTS_TYPES.ITEMS,
       openedDefault: false
    }

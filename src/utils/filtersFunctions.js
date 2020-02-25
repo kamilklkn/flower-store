@@ -10,12 +10,12 @@ export const bySizes = (products, selected = []) =>
       )
    )
 
-export const byCollections = (products, selected = []) =>
-   products.filter(({collecitions}) => {
-         if (!collecitions) return false
-         return selected.includes(collecitions)
-      }
-   )
+// export const byCollections = (products, selected = []) =>
+//    products.filter(({collecitions}) => {
+//          if (!collecitions) return false
+//          return selected.includes(collecitions)
+//       }
+//    )
 
 export const byShades = (products, selected = []) =>
    products.filter(({ shade }) => {

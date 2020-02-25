@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-date-picker'
+import React, { useState } from 'react'
+import DatePicker from 'react-datepicker'
 
-const DatePickerWrap = ({ startDate, isOpen }) => {
-  const [date, setDate] = useState(startDate);
+import "react-datepicker/dist/react-datepicker.css"
 
-  return (
-    <div>
-      <DatePicker
-        isOpen={isOpen}
-        onChange={date => setDate(date)}
-        value={date}
-      />
-    </div>
-  )
+const DatePickerWrap = ({ startDate, minDate, onChange, inline = false }) => {
+   return (
+      <div>
+         <DatePicker
+            selected={startDate}
+            onChange={date => onChange(date)}
+            minDate={minDate}
+            inline={inline}
+         />
+      </div>
+   )
 }
 
-export default DatePickerWrap;
+export default DatePickerWrap

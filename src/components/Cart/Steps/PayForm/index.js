@@ -53,36 +53,37 @@ const PayForm = ({
             checked={payType === PAY_TYPES.TO_CORPORATE_CARD}
             onChange={onInputChange('pay.payType')}/>
 
-         {!cardTypeEnabled && (
-            <>
-               <Input
-                  label="Счет для юр. лица РФ"
-                  type="radio"
-                  name="pay"
-                  value={PAY_TYPES.ACCOUNT_FOR_A_LEGAL_ENTITY}
-                  checked={payType === PAY_TYPES.ACCOUNT_FOR_A_LEGAL_ENTITY}
-                  onChange={onInputChange('pay.payType')}/>
+            {/*todo: cardTypeEnabled?*/}
+         {/*{!cardTypeEnabled && (*/}
+            {/*<>*/}
+               {/*<Input*/}
+                  {/*label="Счет для юр. лица РФ"*/}
+                  {/*type="radio"*/}
+                  {/*name="pay"*/}
+                  {/*value={PAY_TYPES.ACCOUNT_FOR_A_LEGAL_ENTITY}*/}
+                  {/*checked={payType === PAY_TYPES.ACCOUNT_FOR_A_LEGAL_ENTITY}*/}
+                  {/*onChange={onInputChange('pay.payType')}/>*/}
 
-               {payType === PAY_TYPES.ACCOUNT_FOR_A_LEGAL_ENTITY && (
-                  <>
-                     <Input
-                        placeholder="Название организации"
-                        value={legalEntity.name}
-                        onChange={onInputChange('pay.legalEntity.name')}/>
+               {/*{payType === PAY_TYPES.ACCOUNT_FOR_A_LEGAL_ENTITY && (*/}
+                  {/*<>*/}
+                     {/*<Input*/}
+                        {/*placeholder="Название организации"*/}
+                        {/*value={legalEntity.name}*/}
+                        {/*onChange={onInputChange('pay.legalEntity.name')}/>*/}
 
-                     <Input
-                        placeholder="ИНН"
-                        value={legalEntity.inn}
-                        onChange={onInputChange('pay.legalEntity.inn')}/>
+                     {/*<Input*/}
+                        {/*placeholder="ИНН"*/}
+                        {/*value={legalEntity.inn}*/}
+                        {/*onChange={onInputChange('pay.legalEntity.inn')}/>*/}
 
-                     <Input
-                        placeholder="КПП"
-                        value={legalEntity.kpp}
-                        onChange={onInputChange('pay.legalEntity.kpp')}/>
-                  </>
-               )}
-            </>
-         )}
+                     {/*<Input*/}
+                        {/*placeholder="КПП"*/}
+                        {/*value={legalEntity.kpp}*/}
+                        {/*onChange={onInputChange('pay.legalEntity.kpp')}/>*/}
+                  {/*</>*/}
+               {/*)}*/}
+            {/*</>*/}
+         {/*)}*/}
 
          <hr/>
 

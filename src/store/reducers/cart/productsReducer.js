@@ -4,17 +4,19 @@ import {
   CART_PRODUCT_REMOVE
 } from "store/actionTypes"
 import itemReducer from "store/reducers/cart/itemReducer"
+import { date_26, date_29 } from "containers/TIME_date"
 
 const initialState = {
   byId: {
-    id1: {
-      id: 'id1',
-      title: 'Сборный в коробке',
-      image: 'http://localhost:3000/static/media/8.8dc61bc0.jpg',
+    id9: {
+      id: 'id9',
+      unavailable: [date_29],
+      title: 'Монобукет кустовой розы',
+      image: '/static/media/5.d5ce967b.jpeg',
       options: {
         grass: {
-          title: 'Побольше',
-          price: 300
+          title: 'Немного',
+          price: 150
         },
         box: {
           title: 'Бархатная',
@@ -22,13 +24,14 @@ const initialState = {
         }
       },
       size: 'Большой',
-      price: 9600,
+      price: 3900,
       count: 1
     },
-    id2: {
-      id: 'id2',
-      title: 'Монобукет кустовой розы',
-      image: 'http://localhost:3000/static/media/5.d5ce967b.jpeg',
+    id200: {
+      id: 'id200',
+      unavailable: [date_26, date_29],
+      title: 'Сборный в коробке',
+      image: '/static/media/9.3482e43d.jpg',
       size: 'Премиум',
       options: {
         grass: {
@@ -36,11 +39,11 @@ const initialState = {
           price: 300
         }
       },
-      price: 5000,
+      price: 3400,
       count: 5
     }
   },
-  allIds: ['id1', 'id2']
+  allIds: ['id9', 'id200']
 }
 
 

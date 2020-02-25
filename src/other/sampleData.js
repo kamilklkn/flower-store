@@ -9,6 +9,7 @@ import im6 from "assets/6.jpeg"
 import im7 from "assets/7.jpeg"
 import im8 from "assets/8.jpg"
 import im9 from "assets/9.jpg"
+import { date_26 } from "containers/TIME_date"
 
 
 
@@ -125,10 +126,13 @@ const newModel = {
   desc: '',
   // activeSizeIndex: 0,
   // activeGrassIndex: 0,
-  available: {
-    now: false,
-    fromDate: new Date()
-  },
+  // available: {
+  //   now: false,
+  //   fromDate: new Date()
+  // },
+  available: false,
+  availableFast: false,
+
   packing: ['Бумага флисовая'],
   colors: ['Фиолетовый', 'Только монобукеты'],
   additionalProducts: [0, 1],
@@ -179,7 +183,7 @@ const newModel = {
 export function generateProducts() {
   let items = new Array(20).fill(Object.assign({}, newModel));
 
-  return items.map((item, i) => {
+  const products = items.map((item, i) => {
     const product = { ...item }
 
     const photoModelRandomIndex = random(0, photoModels.length - 1)
@@ -191,18 +195,21 @@ export function generateProducts() {
     product.shade = photoModel.shade
     product.color = photoModel.color
 
-    product.bunchType = photoModel.bunchType
-
     if ('packing' in photoModel) product.packing = photoModel.packing
 
     product.slug = 'product' + i
     product.stability = ['+', '++', '+++'][random(0, 2)]
+
+    // todo: это сделать но по новым принципам работы в CMS
     product.collecitions = ['23 февраля', '8 марта', 'Новый год'][random(0, 2)]
 
-    product.available = {
-      now: !!random(0, 1),
-      fromDate: new Date()
-    }
+    product.available = !!random(0, 1)
+    product.availableFast = !!random(0, 1)
+
+
+    // unavailable: [date_26]
+
+    //      fromDate: new Date(),
 
     const SizesCount = random(2, 3)
     const startIndexSplice = random(0, 1)
@@ -246,4 +253,8 @@ export function generateProducts() {
 
     return product
   })
+
+  // console.log(JSON.stringify(products))
+
+  return products
 }

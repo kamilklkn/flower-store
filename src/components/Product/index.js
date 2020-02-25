@@ -42,7 +42,7 @@ const Product = ({
    }
 
    return (
-      <div className={cn(styles.product, 'col-6', 'mb-2', 'pl-1', 'pr-1')} key={id}>
+      <div className={cn(styles.product, 'col-4', 'mb-2', 'pl-1', 'pr-1')} key={id}>
          <Link className={styles.image} to={`/catalog/${slug}`}>
             {/*<p className={styles.size}>{firstSize.h}см / {firstSize.w}см</p>*/}
             <Photo src={firstSize.image}/>
@@ -56,7 +56,7 @@ const Product = ({
          />
 
          <Link className={styles.title} to={`/catalog/${slug}`}>
-            {title}
+            {title} <b>{id}</b>
          </Link>
 
          <div className={styles.sizes}>

@@ -1,6 +1,9 @@
-import mockProducts from './mockProducts'
+import mockProducts from './mockProducts_OLD'
+import mockProducts_25 from './mockProducts_25'
+import mockProducts_26 from './mockProducts_26'
 import mockAdditional from './mockAdditionalProducts'
 import axios from "axios"
+import { date_25, date_26 } from "containers/TIME_date"
 
 // console.log(mockProducts)
 // console.log(mockAdditional)
@@ -9,9 +12,24 @@ import axios from "axios"
 //  api/products/
 //  api/products/idn1
 
-export const fetchProducts = async () => {
+export const fetchProducts = async (date) => {
    return new Promise((resolve, reject) => {
-      resolve(mockProducts)
+      switch (date) {
+         case date_25:
+            // setTimeout(() => resolve(mockProducts_25), 500)
+            setTimeout(() => resolve(mockProducts), 0)
+            break
+
+         case date_26:
+            // setTimeout(() => resolve(mockProducts_26), 500)
+            setTimeout(() => resolve(mockProducts), 0)
+            break
+
+         default:
+            setTimeout(() => resolve(mockProducts), 500)
+      }
+
+      // resolve()
    })
 }
 

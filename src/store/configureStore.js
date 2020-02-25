@@ -10,13 +10,15 @@ import createRootReducer from './reducers/rootReducer'
 
 import resetFilters from "store/middleware/resetFilters"
 import cleanerAdditionalProductsMiddleware from "store/middleware/cleanerAdditionalProducts"
+import verifierUnavailableProductsInCart from "store/middleware/verifierUnavailableProductsInCart"
 
 export const history = createBrowserHistory()
 
 
 export default function configureStore(preloadedState) {
   const middlewares = [thunkMiddleware, routerMiddleware(history),
-    resetFilters, cleanerAdditionalProductsMiddleware] //loggerMiddleware
+    resetFilters, cleanerAdditionalProductsMiddleware,
+    verifierUnavailableProductsInCart] //loggerMiddleware
   const middlewareEnhancer = applyMiddleware(...middlewares)
 
   const enhancers = [middlewareEnhancer] //monitorReducersEnhancer

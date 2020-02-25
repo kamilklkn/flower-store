@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux"
 import cn from 'classnames'
-import styles from './cartContainer.module.sass'
+import styles from 'components/Cart/cart.module.sass'
 import Preloader from "components/Preloader"
 import RoubleSymbol from "components/UI/RoubleSymbol"
 import { getAdditionalItemsSelector, getItemsSelector, getTotalByOptions, totalSelector } from "store/selectors/cart"

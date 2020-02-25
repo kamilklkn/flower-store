@@ -50,11 +50,11 @@ export const failureProduct = error => ({
 })
 
 
-export const fetchProducts = () => async dispatch => {
+export const fetchProducts = (date) => async dispatch => {
   console.log('action fetchProducts')
   dispatch(requestProducts())
   try {
-    const response = await fetchProductsApi()
+    const response = await fetchProductsApi(date)
     dispatch(
       successProducts(normalize(response, schema.items))
     )

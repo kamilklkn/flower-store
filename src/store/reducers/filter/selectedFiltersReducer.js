@@ -8,7 +8,7 @@ import { getObjectWithoutKeys } from "utils"
 
 const initialState = {
   // bySizesPrice: [2500, 6000], // todo fix it (не выставляется при загрузке)
-  bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
+  // bySizes: ['Премиум'] //, 'Стандартный', 'Большой'
 }
 
 

@@ -306,43 +306,43 @@ class ProductDetailsContainer extends Component {
           />
 
 
-          <p className={styles.btitle}>(*) Когда доставить?</p>
-          {!showCalendar && (
-            <div className={styles.deliveryButtons}>
-              <div>Сегодня <span>11 декабря</span></div>
-              <div>Завтра <span>12 декабря</span></div>
-              <div onClick={() => this.setState(prevState => ({
-                showCalendar: !prevState.showCalendar
-              }))}
-              >
-                {`Выбрать дату`}
-              </div>
-            </div>
-          )}
-          <p className={styles.btitle}>( ) Заберу букет сам</p>
+          {/*<p className={styles.btitle}>(*) Когда доставить?</p>*/}
+          {/*{!showCalendar && (*/}
+            {/*<div className={styles.deliveryButtons}>*/}
+              {/*<div>Сегодня <span>11 декабря</span></div>*/}
+              {/*<div>Завтра <span>12 декабря</span></div>*/}
+              {/*<div onClick={() => this.setState(prevState => ({*/}
+                {/*showCalendar: !prevState.showCalendar*/}
+              {/*}))}*/}
+              {/*>*/}
+                {/*{`Выбрать дату`}*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*)}*/}
+          {/*<p className={styles.btitle}>( ) Заберу букет сам</p>*/}
 
 
-          <p className={styles.btitle}>( ) Когда доставить?</p>
-          <p className={styles.btitle}>(*) Заберу букет сам</p>
-          {!showCalendar && (
-            <div className={styles.deliveryButtons}>
-              <div>Сегодня <span>11 декабря</span></div>
-              <div>Завтра <span>12 декабря</span></div>
-              <div onClick={() => this.setState(prevState => ({
-                showCalendar: !prevState.showCalendar
-              }))}
-              >
-                {`Выбрать дату`}
-              </div>
-            </div>
-          )}
+          {/*<p className={styles.btitle}>( ) Когда доставить?</p>*/}
+          {/*<p className={styles.btitle}>(*) Заберу букет сам</p>*/}
+          {/*{!showCalendar && (*/}
+            {/*<div className={styles.deliveryButtons}>*/}
+              {/*<div>Сегодня <span>11 декабря</span></div>*/}
+              {/*<div>Завтра <span>12 декабря</span></div>*/}
+              {/*<div onClick={() => this.setState(prevState => ({*/}
+                {/*showCalendar: !prevState.showCalendar*/}
+              {/*}))}*/}
+              {/*>*/}
+                {/*{`Выбрать дату`}*/}
+              {/*</div>*/}
+            {/*</div>*/}
+          {/*)}*/}
 
-          {showCalendar && (
-            <DatePicker
-              isOpen={true}
-              startDate={new Date()}
-            />
-          )}
+          {/*{showCalendar && (*/}
+            {/*<DatePicker*/}
+              {/*isOpen={true}*/}
+              {/*startDate={new Date()}*/}
+            {/*/>*/}
+          {/*)}*/}
 
           <br/>
           <h1>{totalPrice.toLocaleString('ru-RU')} <RoubleSymbol/></h1>

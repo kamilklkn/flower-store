@@ -13,6 +13,7 @@ import Product from "components/Product"
 import { Row } from "components/Bootstrap"
 import Preloader from "components/Preloader"
 import CollectionsButtons from "components/Filter/CollectionsButtons"
+import { date_25 } from "containers/TIME_date"
 
 
 class ProductsListContainer extends Component {
@@ -56,7 +57,7 @@ class ProductsListContainer extends Component {
    }
 
    componentDidMount() {
-      this.props.fetchProducts()
+      this.props.fetchProducts(date_25)
    }
 
    render() {

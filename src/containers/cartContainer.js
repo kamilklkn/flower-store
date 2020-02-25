@@ -25,30 +25,19 @@ import styles from "components/Cart/cart.module.sass"
 import { connect } from "react-redux"
 import { orderConfirmationSelector } from "store/selectors/cart"
 import { fetchOrderConfirmation } from "store/actions/cart/ordersActions"
+import CartProductListContainer from "containers/cartProductListContainer"
 
 
 const initialState = {
    customer: {
-      isEdit: false,
+      isEdit: true,
       isValid: true,
       name: 'Алексей',
       phone: '+79960225657'
    },
-   recipient: {
-      isEdit: false,
-      isValid: false,
-      iamResipient: false,
-      iDontKnowRecipientNumber: false,
-      name: '',
-      phone: '',
-      postcard: true,
-      postcardText: ''
-      // photoWithRecipient: false,
-      // isSurprice: false,
-      // anonymousCustomer: false
-   },
+
    delivery: {
-      isEdit: false,
+      isEdit: true,
       isValid: false,
       is: DELIVERY_IS.COURIER,
       courierDirection: {
@@ -60,8 +49,21 @@ const initialState = {
          price: 0
       }
    },
+   recipient: {
+      isEdit: true,
+      isValid: false,
+      iamResipient: false,
+      iDontKnowRecipientNumber: false,
+      name: '',
+      phone: '',
+      postcard: true,
+      postcardText: ''
+      // photoWithRecipient: false,
+      // isSurprice: false,
+      // anonymousCustomer: false
+   },
    deliveryDateTime: {
-      isEdit: false,
+      isEdit: true,
       isValid: false,
       askRecipient: false
    },
@@ -281,20 +283,9 @@ class Cart extends Component {
                      )
                   )}
                </Step>
-               <Step number={2} title="Получатель" active={recipient.isEdit}>
-                  {recipient.isEdit ? (
-                     <RecipientForm {...recipient} onInputChange={this.handleInputChange}>
-                        <NextButton onClick={this.handleNextButton('recipient', 'delivery')}/>
-                     </RecipientForm>
-                  ) : (
-                     recipient.isValid && (
-                        <RecipientResult {...recipient}>
-                           <ChangeButton onClick={this.handleChangeButton('recipient')}/>
-                        </RecipientResult>
-                     )
-                  )}
-               </Step>
-               <Step number={3} title={deliveryTitle} active={delivery.isEdit}>
+
+               {/*deliveryTitle*/}
+               <Step number={2} title={'Доставка / самовывоз'} active={delivery.isEdit}>
                   {delivery.isEdit ? (
                      <DeliveryForm {...delivery} onInputChange={this.handleInputChange}>
                         <NextButton onClick={this.handleNextButton('delivery', 'deliveryDateTime')}/>
@@ -304,6 +295,19 @@ class Cart extends Component {
                         <DeliveryResult {...delivery}>
                            <ChangeButton onClick={this.handleChangeButton('delivery')}/>
                         </DeliveryResult>
+                     )
+                  )}
+               </Step>
+               <Step number={3} title="Получатель" active={recipient.isEdit}>
+                  {recipient.isEdit ? (
+                     <RecipientForm {...recipient} onInputChange={this.handleInputChange}>
+                        <NextButton onClick={this.handleNextButton('recipient', 'delivery')}/>
+                     </RecipientForm>
+                  ) : (
+                     recipient.isValid && (
+                        <RecipientResult {...recipient}>
+                           <ChangeButton onClick={this.handleChangeButton('recipient')}/>
+                        </RecipientResult>
                      )
                   )}
                </Step>
@@ -352,6 +356,9 @@ class Cart extends Component {
                      )
                   )}
                </Step>
+            </div>
+            <div className="col-6">
+               <CartProductListContainer />
             </div>
          </Row>
       )

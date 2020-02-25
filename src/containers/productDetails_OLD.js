@@ -6,7 +6,6 @@ import loadable from '@loadable/component'
 import SizeInformer from "components/Product/SizeInformer"
 import GrassPluserButton from "components/Product/GrassPluserButton"
 import SizeButton from "components/Product/SizeButton"
-import Available from 'components/Product/Available'
 import Details from 'components/Product/Details'
 
 import styles from './Product.module.sass'
@@ -144,20 +143,6 @@ class Product extends Component {
             <div className={`col-7 ${styles.usn}`}>
               <h1>{product.title}</h1>
 
-              <div
-                onClick={() =>
-                  this.setState(prevState => ({
-                    available: {
-                      ...prevState.available,
-                      now: !prevState.available.now
-                    }
-                  }))
-                }
-              >
-                <Available
-                  {...product.available}
-                />
-              </div>
 
               {this.renderSizesButtons(product.sizes)}
 
