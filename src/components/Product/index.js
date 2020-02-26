@@ -16,8 +16,8 @@ const Product = ({
                     title = '[title]',
                     slug = '[slug]',
                     available = {
-                       now: true,
-                       fromDate: ''
+                       expect: false,
+                       fast: false
                     },
                     showPriceAllSizes = false,
                     firstActiveSizeIndex = 0,
@@ -29,6 +29,7 @@ const Product = ({
                     }]
                  }) => {
    const [activeSizeIndex, setActiveSizeIndex] = useState(firstActiveSizeIndex)
+   const [isDetails, setIsDetails] = useState(false)
 
    useEffect(() => {
       setActiveSizeIndex(firstActiveSizeIndex)
@@ -41,8 +42,23 @@ const Product = ({
       setActiveSizeIndex(index)
    }
 
+   const onMouseEnter = (e) => {
+      console.log('enter')
+      setIsDetails(true)
+   }
+
+   const onMouseOut = (e) => {
+      console.log('out')
+      setIsDetails(false)
+   }
+
    return (
-      <div className={cn(styles.product, 'col-4', 'mb-2', 'pl-1', 'pr-1')} key={id}>
+      <div
+         key={id}
+         onMouseEnter={(e) => onMouseEnter(e)}
+         onMouseLeave={(e) => onMouseOut(e)}
+         className={cn(styles.product, 'col-4', 'mb-2', 'pl-1', 'pr-1')}
+      >
          <Link className={styles.image} to={`/catalog/${slug}`}>
             {/*<p className={styles.size}>{firstSize.h}см / {firstSize.w}см</p>*/}
             <Photo src={firstSize.image}/>
@@ -50,13 +66,12 @@ const Product = ({
          </Link>
 
          <Available
-            now={available.now}
-            fromDate={available.fromDate}
-            className="np"
-         />
+            {...available}
+            small={true}
+            isDetails={isDetails}/>
 
          <Link className={styles.title} to={`/catalog/${slug}`}>
-            {title} <b>{id}</b>
+            {title}
          </Link>
 
          <div className={styles.sizes}>
@@ -81,8 +96,8 @@ Product.propTypes = {
    title: PropTypes.string.isRequired,
    slug: PropTypes.string.isRequired,
    available: PropTypes.shape({
-      now: PropTypes.bool.isRequired,
-      fromDate: PropTypes.instanceOf(Date)
+      expect: PropTypes.bool.isRequired,
+      fast: PropTypes.bool.isRequired
    }),
    sizes: PropTypes.array.isRequired,
    showPriceAllSizes: PropTypes.bool,

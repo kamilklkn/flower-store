@@ -20,7 +20,11 @@ export const filtersEntities = {
    },
    byAvailability: {
       title: 'Наличие',
-      type: FILTER_COMPONENTS_TYPES.ITEMS
+      type: FILTER_COMPONENTS_TYPES.ITEMS,
+      buttons: {
+         expect: 'Ожидание 90 минут',
+         fast: 'Готовые букеты'
+      }
    },
    // byBouquetType: {
    //    title: 'Вид',
@@ -42,7 +46,6 @@ export const filtersEntities = {
       type: FILTER_COMPONENTS_TYPES.COLORS_BUTTONS,
       openedDefault: false
    },
-
    byStability: {
       title: 'Стойкость',
       type: FILTER_COMPONENTS_TYPES.ITEMS,

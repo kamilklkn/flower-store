@@ -1,23 +1,36 @@
 import React from 'react'
 import styles from './Available.module.sass'
-import { getAvailableDate } from "utils"
+import cn from 'classnames'
 
+const Available = ({
+                      isDetails = false,
+                      expect = false,
+                      fast = false,
+                      small = false
+                   }) => {
 
-const Available = ({ now = true, fromDate = false, className = false }) => {
-  const cls = [styles.available]
-  className && cls.push(styles[className])
-  !now && fromDate && cls.push(styles.no)
-  return (
-    <p className={cls.join(' ')}>
-      {now && (
-        'В наличии'
-      )}
-      {!now && fromDate && (
-        <>Доступно с <b>{getAvailableDate(fromDate)}</b></>
-      )}
-    </p>
-  )
+   let title = 'В наличии'
+   if (fast) title = 'Готовый букет'
+
+   if (isDetails) {
+      title = 'В наличии, соберем за 90 минут'
+
+      if (fast) {
+         title = 'Без ожидания, букет уже собран'
+      }
+   }
+
+   return (
+      <p className={cn(
+         styles.available,
+         small && styles.small,
+         fast && styles.fast
+      )}>
+         {title}
+      </p>
+   )
 }
+
 
 export default Available
 

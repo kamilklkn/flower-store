@@ -1,3 +1,5 @@
+import { filtersEntities } from 'constants/filtersEntities'
+
 export const byColors = (products, selected = []) =>
    products.filter(product =>
       selected.includes(product.color)
@@ -60,5 +62,25 @@ export const byStability = (products, selected = []) =>
       }
    )
 
-export const byAvailability = (products) =>
-   products.filter(product => !!product.available.now)
+export const byAvailability = (products, selectedTitles) => {
+   const buttons = filtersEntities.byAvailability.buttons
+   const fast = selectedTitles.includes(buttons.fast)
+   const expect = selectedTitles.includes(buttons.expect)
+
+   if (selectedTitles.length === 1) {
+      if (expect) {
+         return products.filter(({available}) => available.expect === true)
+      }
+
+      if (fast) {
+         return products.filter(({available}) => available.fast === true)
+      }
+   }
+
+   return products.filter(({available}) =>
+      available.expect === true || available.fast === true)
+
+   // return products.filter(({available}) =>
+   //    JSON.stringify(available) === JSON.stringify(selected))
+}
+

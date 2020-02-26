@@ -21,7 +21,7 @@ const initialState = {
     'Астра', 'Хризантема'],
   byStability: ['+', '++', '+++'],
   byShades: ['Нежный', 'Яркий', 'Темный'],
-  byAvailability: ['Только в наличии']
+  byAvailability: ['Готовые букеты', 'Ожидание 90 минут']
 }
 
 const filtersReducer = (state = initialState, action) => {

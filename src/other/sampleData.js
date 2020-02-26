@@ -127,11 +127,16 @@ const newModel = {
   // activeSizeIndex: 0,
   // activeGrassIndex: 0,
   // available: {
-  //   now: false,
-  //   fromDate: new Date()
+  //   expect: false,
+  //   fast: false
   // },
-  available: false,
-  availableFast: false,
+  // available: false,
+  // availableFast: false,
+
+  available: {
+    expect: false,
+    fast: false
+  },
 
   packing: ['Бумага флисовая'],
   colors: ['Фиолетовый', 'Только монобукеты'],
@@ -203,8 +208,13 @@ export function generateProducts() {
     // todo: это сделать но по новым принципам работы в CMS
     product.collecitions = ['23 февраля', '8 марта', 'Новый год'][random(0, 2)]
 
-    product.available = !!random(0, 1)
-    product.availableFast = !!random(0, 1)
+    const rand1 = !!random(0, 1)
+    product.available = {
+      expect: rand1,
+      fast: !rand1
+    }
+    // product.availableFast = !!random(0, 1)
+    // product.availableFast = true
 
 
     // unavailable: [date_26]
