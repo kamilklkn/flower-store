@@ -17,6 +17,6 @@ const ColorButton = ({
       color === 'miltiply' && styles.btnAllColor,
     )}
     onClick={() => onClick(id)}
-  >{color === 'miltiply' && 'Сборный'}</li>
+  >{color === 'miltiply' && 'Разноцветный'}</li>
 
 export default ColorButton

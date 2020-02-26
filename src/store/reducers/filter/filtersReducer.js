@@ -5,7 +5,7 @@ const initialState = {
   byCollections: ['23 февраля', '8 марта', 'Новый год'],
   byColors: [
     {
-      title: 'Сборный',
+      title: 'Разноцветный',
       color: 'miltiply'
     },
     {
@@ -21,7 +21,8 @@ const initialState = {
     'Астра', 'Хризантема'],
   byStability: ['+', '++', '+++'],
   byShades: ['Нежный', 'Яркий', 'Темный'],
-  byAvailability: ['Готовые букеты', 'Ожидание 90 минут']
+  byAvailability: ['Готовые букеты', 'Ожидание 90 минут'],
+  byBouquetType: ['Монобукет', 'Сборный']
 }
 
 const filtersReducer = (state = initialState, action) => {

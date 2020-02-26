@@ -12,12 +12,12 @@ export const bySizes = (products, selected = []) =>
       )
    )
 
-// export const byCollections = (products, selected = []) =>
-//    products.filter(({collecitions}) => {
-//          if (!collecitions) return false
-//          return selected.includes(collecitions)
-//       }
-//    )
+export const byBouquetType = (products, selected = []) =>
+   products.filter(({ bouquetType }) => {
+         if (!bouquetType) return false
+         return selected.includes(bouquetType)
+      }
+   )
 
 export const byShades = (products, selected = []) =>
    products.filter(({ shade }) => {
@@ -27,9 +27,9 @@ export const byShades = (products, selected = []) =>
    )
 
 export const byPacking = (products, selected = []) =>
-   products.filter(product => {
-         if (!('packing' in product)) return false
-         return product.packing.some(pack =>
+   products.filter(({ packing }) => {
+         if (!packing) return false
+         return packing.some(pack =>
             selected.includes(pack)
          )
       }
@@ -69,15 +69,15 @@ export const byAvailability = (products, selectedTitles) => {
 
    if (selectedTitles.length === 1) {
       if (expect) {
-         return products.filter(({available}) => available.expect === true)
+         return products.filter(({ available }) => available.expect === true)
       }
 
       if (fast) {
-         return products.filter(({available}) => available.fast === true)
+         return products.filter(({ available }) => available.fast === true)
       }
    }
 
-   return products.filter(({available}) =>
+   return products.filter(({ available }) =>
       available.expect === true || available.fast === true)
 
    // return products.filter(({available}) =>

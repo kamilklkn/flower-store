@@ -75,7 +75,7 @@ const photoModels = [
     title: 'Сборный в коробке',
     shade: 'Яркий',
     packing: ['Шляпная коробка', 'Коробка'],
-    color: 'Сборный',
+    color: 'Разноцветный',
     bouquetType: 'Сборный',
     sizes: [
       {
@@ -137,9 +137,9 @@ const newModel = {
     expect: false,
     fast: false
   },
-
+  bouquetType: 'Монобукет',
   packing: ['Бумага флисовая'],
-  colors: ['Фиолетовый', 'Только монобукеты'],
+  colors: ['Фиолетовый'],
   additionalProducts: [0, 1],
   shade: 'Мягкий',
   florist: {
@@ -199,6 +199,7 @@ export function generateProducts() {
     product.title = photoModel.title
     product.shade = photoModel.shade
     product.color = photoModel.color
+    product.bouquetType = photoModel.bouquetType
 
     if ('packing' in photoModel) product.packing = photoModel.packing
 
@@ -206,7 +207,7 @@ export function generateProducts() {
     product.stability = ['+', '++', '+++'][random(0, 2)]
 
     // todo: это сделать но по новым принципам работы в CMS
-    product.collecitions = ['23 февраля', '8 марта', 'Новый год'][random(0, 2)]
+    // product.collecitions = ['23 февраля', '8 марта', 'Новый год'][random(0, 2)]
 
     const rand1 = !!random(0, 1)
     product.available = {

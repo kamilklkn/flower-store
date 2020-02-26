@@ -9,11 +9,6 @@ export const filtersEntities = {
       title: 'Размер',
       type: FILTER_COMPONENTS_TYPES.ITEMS
    },
-   // byCollections: {
-   //    title: 'Коллекция',
-   //    type: FILTER_COMPONENTS_TYPES.ITEMS,
-   //    openedDefault: true
-   // },
    byPacking: {
       title: 'Оформление',
       type: FILTER_COMPONENTS_TYPES.ITEMS
@@ -26,11 +21,11 @@ export const filtersEntities = {
          fast: 'Готовые букеты'
       }
    },
-   // byBouquetType: {
-   //    title: 'Вид',
-   //    type: FILTER_COMPONENTS_TYPES.ITEMS,
-   //    openedDefault: true
-   // },
+   byBouquetType: {
+      title: 'Вид букета',
+      type: FILTER_COMPONENTS_TYPES.ITEMS,
+      openedDefault: true
+   },
    byFlowers: {
       title: 'Состав',
       type: FILTER_COMPONENTS_TYPES.ITEMS,
