@@ -10,7 +10,7 @@ const initialState = {
 const additionalProductsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ADDITIONAL_PRODUCTS_SUCCESS:
-      console.log(action.response)
+      // console.log(action.response)
       const { entities , result } = action.response
       return {
         byId: { ...entities.items },

@@ -30,10 +30,16 @@ const selectedFiltersReducer = (state = initialState, action) => {
       //  Новый объект или ссылку?
       const { [filterKey]: selected = [] } = state
 
+       console.log(action)
+
+       // todo Разберись с этим, страшно выглядит push
       // todo Если ссылку переписывай это на filter и ...rest
       selected.includes(value) ?
         selected.splice(selected.indexOf(value), 1) :
         selected.push(value)
+
+       console.log(selected)
+       console.log(state)
 
       if (selected.length) {
         return {

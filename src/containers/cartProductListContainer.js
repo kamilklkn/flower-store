@@ -102,7 +102,7 @@ class CartProductList extends Component {
    handleAdditionalProductClick = ({ id }) => {
       // todo Fix it
       const product = this.props.additionalProductsEntities.byId[id]
-      console.log(product)
+      // console.log(product)
       this.props.onAddAdditionalProduct({
          ...product
       })

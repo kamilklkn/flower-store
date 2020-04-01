@@ -1,8 +1,9 @@
 import {
-  SELECTED_FILTERS_UPDATE_SELECTED,
-  SELECTED_FILTERS_SET_PRICE_RANGE
+   SELECTED_FILTERS_UPDATE_SELECTED,
+   SELECTED_FILTERS_SET_PRICE_RANGE
 } from "store/actionTypes"
 import { resetFilter } from "store/actions/selectedFiltersActions"
+import { filtersEntities } from "constants/filtersEntities"
 
 /**
  * UI
@@ -13,18 +14,33 @@ import { resetFilter } from "store/actions/selectedFiltersActions"
  * @returns {function(*): Function}
  */
 const resetFilters = store => next => action => {
-  switch (action.type) {
-    case SELECTED_FILTERS_UPDATE_SELECTED:
-      if (action.filterKey === 'bySizes') next(resetFilter('bySizesPrice'))
-      return next(action)
+   const { filterKey } = action
 
-    case SELECTED_FILTERS_SET_PRICE_RANGE:
-      next(resetFilter('bySizes'))
-      return next(action)
+   switch (action.type) {
+      case SELECTED_FILTERS_UPDATE_SELECTED:
+         // При использовании фильтра выбора цены сбрасывает фильтр размера (bySizes)
+         if (filterKey === 'bySizes') next(resetFilter('bySizesPrice'))
 
-    default:
-      return next(action)
-  }
+         // Если у фильтра свойство multiply = false, нужно отключить возможность
+         // множественного выбора (например: одновременно выбранные кнопки - Ожидание и Готовые букеты)
+         // Находим фильтр по его ключу
+         const filter = filtersEntities[filterKey]
+         if (filter) {
+            if ('multiply' in filter && filter.multiply === false) {
+               next(resetFilter(filterKey))
+            }
+         }
+
+         return next(action)
+
+      case SELECTED_FILTERS_SET_PRICE_RANGE:
+         // При использовании фильтра выбора размера сбрасывает фильтр цены (bySizesPrice)
+         next(resetFilter('bySizes'))
+         return next(action)
+
+      default:
+         return next(action)
+   }
 }
 
 export default resetFilters

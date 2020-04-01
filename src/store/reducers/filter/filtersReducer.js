@@ -3,6 +3,11 @@ const initialState = {
   byPacking: ['Бумага флисовая', 'Шляпная коробка', 'Фет', 'Коробка'],
   bySizes: ['Стандартный', 'Большой', 'Премиум'],
   byCollections: ['23 февраля', '8 марта', 'Новый год'],
+
+  // todo это невозмножно получить в таком виде с сервера,
+  //  сейчас просто цвет приходит, значит нужно делать отдельный запрос
+  //  или вычислять и отправлять в ключе api/products?date=
+  //  (как даты недоступности)
   byColors: [
     {
       title: 'Разноцветный',
@@ -33,16 +38,3 @@ const filtersReducer = (state = initialState, action) => {
 }
 
 export default filtersReducer
-
-// todo: do filter Монобукет / Сборный
-
-// export const bouquet = [
-//   {
-//     id: 0,
-//     name: 'Монобукет'
-//   },
-//   {
-//     id: 1,
-//     name: 'Сборный'
-//   },
-// ]

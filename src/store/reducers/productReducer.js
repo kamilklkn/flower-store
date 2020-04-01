@@ -5,7 +5,6 @@ const initialState = null
 const productRedcer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCT_SUCCESS:
-      console.log('productReducer action', action)
       return {
         ...action.response
       }

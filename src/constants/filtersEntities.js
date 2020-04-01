@@ -16,6 +16,7 @@ export const filtersEntities = {
    byAvailability: {
       title: 'Наличие',
       type: FILTER_COMPONENTS_TYPES.ITEMS,
+      multiply: false,
       buttons: {
          expect: 'Ожидание 90 минут',
          fast: 'Готовые букеты'
@@ -24,6 +25,7 @@ export const filtersEntities = {
    byBouquetType: {
       title: 'Вид букета',
       type: FILTER_COMPONENTS_TYPES.ITEMS,
+      multiply: false,
       openedDefault: true
    },
    byFlowers: {

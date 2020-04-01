@@ -1,26 +1,24 @@
 import { connect } from "react-redux"
 import { getSelectedFilters } from "store/selectors/products"
-import * as actions from "store/actions/selectedFiltersActions"
 import ButtonsGroupCollapse from "components/Filter/ButtonsGroupCollapse"
 import { getFilters } from "store/selectors/filters"
+import { resetFilter, setPriceRange, updateSelect } from "store/actions/selectedFiltersActions"
 
 
 function mapStateToProps(state) {
-  return {
-    selectedFilters: getSelectedFilters(state),
-    filters: getFilters(state)
-  }
+   return {
+      selectedFilters: getSelectedFilters(state),
+      filters: getFilters(state)
+   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    updateSelect: (filterKey, value) => dispatch(actions.updateSelect(filterKey, value)),
-    setPriceRange: (min, max) => dispatch(actions.setPriceRange(min, max)),
-    resetFilter: (filterKey) => dispatch(actions.resetFilter(filterKey))
-  }
+const mapDispatchToProps = {
+   updateSelect,
+   setPriceRange,
+   resetFilter
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+   mapStateToProps,
+   mapDispatchToProps
 )(ButtonsGroupCollapse)

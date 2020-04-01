@@ -345,7 +345,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
    fetchProduct: (slug) => {
-      console.log(slug)
+      // console.log(slug)
       return dispatch(fetchProduct(slug))
    },
    addToCart: (product) => dispatch(cartProductAdd(product)),

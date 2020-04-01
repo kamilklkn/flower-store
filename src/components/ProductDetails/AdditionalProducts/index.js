@@ -14,7 +14,7 @@ const AdditionalProducts = ({
     <Row className={styles.additionalProducts}>
       {
         products.map(({ id, title = '', price, image }, idx) => {
-          console.log(id, activeIds)
+          // console.log(id, activeIds)
           const active = activeIds.includes(id)
           return (
             <div

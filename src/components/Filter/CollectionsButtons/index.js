@@ -11,7 +11,7 @@ function useQuery() {
 const CollectionsButtons = ({ collections }) => {
    let query = useQuery()
    const collection = query.get("collection")
-   console.log(collection)
+   // console.log(collection)
 
    return (
       <div className={styles.buttons}>

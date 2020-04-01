@@ -67,20 +67,19 @@ export const byAvailability = (products, selectedTitles) => {
    const fast = selectedTitles.includes(buttons.fast)
    const expect = selectedTitles.includes(buttons.expect)
 
-   if (selectedTitles.length === 1) {
-      if (expect) {
-         return products.filter(({ available }) => available.expect === true)
-      }
-
-      if (fast) {
-         return products.filter(({ available }) => available.fast === true)
-      }
+   // 28.02.2020 Выключаем множественный выбор фильтра, в selectedTitles всегда
+   // один элемент
+   if (expect) {
+      return products.filter(({ available }) => available.expect === true)
    }
 
-   return products.filter(({ available }) =>
-      available.expect === true || available.fast === true)
+   if (fast) {
+      return products.filter(({ available }) => available.fast === true)
+   }
 
-   // return products.filter(({available}) =>
-   //    JSON.stringify(available) === JSON.stringify(selected))
+   // if (selectedTitles.length === 1) {
+   // }
+   // return products.filter(({ available }) =>
+   //    available.expect === true || available.fast === true)
 }
 
